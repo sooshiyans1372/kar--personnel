@@ -624,26 +624,27 @@ function showPage(page, button) {
 <script>
     const SUPABASE_URL = "https://mhyukpigmddjyigykftt.supabase.co";
 
-    const SUPABASE_KEY = "کلید Publishable خودت را اینجا قرار بده";
+    const SUPABASE_KEY = "sb_publishable_6MOAMK0hThThIRy1DGxjOg_SGmFP_qj";
 
     const supabaseClient = window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
-    async function testEmployees() {  
-    const { data, error } = await supabaseClient
-        .from('employees')
-        .select('*');
 
-    if (error) {
-        console.error('خطا در خواندن پرسنل:', error);
-        return;
+    async function testEmployees() {
+        const { data, error } = await supabaseClient
+            .from("employees")
+            .select("*");
+
+        if (error) {
+            console.error("خطا در خواندن پرسنل:", error);
+            return;
+        }
+
+        console.log("پرسنل دریافت شد:", data);
     }
 
-    console.log('پرسنل دریافت شد:', data);
-}
-
-testEmployees();
-</script>const SUPABASE_KEY = "sb_publishable_6MOAMK0hThThIRy1DGxjOg_SGmFP_qj";
+    testEmployees();
+</script>
 </body>
 </html>
