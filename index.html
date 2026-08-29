@@ -1,73 +1,177 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
 
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>سامانه کارکرد پرسنل</title>
 
     <style>
 
+        /* =========================================
+           فونت‌های سامانه
+        ========================================= */
+
+        @font-face {
+            font-family: "B Nazanin";
+            src: local("B Nazanin");
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: "B Nazanin";
+            src: local("B Nazanin");
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: "B Titr";
+            src: local("B Titr");
+            font-weight: normal;
+        }
+
+
+        /* =========================================
+           تنظیمات عمومی
+        ========================================= */
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        html,
+        body {
+            min-height: 100%;
         }
 
         body {
             background: #f4f6f9;
             color: #263238;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 18px;
+
+            direction: rtl;
         }
 
         button,
         input,
-        select {
-            font-family: inherit;
+        select,
+        textarea {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
         }
 
-        /* ================= HEADER ================= */
+
+        /* =========================================
+           عنوان‌ها
+        ========================================= */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family:
+                "B Titr",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-weight: normal;
+        }
+
+
+        /* =========================================
+           هدر
+        ========================================= */
 
         .header {
             background: #17365d;
             color: white;
-            padding: 18px 30px;
+
+            padding: 16px 30px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, .12);
         }
 
         .header h1 {
-            font-size: 22px;
+            font-family:
+                "B Titr",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 27px;
+            font-weight: normal;
         }
 
         .header span {
-            font-size: 13px;
-            opacity: .9;
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
         }
 
-        /* ================= LAYOUT ================= */
+
+        /* =========================================
+           ساختار اصلی
+        ========================================= */
 
         .layout {
             display: flex;
             min-height: calc(100vh - 70px);
         }
 
+
+        /* =========================================
+           منوی کناری
+        ========================================= */
+
         .sidebar {
             width: 245px;
+
             background: #ffffff;
+
             border-left: 1px solid #ddd;
+
             padding: 20px 12px;
         }
 
         .sidebar-title {
-            font-size: 13px;
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
+            font-weight: bold;
+
             color: #777;
+
             padding: 10px 15px;
             margin-bottom: 8px;
         }
@@ -82,14 +186,29 @@
 
         .menu button {
             width: 100%;
+
             border: none;
             background: transparent;
+
             text-align: right;
-            padding: 13px 15px;
+
+            padding: 12px 15px;
+
             border-radius: 8px;
+
             cursor: pointer;
-            font-size: 14px;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 18px;
+            font-weight: bold;
+
             color: #37474f;
+
             transition: .2s;
         }
 
@@ -97,126 +216,345 @@
         .menu button.active {
             background: #eaf1f8;
             color: #17365d;
-            font-weight: bold;
         }
+
+
+        /* =========================================
+           محتوای اصلی
+        ========================================= */
 
         .content {
             flex: 1;
             padding: 30px;
+
             min-width: 0;
         }
 
-        /* ================= TITLES ================= */
+
+        /* =========================================
+           عنوان صفحه
+        ========================================= */
 
         .page-title {
             margin-bottom: 25px;
         }
 
         .page-title h2 {
-            font-size: 24px;
-            margin-bottom: 8px;
+            font-family:
+                "B Titr",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 29px;
+            margin-bottom: 6px;
         }
 
         .page-title p {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
             color: #777;
-            font-size: 13px;
+            font-size: 17px;
         }
 
-        /* ================= CARDS ================= */
+
+        /* =========================================
+           کارت‌های داشبورد
+        ========================================= */
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 18px;
+
             margin-bottom: 25px;
         }
 
         .card {
             background: white;
+
             border-radius: 12px;
+
             padding: 22px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, .06);
         }
 
         .card-title {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
             color: #777;
-            font-size: 13px;
-            margin-bottom: 12px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            margin-bottom: 10px;
         }
 
         .card-value {
-            font-size: 28px;
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 32px;
             font-weight: bold;
+
             color: #17365d;
         }
 
         .card-sub {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
             margin-top: 8px;
+
             color: #888;
-            font-size: 12px;
+
+            font-size: 15px;
         }
 
-        /* ================= PANEL ================= */
+
+        /* =========================================
+           پنل
+        ========================================= */
 
         .panel {
             background: white;
+
             border-radius: 12px;
+
             padding: 22px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, .06);
+
             margin-bottom: 22px;
-        }
 
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 18px;
-        }
-
-        .panel h3 {
-            font-size: 17px;
-        }
-
-        /* ================= TABLE ================= */
-
-        .table-wrapper {
-            width: 100%;
             overflow-x: auto;
         }
 
+        .panel h3 {
+            font-family:
+                "B Titr",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 22px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =========================================
+           نوار ابزار
+        ========================================= */
+
+        .toolbar {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            flex-wrap: wrap;
+        }
+
+        .search {
+            flex: 1;
+
+            min-width: 260px;
+
+            padding: 10px 14px;
+
+            border: 1px solid #d8d8d8;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 18px;
+
+            background: white;
+        }
+
+        .search:focus {
+            border-color: #17365d;
+
+            box-shadow:
+                0 0 0 2px rgba(23, 54, 93, .08);
+        }
+
+
+        /* =========================================
+           دکمه‌ها
+        ========================================= */
+
+        .btn {
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 9px 17px;
+
+            cursor: pointer;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            transition: .2s;
+        }
+
+        .btn:hover {
+            opacity: .88;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: #17365d;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #eef2f6;
+            color: #37474f;
+        }
+
+        .btn-danger {
+            background: #c62828;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #eaf1f8;
+            color: #17365d;
+        }
+
+
+        /* =========================================
+           شمارنده
+        ========================================= */
+
+        .count {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            color: #777;
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================================
+           جدول
+        ========================================= */
+
         table {
             width: 100%;
+
             border-collapse: collapse;
-            min-width: 700px;
+
+            min-width: 750px;
         }
 
         th {
             background: #f5f7fa;
+
             color: #555;
-            font-size: 13px;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 18px;
+            font-weight: bold;
+
             padding: 13px 10px;
+
             text-align: right;
+
             white-space: nowrap;
         }
 
         td {
             border-top: 1px solid #eee;
-            padding: 13px 10px;
-            font-size: 13px;
+
+            padding: 12px 10px;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
+
+            white-space: nowrap;
         }
 
         tbody tr:hover {
-            background: #fafcff;
+            background: #fafbfd;
         }
 
-        /* ================= STATUS ================= */
+
+        /* =========================================
+           وضعیت
+        ========================================= */
 
         .status {
             display: inline-block;
-            padding: 5px 10px;
+
+            padding: 4px 12px;
+
             border-radius: 20px;
-            font-size: 11px;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 15px;
+
+            font-weight: bold;
         }
 
         .present {
@@ -229,130 +567,204 @@
             color: #c62828;
         }
 
-        /* ================= BUTTONS ================= */
 
-        .btn {
-            border: none;
-            border-radius: 7px;
-            padding: 9px 15px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: .2s;
-        }
+        /* =========================================
+           عملیات
+        ========================================= */
 
-        .btn-primary {
-            background: #17365d;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #102b4b;
-        }
-
-        .btn-light {
-            background: #eef2f6;
-            color: #37474f;
-        }
-
-        .btn-light:hover {
-            background: #e1e7ed;
-        }
-
-        /* ================= SEARCH ================= */
-
-        .toolbar {
+        .actions {
             display: flex;
-            justify-content: space-between;
+
+            gap: 6px;
+
             align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-            flex-wrap: wrap;
         }
 
-        .search-box {
-            position: relative;
-            flex: 1;
-            min-width: 240px;
+
+        /* =========================================
+           فرم
+        ========================================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
         }
 
-        .search-box input {
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #555;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .form-group input {
             width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 11px 14px;
+
+            padding: 10px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 7px;
+
             outline: none;
-            font-size: 13px;
-            background: #fafafa;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
         }
 
-        .search-box input:focus {
+        .form-group input:focus {
             border-color: #17365d;
-            background: white;
         }
 
-        /* ================= MESSAGE ================= */
+        .form-actions {
+            margin-top: 22px;
 
-        .message {
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: flex-start;
+        }
+
+
+        /* =========================================
+           مودال
+        ========================================= */
+
+        .modal {
             display: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 13px;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, .45);
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            padding: 15px;
         }
 
-        .message.success {
-            display: block;
-            background: #e8f5e9;
-            color: #2e7d32;
+        .modal-box {
+            background: white;
+
+            width: 95%;
+
+            max-width: 650px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            border-radius: 14px;
+
+            padding: 25px;
         }
 
-        .message.error {
-            display: block;
-            background: #ffebee;
-            color: #c62828;
+        .modal-box h3 {
+            font-family:
+                "B Titr",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
         }
+
+
+        /* =========================================
+           وضعیت اتصال
+        ========================================= */
+
+        #connectionStatus {
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================================
+           حالت جدول خالی
+        ========================================= */
 
         .empty {
             text-align: center;
+
             padding: 30px;
-            color: #999;
+
+            color: #888;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 17px;
         }
 
-        /* ================= FOOTER ================= */
+
+        /* =========================================
+           فوتر
+        ========================================= */
 
         .footer {
             text-align: center;
+
             color: #999;
-            font-size: 11px;
+
+            font-family:
+                "B Nazanin",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            font-size: 15px;
+
             padding: 20px;
         }
 
-        /* ================= LOADING ================= */
 
-        .loading {
-            text-align: center;
-            padding: 30px;
-            color: #888;
-            font-size: 13px;
-        }
-
-        /* ================= DATE ================= */
-
-        .today-date {
-            background: #eef4fa;
-            color: #17365d;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 12px;
-            display: inline-block;
-        }
-
-        /* ================= RESPONSIVE ================= */
+        /* =========================================
+           واکنش‌گرا
+        ========================================= */
 
         @media (max-width: 1100px) {
 
             .cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
         }
@@ -360,7 +772,7 @@
         @media (max-width: 900px) {
 
             .sidebar {
-                width: 200px;
+                width: 210px;
             }
 
             .content {
@@ -387,11 +799,20 @@
                 padding: 15px;
             }
 
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
             .header {
                 padding: 15px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .header span {
+                display: none;
             }
 
         }
@@ -400,13 +821,19 @@
 
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- =========================================
+     هدر
+========================================= -->
 
 <header class="header">
 
-    <h1>سامانه کارکرد پرسنل</h1>
+    <h1>
+        سامانه کارکرد پرسنل
+    </h1>
 
     <span>
         مدیریت حضور و غیاب و کارکرد
@@ -417,1284 +844,66 @@
 
 <div class="layout">
 
-    <!-- ================= SIDEBAR ================= -->
 
-    <aside class="sidebar">
-
-        <div class="sidebar-title">
-            منوی سامانه
-        </div>
-
-        <ul class="menu">
-
-            <li>
-                <button
-                    class="active"
-                    onclick="showPage('dashboard', this)">
-                    🏠 داشبورد
-                </button>
-            </li>
-
-            <li>
-                <button
-                    onclick="showPage('employees', this)">
-                    👥 پرسنل
-                </button>
-            </li>
-
-            <li>
-                <button
-                    onclick="showPage('attendance', this)">
-                    🕐 کارکرد روزانه
-                </button>
-            </li>
-
-            <li>
-                <button
-                    onclick="showPage('reports', this)">
-                    📊 گزارش کارکرد
-                </button>
-            </li>
-
-            <li>
-                <button
-                    onclick="showPage('settings', this)">
-                    ⚙️ تنظیمات
-                </button>
-            </li>
-
-        </ul>
-
-    </aside>
-
-
-    <!-- ================= CONTENT ================= -->
-
-    <main class="content">
-
-
-        <!-- ================= DASHBOARD ================= -->
-
-        <section id="dashboard">
-
-            <div class="page-title">
-
-                <h2>داشبورد</h2>
-
-                <p>
-                    نمای کلی وضعیت کارکرد پرسنل
-                </p>
-
-                <div style="margin-top:12px;">
-                    <span class="today-date"
-                          id="todayDate">
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="cards">
-
-                <div class="card">
-
-                    <div class="card-title">
-                        تعداد پرسنل
-                    </div>
-
-                    <div class="card-value"
-                         id="totalEmployees">
-                        -
-                    </div>
-
-                    <div class="card-sub">
-                        کل پرسنل ثبت‌شده
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        پرسنل فعال
-                    </div>
-
-                    <div class="card-value"
-                         id="activeEmployees">
-                        -
-                    </div>
-
-                    <div class="card-sub">
-                        پرسنل فعال
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        اضافه‌کار امروز
-                    </div>
-
-                    <div class="card-value">
-                        ۲۸:۴۵
-                    </div>
-
-                    <div class="card-sub">
-                        ساعت:دقیقه
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-title">
-                        کسری‌کار امروز
-                    </div>
-
-                    <div class="card-value">
-                        ۰۷:۳۰
-                    </div>
-
-                    <div class="card-sub">
-                        ساعت:دقیقه
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h3>
-                        آخرین وضعیت کارکرد
-                    </h3>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    کد پرسنلی
-                                </th>
-
-                                <th>
-                                    نام و نام خانوادگی
-                                </th>
-
-                                <th>
-                                    ورود
-                                </th>
-
-                                <th>
-                                    خروج
-                                </th>
-
-                                <th>
-                                    کارکرد
-                                </th>
-
-                                <th>
-                                    روز کارکرد
-                                </th>
-
-                                <th>
-                                    وضعیت
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="dashboardAttendanceBody">
-
-                            <tr>
-                                <td colspan="7"
-                                    class="empty">
-                                    اطلاعات کارکرد هنوز متصل نشده است.
-                                </td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= EMPLOYEES ================= -->
-
-        <section id="employees"
-                 style="display:none;">
-
-            <div class="page-title">
-
-                <h2>
-                    پرسنل
-                </h2>
-
-                <p>
-                    مدیریت اطلاعات پرسنل سازمان
-                </p>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h3>
-                        لیست پرسنل
-                    </h3>
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="loadEmployees()">
-                        🔄 به‌روزرسانی
-                    </button>
-
-                </div>
-
-
-                <div id="employeeMessage"
-                     class="message">
-                </div>
-
-
-                <div class="toolbar">
-
-                    <div class="search-box">
-
-                        <input
-                            type="text"
-                            id="employeeSearch"
-                            placeholder="جستجو بر اساس کد، نام، نام خانوادگی، واحد یا سمت..."
-                            oninput="filterEmployees()">
-
-                    </div>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    کد
-                                </th>
-
-                                <th>
-                                    نام و نام خانوادگی
-                                </th>
-
-                                <th>
-                                    کد ملی
-                                </th>
-
-                                <th>
-                                    واحد
-                                </th>
-
-                                <th>
-                                    سمت
-                                </th>
-
-                                <th>
-                                    وضعیت
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="employeesTableBody">
-
-                            <tr>
-
-                                <td colspan="6"
-                                    class="loading">
-
-                                    در حال دریافت اطلاعات...
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= ATTENDANCE ================= -->
-
-        <section id="attendance"
-                 style="display:none;">
-
-            <div class="page-title">
-
-                <h2>
-                    کارکرد روزانه
-                </h2>
-
-                <p>
-                    مشاهده ورود، خروج و محاسبه کارکرد پرسنل
-                </p>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h3>
-                        کارکرد پرسنل
-                    </h3>
-
-                    <span class="today-date"
-                          id="attendanceDate">
-                    </span>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    پرسنل
-                                </th>
-
-                                <th>
-                                    تاریخ
-                                </th>
-
-                                <th>
-                                    ورود
-                                </th>
-
-                                <th>
-                                    خروج
-                                </th>
-
-                                <th>
-                                    موظفی
-                                </th>
-
-                                <th>
-                                    کارکرد
-                                </th>
-
-                                <th>
-                                    اضافه‌کار
-                                </th>
-
-                                <th>
-                                    کسری‌کار
-                                </th>
-
-                                <th>
-                                    روز کارکرد
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="attendanceTableBody">
-
-                            <tr>
-
-                                <td colspan="9"
-                                    class="empty">
-
-                                    اتصال اطلاعات کارکرد در مرحله بعد انجام می‌شود.
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= REPORTS ================= -->
-
-        <section id="reports"
-                 style="display:none;">
-
-            <div class="page-title">
-
-                <h2>
-                    گزارش کارکرد
-                </h2>
-
-                <p>
-                    گزارش‌گیری از وضعیت کارکرد پرسنل
-                </p>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h3>
-                        گزارش ماهانه
-                    </h3>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    پرسنل
-                                </th>
-
-                                <th>
-                                    موظفی
-                                </th>
-
-                                <th>
-                                    کارکرد
-                                </th>
-
-                                <th>
-                                    اضافه‌کار
-                                </th>
-
-                                <th>
-                                    کسری‌کار
-                                </th>
-
-                                <th>
-                                    روز کارکرد
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="reportsTableBody">
-
-                            <tr>
-
-                                <td colspan="6"
-                                    class="empty">
-
-                                    گزارش کارکرد پس از اتصال جدول کارکرد نمایش داده می‌شود.
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= SETTINGS ================= -->
-
-        <section id="settings"
-                 style="display:none;">
-
-            <div class="page-title">
-
-                <h2>
-                    تنظیمات
-                </h2>
-
-                <p>
-                    تنظیمات سامانه کارکرد پرسنل
-                </p>
-
-            </div>
-
-
-            <div class="panel">
-
-                <h3>
-                    تنظیمات سامانه
-                </h3>
-
-                <p style="line-height:2;
-                          color:#666;
-                          margin-top:15px;">
-
-                    در این بخش تنظیمات ساعت موظفی،
-                    شیفت‌ها، تعطیلات، قوانین اضافه‌کار،
-                    قوانین کسری‌کار و اتصال دستگاه حضور
-                    و غیاب مدیریت خواهد شد.
-
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= FOOTER ================= -->
-
-        <div class="footer">
-
-            سامانه کارکرد پرسنل —
-            نسخه در حال توسعه
-
-        </div>
-
-    </main>
-
-</div>
-
-
-<!-- ================= SUPABASE ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script>
-
-    /* ==================================================
-       SUPABASE CONFIGURATION
-       ================================================== */
-
-    const SUPABASE_URL =
-        "https://mhyukpigmddjyigykftt.supabase.co";
-
-    const SUPABASE_KEY =
-        "sb_publishable_ck9jE3ZbZW9jQ7Stn49B1A_9ILtI16_";
-
-    const supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-
-    /* ==================================================
-       GLOBAL DATA
-       ================================================== */
-
-    let employeesData = [];
-
-
-    /* ==================================================
-       PAGE NAVIGATION
-       ================================================== */
-
-    function showPage(page, button) {
-
-        const pages = [
-            "dashboard",
-            "employees",
-            "attendance",
-            "reports",
-            "settings"
-        ];
-
-
-        pages.forEach(function(item) {
-
-            const element =
-                document.getElementById(item);
-
-            if (element) {
-
-                element.style.display = "none";
-
-            }
-
-        });
-
-
-        const selectedPage =
-            document.getElementById(page);
-
-        if (selectedPage) {
-
-            selectedPage.style.display = "block";
-
-        }
-
-
-        document
-            .querySelectorAll(".menu button")
-            .forEach(function(btn) {
-
-                btn.classList.remove("active");
-
-            });
-
-
-        if (button) {
-
-            button.classList.add("active");
-
-        }
-
-
-        if (page === "employees") {
-
-            loadEmployees();
-
-        }
-
-    }
-
-
-    /* ==================================================
-       PERSIAN NUMBERS
-       ================================================== */
-
-    function toPersianNumbers(value) {
-
-        if (value === null ||
-            value === undefined) {
-
-            return "";
-
-        }
-
-        return String(value)
-            .replace(/0/g, "۰")
-            .replace(/1/g, "۱")
-            .replace(/2/g, "۲")
-            .replace(/3/g, "۳")
-            .replace(/4/g, "۴")
-            .replace(/5/g, "۵")
-            .replace(/6/g, "۶")
-            .replace(/7/g, "۷")
-            .replace(/8/g, "۸")
-            .replace(/9/g, "۹");
-
-    }
-
-
-    /* ==================================================
-       GREGORIAN -> JALALI
-       ================================================== */
-
-    function gregorianToJalali(gy, gm, gd) {
-
-        const g_d_m = [
-            0,
-            31,
-            59,
-            90,
-            120,
-            151,
-            181,
-            212,
-            243,
-            273,
-            304,
-            334
-        ];
-
-        let jy;
-
-        if (gy > 1600) {
-
-            jy = 979;
-
-            gy -= 1600;
-
-        } else {
-
-            jy = 0;
-
-            gy -= 621;
-
-        }
-
-
-        const gy2 =
-            gm > 2
-                ? gy + 1
-                : gy;
-
-
-        let days =
-            (365 * gy) +
-            Math.floor((gy2 + 3) / 4) -
-            Math.floor((gy2 + 99) / 100) +
-            Math.floor((gy2 + 399) / 400) -
-            80 +
-            gd +
-            g_d_m[gm - 1];
-
-
-        jy +=
-            33 *
-            Math.floor(days / 12053);
-
-
-        days %= 12053;
-
-
-        jy +=
-            4 *
-            Math.floor(days / 1461);
-
-
-        days %= 1461;
-
-
-        if (days > 365) {
-
-            jy +=
-                Math.floor((days - 1) / 365);
-
-            days =
-                (days - 1) % 365;
-
-        }
-
-
-        let jm;
-
-        if (days < 186) {
-
-            jm =
-                1 +
-                Math.floor(days / 31);
-
-            gd =
-                1 +
-                (days % 31);
-
-        } else {
-
-            jm =
-                7 +
-                Math.floor((days - 186) / 30);
-
-            gd =
-                1 +
-                ((days - 186) % 30);
-
-        }
-
-
-        return {
-            year: jy,
-            month: jm,
-            day: gd
-        };
-
-    }
-
-
-    /* ==================================================
-       TODAY JALALI
-       ================================================== */
-
-    function getTodayJalali() {
-
-        const today =
-            new Date();
-
-        return gregorianToJalali(
-            today.getFullYear(),
-            today.getMonth() + 1,
-            today.getDate()
-        );
-
-    }
-
-
-    function getTodayJalaliText() {
-
-        const date =
-            getTodayJalali();
-
-        return toPersianNumbers(
-            date.year +
-            "/" +
-            String(date.month).padStart(2, "0") +
-            "/" +
-            String(date.day).padStart(2, "0")
-        );
-
-    }
-
-
-    /* ==================================================
-       EMPLOYEE MESSAGE
-       ================================================== */
-
-    function showEmployeeMessage(
-        message,
-        type
-    ) {
-
-        const element =
-            document.getElementById(
-                "employeeMessage"
-            );
-
-
-        element.className =
-            "message " + type;
-
-
-        element.textContent =
-            message;
-
-
-        setTimeout(function() {
-
-            element.className =
-                "message";
-
-            element.textContent =
-                "";
-
-        }, 4000);
-
-    }
-
-
-    /* ==================================================
-       LOAD EMPLOYEES
-       ================================================== */
-
-    async function loadEmployees() {
-
-        const tableBody =
-            document.getElementById(
-                "employeesTableBody"
-            );
-
-
-        tableBody.innerHTML = `
-
-            <tr>
-                <td colspan="6"
-                    class="loading">
-                    در حال دریافت اطلاعات پرسنل...
-                </td>
-            </tr>
-
-        `;
-
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("employees")
-            .select("*")
-            .order(
-                "id",
-                {
-                    ascending: true
-                }
-            );
-
-
-        if (error) {
-
-            console.error(
-                "خطا در دریافت پرسنل:",
-                error
-            );
-
-
-            tableBody.innerHTML = `
-
-                <tr>
-                    <td colspan="6"
-                        class="empty">
-                        خطا در دریافت اطلاعات پرسنل
-                    </td>
-                </tr>
-
-            `;
-
-
-            showEmployeeMessage(
-                "دریافت اطلاعات پرسنل با خطا مواجه شد.",
-                "error"
-            );
-
-
-            return;
-
-        }
-
-
-        employeesData =
-            data || [];
-
-
-        renderEmployees(
-            employeesData
-        );
-
-
-        updateDashboardCounts(
-            employeesData
-        );
-
-    }
-
-
-    /* ==================================================
-       RENDER EMPLOYEES
-       ================================================== */
-
-    function renderEmployees(
-        employees
-    ) {
-
-        const tableBody =
-            document.getElementById(
-                "employeesTableBody"
-            );
-
-
-        tableBody.innerHTML = "";
-
-
-        if (!employees ||
-            employees.length === 0) {
-
-            tableBody.innerHTML = `
-
-                <tr>
-                    <td colspan="6"
-                        class="empty">
-                        هیچ پرسنلی ثبت نشده است.
-                    </td>
-                </tr>
-
-            `;
-
-            return;
-
-        }
-
-
-        employees.forEach(
-            function(employee) {
-
-                const row =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                const personnelCode =
-                    employee.personnel_code ||
-                    "";
-
-
-                const fullName =
-                    (
-                        employee.first_name ||
-                        ""
-                    ) +
-                    " " +
-                    (
-                        employee.last_name ||
-                        ""
-                    );
-
-
-                const nationalCode =
-                    employee.national_code ||
-                    "";
-
-
-                const department =
-                    employee.department ||
-                    "";
-
-
-                const position =
-                    employee.position ||
-                    "";
-
-
-                const isActive =
-                    employee.is_active !== false;
-
-
-                row.innerHTML = `
-
-                    <td>
-                        ${escapeHtml(
-                            personnelCode
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            fullName.trim()
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            nationalCode
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            department
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            position
-                        )}
-                    </td>
-
-                    <td>
-
-                        <span class="status ${
-                            isActive
-                                ? "present"
-                                : "absent"
-                        }">
-
-                            ${
-                                isActive
-                                    ? "فعال"
-                                    : "غیرفعال"
-                            }
-
-                        </span>
-
-                    </td>
-
-                `;
-
-
-                tableBody.appendChild(
-                    row
-                );
-
-            }
-        );
-
-    }
-
-
-    /* ==================================================
-       SEARCH
-       ================================================== */
-
-    function filterEmployees() {
-
-        const search =
-            document
-                .getElementById(
-                    "employeeSearch"
-                )
-                .value
-                .trim()
-                .toLowerCase();
-
-
-        if (!search) {
-
-            renderEmployees(
-                employeesData
-            );
-
-            return;
-
-        }
-
-
-        const filtered =
-            employeesData.filter(
-                function(employee) {
-
-                    const text = [
-
-                        employee.personnel_code,
-                        employee.first_name,
-                        employee.last_name,
-                        employee.national_code,
-                        employee.department,
-                        employee.position
-
-                    ]
-                    .filter(Boolean)
-                    .join(" ")
-                    .toLowerCase();
-
-
-                    return text.includes(
-                        search
-                    );
-
-                }
-            );
-
-
-        renderEmployees(
-            filtered
-        );
-
-    }
-
-
-    /* ==================================================
-       DASHBOARD COUNTS
-       ================================================== */
-
-    function updateDashboardCounts(
-        employees
-    ) {
-
-        const total =
-            employees.length;
-
-
-        const active =
-            employees.filter(
-                function(employee) {
-
-                    return employee.is_active !== false;
-
-                }
-            ).length;
-
-
-        document.getElementById(
-            "totalEmployees"
-        ).textContent =
-            toPersianNumbers(total);
-
-
-        document.getElementById(
-            "activeEmployees"
-        ).textContent =
-            toPersianNumbers(active);
-
-    }
-
-
-    /* ==================================================
-       ESCAPE HTML
-       ================================================== */
-
-    function escapeHtml(value) {
-
-        if (value === null ||
-            value === undefined) {
-
-            return "";
-
-        }
-
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* ==================================================
-       INITIALIZATION
-       ================================================== */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-
-            const today =
-                getTodayJalaliText();
-
-
-            document.getElementById(
-                "todayDate"
-            ).textContent =
-                "تاریخ امروز: " + today;
-
-
-            document.getElementById(
-                "attendanceDate"
-            ).textContent =
-                today;
-
-
-            loadEmployees();
-
-        }
-    );
-
-</script>
-
-</body>
-
-</html>
+<!-- =========================================
+     منوی کناری
+========================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        منوی سامانه
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <button
+                class="active"
+                onclick="showPage('dashboard', this)"
+            >
+                🏠 داشبورد
+            </button>
+        </li>
+
+        <li>
+            <button
+                onclick="showPage('employees', this)"
+            >
+                👥 پرسنل
+            </button>
+        </li>
+
+        <li>
+            <button
+                onclick="showPage('attendance', this)"
+            >
+                🕐 کارکرد روزانه
+            </button>
+        </li>
+
+        <li>
+            <button
+                onclick="showPage('reports', this)"
+            >
+                📊 گزارش کارکرد
+            </button>
+        </li>
+
+        <li>
+            <button
+                onclick="showPage('settings', this)"
+            >
+                ⚙️ تنظیمات
+            </button>
+        </li>
+
+    </ul>
+
+</aside>
+
+
+<!-- =========================================
+     محتوای اصلی
+=========================================
+```
