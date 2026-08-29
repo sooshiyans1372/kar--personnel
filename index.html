@@ -1,1 +1,624 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه کارکرد پرسنل</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #263238;
+        }
+
+        .header {
+            background: #17365d;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+
+        .header h1 {
+            font-size: 22px;
+        }
+
+        .header span {
+            font-size: 13px;
+            opacity: .9;
+        }
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 245px;
+            background: #ffffff;
+            border-left: 1px solid #ddd;
+            padding: 20px 12px;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            color: #777;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin-bottom: 5px;
+        }
+
+        .menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            text-align: right;
+            padding: 13px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #37474f;
+        }
+
+        .menu button:hover,
+        .menu button.active {
+            background: #eaf1f8;
+            color: #17365d;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+        .card-title {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .card-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #17365d;
+        }
+
+        .card-sub {
+            margin-top: 8px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+            margin-bottom: 22px;
+        }
+
+        .panel h3 {
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f5f7fa;
+            color: #555;
+            font-size: 13px;
+            padding: 13px 10px;
+            text-align: right;
+        }
+
+        td {
+            border-top: 1px solid #eee;
+            padding: 13px 10px;
+            font-size: 13px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        .present {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .absent {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+            padding: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 15px;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>سامانه کارکرد پرسنل</h1>
+    <span>مدیریت حضور و غیاب و کارکرد</span>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-title">
+            منوی سامانه
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <button class="active" onclick="showPage('dashboard', this)">
+                    🏠 داشبورد
+                </button>
+            </li>
+
+            <li>
+                <button onclick="showPage('employees', this)">
+                    👥 پرسنل
+                </button>
+            </li>
+
+            <li>
+                <button onclick="showPage('attendance', this)">
+                    🕐 کارکرد روزانه
+                </button>
+            </li>
+
+            <li>
+                <button onclick="showPage('reports', this)">
+                    📊 گزارش کارکرد
+                </button>
+            </li>
+
+            <li>
+                <button onclick="showPage('settings', this)">
+                    ⚙️ تنظیمات
+                </button>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="content">
+
+        <!-- داشبورد -->
+
+        <section id="dashboard">
+
+            <div class="page-title">
+                <h2>داشبورد</h2>
+                <p>نمای کلی وضعیت کارکرد پرسنل</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-title">تعداد پرسنل</div>
+                    <div class="card-value">۱۲۵</div>
+                    <div class="card-sub">پرسنل فعال</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">حاضرین امروز</div>
+                    <div class="card-value">۱۱۷</div>
+                    <div class="card-sub">از ۱۲۵ نفر</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">اضافه‌کار امروز</div>
+                    <div class="card-value">۲۸:۴۵</div>
+                    <div class="card-sub">ساعت:دقیقه</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">کسری‌کار امروز</div>
+                    <div class="card-value">۰۷:۳۰</div>
+                    <div class="card-sub">ساعت:دقیقه</div>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>آخرین وضعیت کارکرد</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>کد پرسنلی</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>ورود</th>
+                            <th>خروج</th>
+                            <th>کارکرد</th>
+                            <th>روز کارکرد</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1001</td>
+                            <td>علی احمدی</td>
+                            <td>07:58</td>
+                            <td>16:12</td>
+                            <td>08:14</td>
+                            <td>1</td>
+                            <td>
+                                <span class="status present">حاضر</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>1002</td>
+                            <td>محمد رضایی</td>
+                            <td>08:05</td>
+                            <td>16:00</td>
+                            <td>07:55</td>
+                            <td>1</td>
+                            <td>
+                                <span class="status present">حاضر</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>1003</td>
+                            <td>حسین کریمی</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>00:00</td>
+                            <td>0</td>
+                            <td>
+                                <span class="status absent">غایب</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- پرسنل -->
+
+        <section id="employees" style="display:none;">
+
+            <div class="page-title">
+                <h2>پرسنل</h2>
+                <p>مدیریت اطلاعات پرسنل سازمان</p>
+            </div>
+
+            <div class="panel">
+
+                <h3>لیست پرسنل</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>کد</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>واحد</th>
+                            <th>سمت</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1001</td>
+                            <td>علی احمدی</td>
+                            <td>اداری</td>
+                            <td>کارشناس</td>
+                            <td>فعال</td>
+                        </tr>
+
+                        <tr>
+                            <td>1002</td>
+                            <td>محمد رضایی</td>
+                            <td>فنی</td>
+                            <td>کارشناس فنی</td>
+                            <td>فعال</td>
+                        </tr>
+
+                        <tr>
+                            <td>1003</td>
+                            <td>حسین کریمی</td>
+                            <td>تدارکات</td>
+                            <td>مسئول</td>
+                            <td>فعال</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- کارکرد روزانه -->
+
+        <section id="attendance" style="display:none;">
+
+            <div class="page-title">
+                <h2>کارکرد روزانه</h2>
+                <p>مشاهده ورود، خروج و محاسبه کارکرد پرسنل</p>
+            </div>
+
+            <div class="panel">
+
+                <h3>کارکرد پرسنل</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>پرسنل</th>
+                            <th>تاریخ</th>
+                            <th>ورود</th>
+                            <th>خروج</th>
+                            <th>موظفی</th>
+                            <th>کارکرد</th>
+                            <th>اضافه‌کار</th>
+                            <th>کسری‌کار</th>
+                            <th>روز کارکرد</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>علی احمدی</td>
+                            <td>۱۴۰۵/۰۶/۰۷</td>
+                            <td>07:58</td>
+                            <td>16:12</td>
+                            <td>08:00</td>
+                            <td>08:14</td>
+                            <td>00:14</td>
+                            <td>00:00</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>محمد رضایی</td>
+                            <td>۱۴۰۵/۰۶/۰۷</td>
+                            <td>08:05</td>
+                            <td>16:00</td>
+                            <td>08:00</td>
+                            <td>07:55</td>
+                            <td>00:00</td>
+                            <td>00:05</td>
+                            <td>1</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- گزارش -->
+
+        <section id="reports" style="display:none;">
+
+            <div class="page-title">
+                <h2>گزارش کارکرد</h2>
+                <p>گزارش‌گیری از وضعیت کارکرد پرسنل</p>
+            </div>
+
+            <div class="panel">
+
+                <h3>گزارش ماهانه</h3>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>پرسنل</th>
+                            <th>موظفی</th>
+                            <th>کارکرد</th>
+                            <th>اضافه‌کار</th>
+                            <th>کسری‌کار</th>
+                            <th>روز کارکرد</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>علی احمدی</td>
+                            <td>176:00</td>
+                            <td>181:20</td>
+                            <td>05:20</td>
+                            <td>00:00</td>
+                            <td>22</td>
+                        </tr>
+
+                        <tr>
+                            <td>محمد رضایی</td>
+                            <td>176:00</td>
+                            <td>174:30</td>
+                            <td>00:00</td>
+                            <td>01:30</td>
+                            <td>22</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- تنظیمات -->
+
+        <section id="settings" style="display:none;">
+
+            <div class="page-title">
+                <h2>تنظیمات</h2>
+                <p>تنظیمات سامانه کارکرد پرسنل</p>
+            </div>
+
+            <div class="panel">
+
+                <h3>تنظیمات سامانه</h3>
+
+                <p style="line-height:2; color:#666;">
+                    در نسخه‌های بعدی این قسمت برای تعریف
+                    ساعت موظفی، شیفت‌ها، تعطیلات، قوانین اضافه‌کار،
+                    قوانین کسری‌کار و اتصال دستگاه حضور و غیاب
+                    استفاده خواهد شد.
+                </p>
+
+            </div>
+
+        </section>
+
+        <div class="footer">
+            سامانه کارکرد پرسنل — نسخه اولیه
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function showPage(page, button) {
+
+    const pages = [
+        "dashboard",
+        "employees",
+        "attendance",
+        "reports",
+        "settings"
+    ];
+
+    pages.forEach(function(item) {
+
+        document.getElementById(item).style.display =
+            "none";
+
+    });
+
+    document.getElementById(page).style.display =
+        "block";
+
+    document.querySelectorAll(".menu button")
+        .forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
