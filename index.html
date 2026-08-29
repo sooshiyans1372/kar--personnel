@@ -400,35 +400,10 @@
                             <th>وضعیت</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>1001</td>
-                            <td>علی احمدی</td>
-                            <td>اداری</td>
-                            <td>کارشناس</td>
-                            <td>فعال</td>
-                        </tr>
-
-                        <tr>
-                            <td>1002</td>
-                            <td>محمد رضایی</td>
-                            <td>فنی</td>
-                            <td>کارشناس فنی</td>
-                            <td>فعال</td>
-                        </tr>
-
-                        <tr>
-                            <td>1003</td>
-                            <td>حسین کریمی</td>
-                            <td>تدارکات</td>
-                            <td>مسئول</td>
-                            <td>فعال</td>
-                        </tr>
-
-                    </tbody>
-
+                    
+<tbody id="employeesTableBody">
+</tbody>
+                    
                 </table>
 
             </div>
@@ -645,6 +620,39 @@ function showPage(page, button) {
     }
 
     testEmployees();
+    async function loadEmployees() {
+
+    const { data, error } = await supabaseClient
+        .from("employees")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if (error) {
+        console.error("خطا در دریافت لیست پرسنل:", error);
+        return;
+    }
+
+    const tableBody = document.getElementById("employeesTableBody");
+
+    tableBody.innerHTML = "";
+
+    data.forEach(function(employee) {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${employee.personnel_code || ""}</td>
+            <td>${employee.first_name || ""} ${employee.last_name || ""}</td>
+            <td>${employee.department || ""}</td>
+            <td>${employee.position || ""}</td>
+            <td>${employee.is_active ? "فعال" : "غیرفعال"}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
+
+loadEmployees();
 </script>
 </body>
 </html>
