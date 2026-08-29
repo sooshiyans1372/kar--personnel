@@ -1,841 +1,628 @@
-```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>سامانه کارکرد پرسنل</title>
-
-    <style>
-
-        /* =========================================
-           فونت‌های سامانه
-        ========================================= */
-
-        @font-face {
-            font-family: "B Nazanin";
-            src: local("B Nazanin");
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: "B Nazanin";
-            src: local("B Nazanin");
-            font-weight: bold;
-        }
-
-        @font-face {
-            font-family: "B Titr";
-            src: local("B Titr");
-            font-weight: normal;
-        }
-
-
-        /* =========================================
-           تنظیمات عمومی
-        ========================================= */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            min-height: 100%;
-        }
-
-        body {
-            background: #f4f6f9;
-            color: #263238;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 18px;
-
-            direction: rtl;
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-        }
-
-
-        /* =========================================
-           عنوان‌ها
-        ========================================= */
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family:
-                "B Titr",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-weight: normal;
-        }
-
-
-        /* =========================================
-           هدر
-        ========================================= */
-
-        .header {
-            background: #17365d;
-            color: white;
-
-            padding: 16px 30px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            box-shadow:
-                0 2px 8px rgba(0, 0, 0, .12);
-        }
-
-        .header h1 {
-            font-family:
-                "B Titr",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 27px;
-            font-weight: normal;
-        }
-
-        .header span {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-        }
-
-
-        /* =========================================
-           ساختار اصلی
-        ========================================= */
-
-        .layout {
-            display: flex;
-            min-height: calc(100vh - 70px);
-        }
-
-
-        /* =========================================
-           منوی کناری
-        ========================================= */
-
-        .sidebar {
-            width: 245px;
-
-            background: #ffffff;
-
-            border-left: 1px solid #ddd;
-
-            padding: 20px 12px;
-        }
-
-        .sidebar-title {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-            font-weight: bold;
-
-            color: #777;
-
-            padding: 10px 15px;
-            margin-bottom: 8px;
-        }
-
-        .menu {
-            list-style: none;
-        }
-
-        .menu li {
-            margin-bottom: 5px;
-        }
-
-        .menu button {
-            width: 100%;
-
-            border: none;
-            background: transparent;
-
-            text-align: right;
-
-            padding: 12px 15px;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 18px;
-            font-weight: bold;
-
-            color: #37474f;
-
-            transition: .2s;
-        }
-
-        .menu button:hover,
-        .menu button.active {
-            background: #eaf1f8;
-            color: #17365d;
-        }
-
-
-        /* =========================================
-           محتوای اصلی
-        ========================================= */
-
-        .content {
-            flex: 1;
-            padding: 30px;
-
-            min-width: 0;
-        }
-
-
-        /* =========================================
-           عنوان صفحه
-        ========================================= */
-
-        .page-title {
-            margin-bottom: 25px;
-        }
-
-        .page-title h2 {
-            font-family:
-                "B Titr",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 29px;
-            margin-bottom: 6px;
-        }
-
-        .page-title p {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            color: #777;
-            font-size: 17px;
-        }
-
-
-        /* =========================================
-           کارت‌های داشبورد
-        ========================================= */
-
-        .cards {
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 18px;
-
-            margin-bottom: 25px;
-        }
-
-        .card {
-            background: white;
-
-            border-radius: 12px;
-
-            padding: 22px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, .06);
-        }
-
-        .card-title {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            color: #777;
-
-            font-size: 17px;
-            font-weight: bold;
-
-            margin-bottom: 10px;
-        }
-
-        .card-value {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 32px;
-            font-weight: bold;
-
-            color: #17365d;
-        }
-
-        .card-sub {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            margin-top: 8px;
-
-            color: #888;
-
-            font-size: 15px;
-        }
-
-
-        /* =========================================
-           پنل
-        ========================================= */
-
-        .panel {
-            background: white;
-
-            border-radius: 12px;
-
-            padding: 22px;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, .06);
-
-            margin-bottom: 22px;
-
-            overflow-x: auto;
-        }
-
-        .panel h3 {
-            font-family:
-                "B Titr",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 22px;
-
-            margin-bottom: 18px;
-        }
-
-
-        /* =========================================
-           نوار ابزار
-        ========================================= */
-
-        .toolbar {
-            display: flex;
-
-            gap: 10px;
-
-            align-items: center;
-
-            margin-bottom: 18px;
-
-            flex-wrap: wrap;
-        }
-
-        .search {
-            flex: 1;
-
-            min-width: 260px;
-
-            padding: 10px 14px;
-
-            border: 1px solid #d8d8d8;
-
-            border-radius: 8px;
-
-            outline: none;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 18px;
-
-            background: white;
-        }
-
-        .search:focus {
-            border-color: #17365d;
-
-            box-shadow:
-                0 0 0 2px rgba(23, 54, 93, .08);
-        }
-
-
-        /* =========================================
-           دکمه‌ها
-        ========================================= */
-
-        .btn {
-            border: none;
-
-            border-radius: 8px;
-
-            padding: 9px 17px;
-
-            cursor: pointer;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-            font-weight: bold;
-
-            transition: .2s;
-        }
-
-        .btn:hover {
-            opacity: .88;
-            transform: translateY(-1px);
-        }
-
-        .btn-primary {
-            background: #17365d;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #eef2f6;
-            color: #37474f;
-        }
-
-        .btn-danger {
-            background: #c62828;
-            color: white;
-        }
-
-        .btn-edit {
-            background: #eaf1f8;
-            color: #17365d;
-        }
-
-
-        /* =========================================
-           شمارنده
-        ========================================= */
-
-        .count {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            color: #777;
-
-            font-size: 16px;
-
-            margin-bottom: 12px;
-        }
-
-
-        /* =========================================
-           جدول
-        ========================================= */
-
-        table {
-            width: 100%;
-
-            border-collapse: collapse;
-
-            min-width: 750px;
-        }
-
-        th {
-            background: #f5f7fa;
-
-            color: #555;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 18px;
-            font-weight: bold;
-
-            padding: 13px 10px;
-
-            text-align: right;
-
-            white-space: nowrap;
-        }
-
-        td {
-            border-top: 1px solid #eee;
-
-            padding: 12px 10px;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-
-            white-space: nowrap;
-        }
-
-        tbody tr:hover {
-            background: #fafbfd;
-        }
-
-
-        /* =========================================
-           وضعیت
-        ========================================= */
-
-        .status {
-            display: inline-block;
-
-            padding: 4px 12px;
-
-            border-radius: 20px;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 15px;
-
-            font-weight: bold;
-        }
-
-        .present {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .absent {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-
-        /* =========================================
-           عملیات
-        ========================================= */
-
-        .actions {
-            display: flex;
-
-            gap: 6px;
-
-            align-items: center;
-        }
-
-
-        /* =========================================
-           فرم
-        ========================================= */
-
-        .form-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 15px;
-        }
-
-        .form-group label {
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #555;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-
-            padding: 10px;
-
-            border:
-                1px solid #ddd;
-
-            border-radius: 7px;
-
-            outline: none;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-        }
-
-        .form-group input:focus {
-            border-color: #17365d;
-        }
-
-        .form-actions {
-            margin-top: 22px;
-
-            display: flex;
-
-            gap: 10px;
-
-            justify-content: flex-start;
-        }
-
-
-        /* =========================================
-           مودال
-        ========================================= */
-
-        .modal {
-            display: none;
-
-            position: fixed;
-
-            inset: 0;
-
-            background:
-                rgba(0, 0, 0, .45);
-
-            align-items: center;
-
-            justify-content: center;
-
-            z-index: 1000;
-
-            padding: 15px;
-        }
-
-        .modal-box {
-            background: white;
-
-            width: 95%;
-
-            max-width: 650px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            border-radius: 14px;
-
-            padding: 25px;
-        }
-
-        .modal-box h3 {
-            font-family:
-                "B Titr",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 24px;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================================
-           وضعیت اتصال
-        ========================================= */
-
-        #connectionStatus {
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-        }
-
-
-        /* =========================================
-           حالت جدول خالی
-        ========================================= */
-
-        .empty {
-            text-align: center;
-
-            padding: 30px;
-
-            color: #888;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 17px;
-        }
-
-
-        /* =========================================
-           فوتر
-        ========================================= */
-
-        .footer {
-            text-align: center;
-
-            color: #999;
-
-            font-family:
-                "B Nazanin",
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            font-size: 15px;
-
-            padding: 20px;
-        }
-
-
-        /* =========================================
-           واکنش‌گرا
-        ========================================= */
-
-        @media (max-width: 1100px) {
-
-            .cards {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 900px) {
-
-            .sidebar {
-                width: 210px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            .layout {
-                display: block;
-            }
-
-            .sidebar {
-                width: 100%;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .content {
-                padding: 15px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-
-            .header span {
-                display: none;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>سامانه کارکرد پرسنل</title>
+
+<style>
+
+@font-face{
+    font-family:"B Nazanin";
+    src:local("B Nazanin");
+}
+
+@font-face{
+    font-family:"B Titr";
+    src:local("B Titr");
+}
+
+:root{
+    --primary:#17365d;
+    --primary-light:#eaf1f8;
+    --bg:#f4f6f9;
+    --white:#fff;
+    --text:#263238;
+    --muted:#777;
+    --border:#e2e5e9;
+    --success:#2e7d32;
+    --success-bg:#e8f5e9;
+    --danger:#c62828;
+    --danger-bg:#ffebee;
+    --warning:#ef6c00;
+    --warning-bg:#fff3e0;
+    --info:#1565c0;
+    --info-bg:#e3f2fd;
+    --shadow:0 2px 12px rgba(0,0,0,.06);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    min-height:100%;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"B Nazanin",Tahoma,Arial,sans-serif;
+    font-size:18px;
+    direction:rtl;
+}
+
+button,input,select,textarea{
+    font-family:"B Nazanin",Tahoma,Arial,sans-serif;
+}
+
+button{
+    cursor:pointer;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family:"B Titr",Tahoma,Arial,sans-serif;
+    font-weight:normal;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:var(--primary);
+    color:#fff;
+    min-height:70px;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.header h1{
+    font-size:27px;
+}
+
+.header span{
+    font-size:17px;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout{
+    display:flex;
+    min-height:calc(100vh - 70px);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:245px;
+    flex-shrink:0;
+    background:#fff;
+    border-left:1px solid #ddd;
+    padding:20px 12px;
+}
+
+.sidebar-title{
+    font-size:17px;
+    font-weight:bold;
+    color:#777;
+    padding:10px 15px;
+    margin-bottom:8px;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:5px;
+}
+
+.menu button{
+    width:100%;
+    border:none;
+    background:transparent;
+    text-align:right;
+    padding:12px 15px;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    color:#37474f;
+    transition:.2s;
+}
+
+.menu button:hover,
+.menu button.active{
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    flex:1;
+    min-width:0;
+    padding:30px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-title{
+    margin-bottom:25px;
+}
+
+.page-title h2{
+    font-size:29px;
+    margin-bottom:6px;
+}
+
+.page-title p{
+    color:#777;
+    font-size:17px;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.card-title{
+    color:#777;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.card-value{
+    font-size:32px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.card-sub{
+    margin-top:8px;
+    color:#888;
+    font-size:15px;
+}
+
+/* ================= PANEL ================= */
+
+.panel{
+    background:#fff;
+    border-radius:12px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+    overflow-x:auto;
+}
+
+.panel h3{
+    font-size:22px;
+    margin-bottom:18px;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.search,
+.form-control{
+    padding:10px 14px;
+    border:1px solid #d8d8d8;
+    border-radius:8px;
+    outline:none;
+    font-size:18px;
+    background:#fff;
+}
+
+.search{
+    flex:1;
+    min-width:250px;
+}
+
+.search:focus,
+.form-control:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 2px rgba(23,54,93,.08);
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    border:none;
+    border-radius:8px;
+    padding:9px 17px;
+    font-size:17px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    opacity:.88;
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#eef2f6;
+    color:#37474f;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:#fff;
+}
+
+.btn-edit{
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+.btn-success{
+    background:var(--success);
+    color:#fff;
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:#fff;
+}
+
+.btn-small{
+    padding:6px 11px;
+    font-size:15px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th{
+    background:#f5f7fa;
+    color:#555;
+    font-size:18px;
+    font-weight:bold;
+    padding:13px 10px;
+    text-align:right;
+    white-space:nowrap;
+}
+
+td{
+    border-top:1px solid #eee;
+    padding:12px 10px;
+    font-size:17px;
+    white-space:nowrap;
+}
+
+tbody tr:hover{
+    background:#fafbfd;
+}
+
+/* ================= STATUS ================= */
+
+.status{
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:20px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.present{
+    background:var(--success-bg);
+    color:var(--success);
+}
+
+.absent{
+    background:var(--danger-bg);
+    color:var(--danger);
+}
+
+.inactive{
+    background:#eeeeee;
+    color:#666;
+}
+
+.overtime{
+    background:var(--warning-bg);
+    color:var(--warning);
+}
+
+.shortage{
+    background:var(--danger-bg);
+    color:var(--danger);
+}
+
+/* ================= ACTIONS ================= */
+
+.actions{
+    display:flex;
+    gap:6px;
+    align-items:center;
+}
+
+/* ================= FORM ================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    min-width:0;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    color:#555;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.form-control{
+    width:100%;
+}
+
+.form-actions{
+    margin-top:22px;
+    display:flex;
+    gap:10px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:#fff;
+    width:95%;
+    max-width:700px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:14px;
+    padding:25px;
+    box-shadow:0 10px 40px rgba(0,0,0,.2);
+}
+
+.modal-box h3{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.modal-close{
+    float:left;
+    border:none;
+    background:#eee;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    font-size:20px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#888;
+    font-size:17px;
+}
+
+/* ================= FILTERS ================= */
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.filter-item label{
+    display:block;
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    color:#999;
+    font-size:15px;
+    padding:20px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:25px;
+    min-width:280px;
+    max-width:450px;
+    padding:14px 18px;
+    border-radius:10px;
+    color:#fff;
+    background:#333;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    transform:translateY(100px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:3000;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.toast.success{
+    background:var(--success);
+}
+
+.toast.error{
+    background:var(--danger);
+}
+
+/* ================= CONNECTION ================= */
+
+.connection{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+}
+
+.connection-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#4caf50;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .filters{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .content{
+        padding:20px;
+    }
+}
+
+@media(max-width:650px){
+
+    .layout{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+        border-left:none;
+        border-bottom:1px solid #ddd;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid,
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        padding:15px;
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+
+    .header span{
+        display:none;
+    }
+
+    .toolbar{
+        align-items:stretch;
+    }
+
+    .search{
+        min-width:100%;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
-
-<!-- =========================================
-     هدر
-========================================= -->
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
-    <h1>
-        سامانه کارکرد پرسنل
-    </h1>
+    <h1>سامانه کارکرد پرسنل</h1>
 
-    <span>
+    <span class="connection">
+        <span class="connection-dot"></span>
         مدیریت حضور و غیاب و کارکرد
     </span>
 
@@ -844,10 +631,7 @@
 
 <div class="layout">
 
-
-<!-- =========================================
-     منوی کناری
-========================================= -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
@@ -858,42 +642,32 @@
     <ul class="menu">
 
         <li>
-            <button
-                class="active"
-                onclick="showPage('dashboard', this)"
-            >
+            <button class="active"
+                    onclick="showPage('dashboard',this)">
                 🏠 داشبورد
             </button>
         </li>
 
         <li>
-            <button
-                onclick="showPage('employees', this)"
-            >
+            <button onclick="showPage('employees',this)">
                 👥 پرسنل
             </button>
         </li>
 
         <li>
-            <button
-                onclick="showPage('attendance', this)"
-            >
+            <button onclick="showPage('attendance',this)">
                 🕐 کارکرد روزانه
             </button>
         </li>
 
         <li>
-            <button
-                onclick="showPage('reports', this)"
-            >
+            <button onclick="showPage('reports',this)">
                 📊 گزارش کارکرد
             </button>
         </li>
 
         <li>
-            <button
-                onclick="showPage('settings', this)"
-            >
+            <button onclick="showPage('settings',this)">
                 ⚙️ تنظیمات
             </button>
         </li>
@@ -903,7 +677,2856 @@
 </aside>
 
 
-<!-- =========================================
-     محتوای اصلی
-=========================================
-```
+<!-- ================= CONTENT ================= -->
+
+<main class="content">
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="page active">
+
+    <div class="page-title">
+
+        <h2>داشبورد</h2>
+
+        <p>
+            نمای کلی وضعیت پرسنل و کارکرد
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-title">
+                کل پرسنل
+            </div>
+
+            <div class="card-value"
+                 id="dashboardEmployees">
+                0
+            </div>
+
+            <div class="card-sub">
+                پرسنل ثبت‌شده در سامانه
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                حاضر
+            </div>
+
+            <div class="card-value"
+                 id="dashboardPresent">
+                0
+            </div>
+
+            <div class="card-sub">
+                بر اساس کارکرد ثبت‌شده
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                اضافه‌کار
+            </div>
+
+            <div class="card-value"
+                 id="dashboardOvertime">
+                00:00
+            </div>
+
+            <div class="card-sub">
+                مجموع اضافه‌کار
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                کسری‌کار
+            </div>
+
+            <div class="card-value"
+                 id="dashboardShortage">
+                00:00
+            </div>
+
+            <div class="card-sub">
+                مجموع کسری‌کار
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>
+            آخرین کارکردها
+        </h3>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>تاریخ</th>
+                    <th>کد پرسنلی</th>
+                    <th>نام پرسنل</th>
+                    <th>ورود</th>
+                    <th>خروج</th>
+                    <th>کارکرد</th>
+                    <th>اضافه‌کار</th>
+                    <th>کسری</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="dashboardAttendanceTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMPLOYEES ================= -->
+
+<section id="employees" class="page">
+
+    <div class="page-title">
+
+        <h2>مدیریت پرسنل</h2>
+
+        <p>
+            ثبت، ویرایش، جست‌وجو و مدیریت اطلاعات پرسنل
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="employeeSearch"
+                class="search"
+                placeholder="جست‌وجو بر اساس نام، کد پرسنلی یا کد ملی..."
+                oninput="renderEmployees()"
+            >
+
+            <button
+                class="btn btn-primary"
+                onclick="openEmployeeModal()">
+                ➕ افزودن پرسنل
+            </button>
+
+        </div>
+
+
+        <div class="count" id="employeeCount">
+            تعداد پرسنل: 0
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ردیف</th>
+                    <th>کد پرسنلی</th>
+                    <th>نام و نام خانوادگی</th>
+                    <th>کد ملی</th>
+                    <th>واحد</th>
+                    <th>سمت</th>
+                    <th>موظفی روزانه</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="employeesTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ATTENDANCE ================= -->
+
+<section id="attendance" class="page">
+
+    <div class="page-title">
+
+        <h2>کارکرد روزانه</h2>
+
+        <p>
+            ثبت ورود و خروج و محاسبه خودکار کارکرد
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="toolbar">
+
+            <input
+                type="date"
+                id="attendanceDate"
+                class="form-control"
+                style="max-width:220px"
+            >
+
+            <button
+                class="btn btn-primary"
+                onclick="openAttendanceModal()">
+                ➕ ثبت کارکرد
+            </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>تاریخ</th>
+                    <th>کد پرسنلی</th>
+                    <th>نام پرسنل</th>
+                    <th>ورود</th>
+                    <th>خروج</th>
+                    <th>روز کارکرد</th>
+                    <th>کارکرد</th>
+                    <th>موظفی</th>
+                    <th>اضافه‌کار</th>
+                    <th>کسری‌کار</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="attendanceTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REPORTS ================= -->
+
+<section id="reports" class="page">
+
+    <div class="page-title">
+
+        <h2>گزارش کارکرد</h2>
+
+        <p>
+            گزارش تجمیعی کارکرد پرسنل
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="filters">
+
+            <div class="filter-item">
+
+                <label>
+                    ماه
+                </label>
+
+                <input
+                    type="month"
+                    id="reportMonth"
+                    class="form-control"
+                >
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    پرسنل
+                </label>
+
+                <select
+                    id="reportEmployee"
+                    class="form-control">
+                </select>
+
+            </div>
+
+
+            <div class="filter-item"
+                 style="display:flex;align-items:end">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="renderReports()">
+                    🔍 نمایش گزارش
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>کد پرسنلی</th>
+                    <th>نام پرسنل</th>
+                    <th>روز کارکرد</th>
+                    <th>جمع کارکرد</th>
+                    <th>جمع موظفی</th>
+                    <th>جمع اضافه‌کار</th>
+                    <th>جمع کسری</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="reportsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="page">
+
+    <div class="page-title">
+
+        <h2>تنظیمات</h2>
+
+        <p>
+            تنظیمات پایه سامانه
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>
+            تنظیمات ساعت کاری
+        </h3>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    ساعت موظفی روزانه
+                </label>
+
+                <input
+                    type="time"
+                    id="settingDailyWork"
+                    class="form-control"
+                    value="08:00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    ساعت شروع کار
+                </label>
+
+                <input
+                    type="time"
+                    id="settingStartTime"
+                    class="form-control"
+                    value="08:00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    ساعت پایان کار
+                </label>
+
+                <input
+                    type="time"
+                    id="settingEndTime"
+                    class="form-control"
+                    value="16:00"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveSettings()">
+                💾 ذخیره تنظیمات
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>
+            مدیریت اطلاعات
+        </h3>
+
+        <p style="margin-bottom:15px;color:#777">
+            اطلاعات این نسخه در حافظه مرورگر ذخیره می‌شود.
+        </p>
+
+        <div class="toolbar">
+
+            <button
+                class="btn btn-secondary"
+                onclick="exportData()">
+                📤 خروجی پشتیبان
+            </button>
+
+            <button
+                class="btn btn-danger"
+                onclick="clearAllData()">
+                🗑️ حذف تمام اطلاعات
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="footer">
+
+    سامانه کارکرد پرسنل — نسخه اولیه عملیاتی
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<!-- ================= EMPLOYEE MODAL ================= -->
+
+<div class="modal" id="employeeModal">
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('employeeModal')">
+            ×
+        </button>
+
+        <h3 id="employeeModalTitle">
+            افزودن پرسنل
+        </h3>
+
+
+        <form id="employeeForm"
+              onsubmit="saveEmployee(event)">
+
+            <input
+                type="hidden"
+                id="employeeId"
+            >
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        کد پرسنلی *
+                    </label>
+
+                    <input
+                        id="employeeCode"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        نام و نام خانوادگی *
+                    </label>
+
+                    <input
+                        id="employeeName"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        کد ملی
+                    </label>
+
+                    <input
+                        id="employeeNationalCode"
+                        class="form-control"
+                        maxlength="10"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        شماره تماس
+                    </label>
+
+                    <input
+                        id="employeePhone"
+                        class="form-control"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        واحد
+                    </label>
+
+                    <input
+                        id="employeeDepartment"
+                        class="form-control"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        سمت
+                    </label>
+
+                    <input
+                        id="employeePosition"
+                        class="form-control"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        موظفی روزانه
+                    </label>
+
+                    <input
+                        type="time"
+                        id="employeeDailyWork"
+                        class="form-control"
+                        value="08:00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        وضعیت
+                    </label>
+
+                    <select
+                        id="employeeStatus"
+                        class="form-control">
+
+                        <option value="active">
+                            فعال
+                        </option>
+
+                        <option value="inactive">
+                            غیرفعال
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    💾 ذخیره
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeModal('employeeModal')">
+                    انصراف
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ATTENDANCE MODAL ================= -->
+
+<div class="modal" id="attendanceModal">
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('attendanceModal')">
+            ×
+        </button>
+
+        <h3 id="attendanceModalTitle">
+            ثبت کارکرد
+        </h3>
+
+
+        <form id="attendanceForm"
+              onsubmit="saveAttendance(event)">
+
+            <input
+                type="hidden"
+                id="attendanceId"
+            >
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        تاریخ *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceFormDate"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        پرسنل *
+                    </label>
+
+                    <select
+                        id="attendanceEmployee"
+                        class="form-control"
+                        required>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ساعت ورود *
+                    </label>
+
+                    <input
+                        type="time"
+                        id="attendanceIn"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ساعت خروج *
+                    </label>
+
+                    <input
+                        type="time"
+                        id="attendanceOut"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="attendancePreview"
+                style="
+                    margin-top:18px;
+                    background:#f5f7fa;
+                    padding:15px;
+                    border-radius:8px;
+                    display:none;
+                ">
+
+                <strong>
+                    محاسبه:
+                </strong>
+
+                <div style="margin-top:8px">
+
+                    کارکرد:
+                    <b id="previewWorked">00:00</b>
+
+                    &nbsp; | &nbsp;
+
+                    موظفی:
+                    <b id="previewRequired">00:00</b>
+
+                    &nbsp; | &nbsp;
+
+                    اضافه‌کار:
+                    <b id="previewOvertime">00:00</b>
+
+                    &nbsp; | &nbsp;
+
+                    کسری:
+                    <b id="previewShortage">00:00</b>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    💾 ذخیره کارکرد
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeModal('attendanceModal')">
+                    انصراف
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   DATABASE
+========================================================= */
+
+const DB_KEYS = {
+    employees: "personnel_employees_v1",
+    attendance: "personnel_attendance_v1",
+    settings: "personnel_settings_v1"
+};
+
+
+let employees = [];
+let attendance = [];
+
+let settings = {
+    dailyWork: "08:00",
+    startTime: "08:00",
+    endTime: "16:00"
+};
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    loadData();
+
+    setDefaultDates();
+
+    renderAll();
+
+    setupAttendancePreview();
+
+});
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function loadData(){
+
+    try{
+
+        employees =
+            JSON.parse(
+                localStorage.getItem(DB_KEYS.employees)
+            ) || [];
+
+        attendance =
+            JSON.parse(
+                localStorage.getItem(DB_KEYS.attendance)
+            ) || [];
+
+        settings =
+            JSON.parse(
+                localStorage.getItem(DB_KEYS.settings)
+            ) || settings;
+
+    }catch(error){
+
+        console.error(error);
+
+        employees = [];
+        attendance = [];
+
+    }
+
+    document.getElementById("settingDailyWork").value =
+        settings.dailyWork || "08:00";
+
+    document.getElementById("settingStartTime").value =
+        settings.startTime || "08:00";
+
+    document.getElementById("settingEndTime").value =
+        settings.endTime || "16:00";
+}
+
+
+function saveData(){
+
+    localStorage.setItem(
+        DB_KEYS.employees,
+        JSON.stringify(employees)
+    );
+
+    localStorage.setItem(
+        DB_KEYS.attendance,
+        JSON.stringify(attendance)
+    );
+
+    localStorage.setItem(
+        DB_KEYS.settings,
+        JSON.stringify(settings)
+    );
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageId, button){
+
+    document.querySelectorAll(".page").forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const page =
+        document.getElementById(pageId);
+
+    if(page){
+
+        page.classList.add("active");
+
+    }
+
+
+    document.querySelectorAll(".menu button")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    if(pageId === "dashboard"){
+        renderDashboard();
+    }
+
+    if(pageId === "employees"){
+        renderEmployees();
+    }
+
+    if(pageId === "attendance"){
+        renderAttendance();
+    }
+
+    if(pageId === "reports"){
+        populateReportEmployees();
+        renderReports();
+    }
+
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+function generateId(){
+
+    return Date.now().toString() +
+        Math.random().toString(16).slice(2);
+
+}
+
+
+function today(){
+
+    const d = new Date();
+
+    const year =
+        d.getFullYear();
+
+    const month =
+        String(d.getMonth()+1).padStart(2,"0");
+
+    const day =
+        String(d.getDate()).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function currentMonth(){
+
+    return today().slice(0,7);
+
+}
+
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   TIME FUNCTIONS
+========================================================= */
+
+function timeToMinutes(time){
+
+    if(!time){
+        return 0;
+    }
+
+    const parts =
+        time.split(":");
+
+    const h =
+        parseInt(parts[0],10) || 0;
+
+    const m =
+        parseInt(parts[1],10) || 0;
+
+    return h * 60 + m;
+
+}
+
+
+function minutesToTime(total){
+
+    total = Math.max(0,Math.round(total));
+
+    const hours =
+        Math.floor(total / 60);
+
+    const minutes =
+        total % 60;
+
+    return String(hours).padStart(2,"0")
+        + ":" +
+        String(minutes).padStart(2,"0");
+
+}
+
+
+function calculateWork(inTime,outTime){
+
+    let start =
+        timeToMinutes(inTime);
+
+    let end =
+        timeToMinutes(outTime);
+
+    /*
+       پشتیبانی از شیفت عبوری از نیمه‌شب
+    */
+
+    if(end < start){
+        end += 24 * 60;
+    }
+
+    return end - start;
+
+}
+
+
+function calculateAttendance(inTime,outTime,required){
+
+    const worked =
+        calculateWork(inTime,outTime);
+
+    const requiredMinutes =
+        timeToMinutes(required);
+
+    const overtime =
+        Math.max(0,worked-requiredMinutes);
+
+    const shortage =
+        Math.max(0,requiredMinutes-worked);
+
+    return {
+        worked,
+        required:requiredMinutes,
+        overtime,
+        shortage
+    };
+
+}
+
+
+/* =========================================================
+   EMPLOYEES
+========================================================= */
+
+function openEmployeeModal(id=null){
+
+    document.getElementById("employeeForm").reset();
+
+    document.getElementById("employeeId").value = "";
+
+    document.getElementById("employeeDailyWork").value =
+        settings.dailyWork || "08:00";
+
+    document.getElementById("employeeStatus").value =
+        "active";
+
+
+    if(id){
+
+        const employee =
+            employees.find(
+                item => item.id === id
+            );
+
+        if(!employee){
+            return;
+        }
+
+
+        document.getElementById("employeeModalTitle")
+            .textContent =
+            "ویرایش پرسنل";
+
+
+        document.getElementById("employeeId").value =
+            employee.id;
+
+        document.getElementById("employeeCode").value =
+            employee.code || "";
+
+        document.getElementById("employeeName").value =
+            employee.name || "";
+
+        document.getElementById("employeeNationalCode").value =
+            employee.nationalCode || "";
+
+        document.getElementById("employeePhone").value =
+            employee.phone || "";
+
+        document.getElementById("employeeDepartment").value =
+            employee.department || "";
+
+        document.getElementById("employeePosition").value =
+            employee.position || "";
+
+        document.getElementById("employeeDailyWork").value =
+            employee.dailyWork || "08:00";
+
+        document.getElementById("employeeStatus").value =
+            employee.status || "active";
+
+    }else{
+
+        document.getElementById("employeeModalTitle")
+            .textContent =
+            "افزودن پرسنل";
+
+    }
+
+
+    document.getElementById("employeeModal")
+        .classList.add("show");
+
+}
+
+
+function saveEmployee(event){
+
+    event.preventDefault();
+
+
+    const id =
+        document.getElementById("employeeId").value;
+
+
+    const code =
+        document.getElementById("employeeCode").value.trim();
+
+
+    const name =
+        document.getElementById("employeeName").value.trim();
+
+
+    if(!code || !name){
+
+        showToast(
+            "کد پرسنلی و نام الزامی است.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const duplicate =
+        employees.find(function(employee){
+
+            return employee.code === code &&
+                employee.id !== id;
+
+        });
+
+
+    if(duplicate){
+
+        showToast(
+            "این کد پرسنلی قبلاً ثبت شده است.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const employeeData = {
+
+        id:id || generateId(),
+
+        code:code,
+
+        name:name,
+
+        nationalCode:
+            document.getElementById(
+                "employeeNationalCode"
+            ).value.trim(),
+
+        phone:
+            document.getElementById(
+                "employeePhone"
+            ).value.trim(),
+
+        department:
+            document.getElementById(
+                "employeeDepartment"
+            ).value.trim(),
+
+        position:
+            document.getElementById(
+                "employeePosition"
+            ).value.trim(),
+
+        dailyWork:
+            document.getElementById(
+                "employeeDailyWork"
+            ).value || settings.dailyWork,
+
+        status:
+            document.getElementById(
+                "employeeStatus"
+            ).value,
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    if(id){
+
+        const index =
+            employees.findIndex(
+                employee => employee.id === id
+            );
+
+        if(index !== -1){
+
+            employees[index] =
+                {
+                    ...employees[index],
+                    ...employeeData
+                };
+
+        }
+
+        showToast(
+            "اطلاعات پرسنل ویرایش شد.",
+            "success"
+        );
+
+    }else{
+
+        employees.push(employeeData);
+
+        showToast(
+            "پرسنل با موفقیت اضافه شد.",
+            "success"
+        );
+
+    }
+
+
+    saveData();
+
+    closeModal("employeeModal");
+
+    renderAll();
+
+}
+
+
+function editEmployee(id){
+
+    openEmployeeModal(id);
+
+}
+
+
+function deleteEmployee(id){
+
+    const employee =
+        employees.find(
+            item => item.id === id
+        );
+
+    if(!employee){
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `آیا از حذف پرسنل «${employee.name}» مطمئن هستید؟`
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    employees =
+        employees.filter(
+            item => item.id !== id
+        );
+
+
+    /*
+       کارکردهای شخص حذف‌شده نیز حذف نمی‌شوند.
+       این موضوع برای حفظ سوابق مهم است.
+    */
+
+
+    saveData();
+
+    renderAll();
+
+    showToast(
+        "پرسنل حذف شد.",
+        "success"
+    );
+
+}
+
+
+function toggleEmployeeStatus(id){
+
+    const employee =
+        employees.find(
+            item => item.id === id
+        );
+
+    if(!employee){
+        return;
+    }
+
+
+    employee.status =
+        employee.status === "active"
+            ? "inactive"
+            : "active";
+
+
+    saveData();
+
+    renderAll();
+
+}
+
+
+/* =========================================================
+   RENDER EMPLOYEES
+========================================================= */
+
+function renderEmployees(){
+
+    const table =
+        document.getElementById("employeesTable");
+
+
+    const search =
+        document.getElementById(
+            "employeeSearch"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    let filtered =
+        employees.filter(function(employee){
+
+            const text =
+                [
+                    employee.code,
+                    employee.name,
+                    employee.nationalCode,
+                    employee.department,
+                    employee.position
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+            return text.includes(search);
+
+        });
+
+
+    document.getElementById("employeeCount")
+        .textContent =
+        `تعداد پرسنل: ${filtered.length}`;
+
+
+    if(!filtered.length){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="9" class="empty">
+                    هنوز پرسنلی ثبت نشده است.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        filtered.map(function(employee,index){
+
+            const status =
+                employee.status === "active"
+                    ? `<span class="status present">فعال</span>`
+                    : `<span class="status inactive">غیرفعال</span>`;
+
+
+            return `
+                <tr>
+
+                    <td>${index+1}</td>
+
+                    <td>
+                        ${escapeHtml(employee.code)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHtml(employee.name)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${escapeHtml(employee.nationalCode || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(employee.department || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(employee.position || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(employee.dailyWork || "08:00")}
+                    </td>
+
+                    <td>
+                        ${status}
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="btn btn-edit btn-small"
+                                onclick="editEmployee('${employee.id}')">
+                                ✏️ ویرایش
+                            </button>
+
+                            <button
+                                class="btn btn-secondary btn-small"
+                                onclick="toggleEmployeeStatus('${employee.id}')">
+                                ${employee.status === "active"
+                                    ? "غیرفعال"
+                                    : "فعال"}
+                            </button>
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick="deleteEmployee('${employee.id}')">
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   ATTENDANCE
+========================================================= */
+
+function openAttendanceModal(id=null){
+
+    if(!employees.length){
+
+        showToast(
+            "ابتدا حداقل یک پرسنل ثبت کنید.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "attendanceForm"
+    ).reset();
+
+
+    document.getElementById(
+        "attendanceId"
+    ).value = "";
+
+
+    populateAttendanceEmployees();
+
+
+    document.getElementById(
+        "attendanceFormDate"
+    ).value =
+        document.getElementById(
+            "attendanceDate"
+        ).value || today();
+
+
+    if(id){
+
+        const record =
+            attendance.find(
+                item => item.id === id
+            );
+
+        if(!record){
+            return;
+        }
+
+
+        document.getElementById(
+            "attendanceModalTitle"
+        ).textContent =
+            "ویرایش کارکرد";
+
+
+        document.getElementById(
+            "attendanceId"
+        ).value =
+            record.id;
+
+
+        document.getElementById(
+            "attendanceFormDate"
+        ).value =
+            record.date;
+
+
+        document.getElementById(
+            "attendanceEmployee"
+        ).value =
+            record.employeeId;
+
+
+        document.getElementById(
+            "attendanceIn"
+        ).value =
+            record.inTime;
+
+
+        document.getElementById(
+            "attendanceOut"
+        ).value =
+            record.outTime;
+
+
+    }else{
+
+        document.getElementById(
+            "attendanceModalTitle"
+        ).textContent =
+            "ثبت کارکرد";
+
+    }
+
+
+    updateAttendancePreview();
+
+
+    document.getElementById(
+        "attendanceModal"
+    ).classList.add("show");
+
+}
+
+
+function populateAttendanceEmployees(){
+
+    const select =
+        document.getElementById(
+            "attendanceEmployee"
+        );
+
+
+    const activeEmployees =
+        employees.filter(
+            employee =>
+                employee.status !== "inactive"
+        );
+
+
+    select.innerHTML =
+        `<option value="">انتخاب پرسنل</option>` +
+        activeEmployees.map(function(employee){
+
+            return `
+                <option value="${employee.id}">
+                    ${escapeHtml(employee.code)}
+                    - 
+                    ${escapeHtml(employee.name)}
+                </option>
+            `;
+
+        }).join("");
+
+}
+
+
+function saveAttendance(event){
+
+    event.preventDefault();
+
+
+    const id =
+        document.getElementById(
+            "attendanceId"
+        ).value;
+
+
+    const employeeId =
+        document.getElementById(
+            "attendanceEmployee"
+        ).value;
+
+
+    const date =
+        document.getElementById(
+            "attendanceFormDate"
+        ).value;
+
+
+    const inTime =
+        document.getElementById(
+            "attendanceIn"
+        ).value;
+
+
+    const outTime =
+        document.getElementById(
+            "attendanceOut"
+        ).value;
+
+
+    if(!employeeId || !date || !inTime || !outTime){
+
+        showToast(
+            "تمام اطلاعات کارکرد را وارد کنید.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const employee =
+        employees.find(
+            item => item.id === employeeId
+        );
+
+
+    if(!employee){
+        return;
+    }
+
+
+    /*
+       جلوگیری از ثبت رکورد تکراری برای یک نفر
+       در یک تاریخ
+    */
+
+    const duplicate =
+        attendance.find(function(record){
+
+            return record.employeeId === employeeId &&
+                record.date === date &&
+                record.id !== id;
+
+        });
+
+
+    if(duplicate){
+
+        showToast(
+            "برای این پرسنل در این تاریخ قبلاً کارکرد ثبت شده است.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const calculation =
+        calculateAttendance(
+            inTime,
+            outTime,
+            employee.dailyWork || settings.dailyWork
+        );
+
+
+    const data = {
+
+        id:id || generateId(),
+
+        employeeId,
+
+        employeeCode:
+            employee.code,
+
+        employeeName:
+            employee.name,
+
+        date,
+
+        inTime,
+
+        outTime,
+
+        worked:
+            calculation.worked,
+
+        required:
+            calculation.required,
+
+        overtime:
+            calculation.overtime,
+
+        shortage:
+            calculation.shortage,
+
+        workDay:
+            calculation.worked > 0 ? 1 : 0,
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    if(id){
+
+        const index =
+            attendance.findIndex(
+                item => item.id === id
+            );
+
+
+        if(index !== -1){
+
+            attendance[index] = data;
+
+        }
+
+
+        showToast(
+            "کارکرد ویرایش شد.",
+            "success"
+        );
+
+    }else{
+
+        attendance.push(data);
+
+        showToast(
+            "کارکرد با موفقیت ثبت شد.",
+            "success"
+        );
+
+    }
+
+
+    saveData();
+
+    closeModal("attendanceModal");
+
+    renderAll();
+
+}
+
+
+function editAttendance(id){
+
+    openAttendanceModal(id);
+
+}
+
+
+function deleteAttendance(id){
+
+    const record =
+        attendance.find(
+            item => item.id === id
+        );
+
+
+    if(!record){
+        return;
+    }
+
+
+    if(
+        !confirm(
+            "آیا از حذف این رکورد کارکرد مطمئن هستید؟"
+        )
+    ){
+        return;
+    }
+
+
+    attendance =
+        attendance.filter(
+            item => item.id !== id
+        );
+
+
+    saveData();
+
+    renderAll();
+
+    showToast(
+        "رکورد کارکرد حذف شد.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   ATTENDANCE RENDER
+========================================================= */
+
+function renderAttendance(){
+
+    const table =
+        document.getElementById(
+            "attendanceTable"
+        );
+
+
+    const selectedDate =
+        document.getElementById(
+            "attendanceDate"
+        ).value;
+
+
+    let records =
+        attendance;
+
+
+    if(selectedDate){
+
+        records =
+            records.filter(
+                record =>
+                    record.date === selectedDate
+            );
+
+    }
+
+
+    records =
+        [...records].sort(function(a,b){
+
+            return b.date.localeCompare(a.date);
+
+        });
+
+
+    if(!records.length){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="12" class="empty">
+                    برای تاریخ انتخاب‌شده کارکردی ثبت نشده است.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        records.map(function(record){
+
+            let status = "";
+
+            if(record.overtime > 0){
+
+                status =
+                    `<span class="status overtime">
+                        اضافه‌کار
+                     </span>`;
+
+            }else if(record.shortage > 0){
+
+                status =
+                    `<span class="status shortage">
+                        کسری
+                     </span>`;
+
+            }else{
+
+                status =
+                    `<span class="status present">
+                        کامل
+                     </span>`;
+
+            }
+
+
+            return `
+                <tr>
+
+                    <td>${escapeHtml(record.date)}</td>
+
+                    <td>
+                        ${escapeHtml(record.employeeCode)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHtml(record.employeeName)}
+                        </strong>
+                    </td>
+
+                    <td>${record.inTime}</td>
+
+                    <td>${record.outTime}</td>
+
+                    <td>
+                        ${record.workDay}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${minutesToTime(record.worked)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${minutesToTime(record.required)}
+                    </td>
+
+                    <td>
+                        <span class="status overtime">
+                            ${minutesToTime(record.overtime)}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="status shortage">
+                            ${minutesToTime(record.shortage)}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${status}
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="btn btn-edit btn-small"
+                                onclick="editAttendance('${record.id}')">
+                                ✏️
+                            </button>
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick="deleteAttendance('${record.id}')">
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   ATTENDANCE PREVIEW
+========================================================= */
+
+function setupAttendancePreview(){
+
+    [
+        "attendanceEmployee",
+        "attendanceIn",
+        "attendanceOut"
+    ].forEach(function(id){
+
+        const element =
+            document.getElementById(id);
+
+        if(element){
+
+            element.addEventListener(
+                "change",
+                updateAttendancePreview
+            );
+
+        }
+
+    });
+
+
+    const dateElement =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    if(dateElement){
+
+        dateElement.addEventListener(
+            "change",
+            renderAttendance
+        );
+
+    }
+
+}
+
+
+function updateAttendancePreview(){
+
+    const employeeId =
+        document.getElementById(
+            "attendanceEmployee"
+        ).value;
+
+
+    const inTime =
+        document.getElementById(
+            "attendanceIn"
+        ).value;
+
+
+    const outTime =
+        document.getElementById(
+            "attendanceOut"
+        ).value;
+
+
+    const preview =
+        document.getElementById(
+            "attendancePreview"
+        );
+
+
+    if(!employeeId || !inTime || !outTime){
+
+        preview.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const employee =
+        employees.find(
+            item => item.id === employeeId
+        );
+
+
+    if(!employee){
+        return;
+    }
+
+
+    const result =
+        calculateAttendance(
+            inTime,
+            outTime,
+            employee.dailyWork || settings.dailyWork
+        );
+
+
+    preview.style.display =
+        "block";
+
+
+    document.getElementById(
+        "previewWorked"
+    ).textContent =
+        minutesToTime(result.worked);
+
+
+    document.getElementById(
+        "previewRequired"
+    ).textContent =
+        minutesToTime(result.required);
+
+
+    document.getElementById(
+        "previewOvertime"
+    ).textContent =
+        minutesToTime(result.overtime);
+
+
+    document.getElementById(
+        "previewShortage"
+    ).textContent =
+        minutesToTime(result.shortage);
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderDashboard(){
+
+    const activeEmployees =
+        employees.filter(
+            employee =>
+                employee.status !== "inactive"
+        );
+
+
+    document.getElementById(
+        "dashboardEmployees"
+    ).textContent =
+        activeEmployees.length;
+
+
+    const selectedDate =
+        today();
+
+
+    const todayRecords =
+        attendance.filter(
+            record =>
+                record.date === selectedDate
+        );
+
+
+    document.getElementById(
+        "dashboardPresent"
+    ).textContent =
+        todayRecords.length;
+
+
+    const overtime =
+        attendance.reduce(
+            (sum,record) =>
+                sum + (record.overtime || 0),
+            0
+        );
+
+
+    const shortage =
+        attendance.reduce(
+            (sum,record) =>
+                sum + (record.shortage || 0),
+            0
+        );
+
+
+    document.getElementById(
+        "dashboardOvertime"
+    ).textContent =
+        minutesToTime(overtime);
+
+
+    document.getElementById(
+        "dashboardShortage"
+    ).textContent =
+        minutesToTime(shortage);
+
+
+    const table =
+        document.getElementById(
+            "dashboardAttendanceTable"
+        );
+
+
+    const recent =
+        [...attendance]
+            .sort(
+                (a,b) =>
+                    b.date.localeCompare(a.date)
+            )
+            .slice(0,10);
+
+
+    if(!recent.length){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    هنوز کارکردی ثبت نشده است.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        recent.map(function(record){
+
+            return `
+                <tr>
+
+                    <td>${record.date}</td>
+
+                    <td>
+                        ${escapeHtml(record.employeeCode)}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(record.employeeName)}
+                    </td>
+
+                    <td>${record.inTime}</td>
+
+                    <td>${record.outTime}</td>
+
+                    <td>
+                        ${minutesToTime(record.worked)}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(record.overtime)}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(record.shortage)}
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   REPORTS
+========================================================= */
+
+function populateReportEmployees(){
+
+    const select =
+        document.getElementById(
+            "reportEmployee"
+        );
+
+
+    select.innerHTML =
+        `<option value="">همه پرسنل</option>` +
+        employees.map(function(employee){
+
+            return `
+                <option value="${employee.id}">
+                    ${escapeHtml(employee.code)}
+                    -
+                    ${escapeHtml(employee.name)}
+                </option>
+            `;
+
+        }).join("");
+
+}
+
+
+function renderReports(){
+
+    const month =
+        document.getElementById(
+            "reportMonth"
+        ).value ||
+        currentMonth();
+
+
+    const employeeId =
+        document.getElementById(
+            "reportEmployee"
+        ).value;
+
+
+    let records =
+        attendance.filter(function(record){
+
+            return record.date.startsWith(month);
+
+        });
+
+
+    if(employeeId){
+
+        records =
+            records.filter(
+                record =>
+                    record.employeeId === employeeId
+            );
+
+    }
+
+
+    const grouped = {};
+
+
+    records.forEach(function(record){
+
+        if(!grouped[record.employeeId]){
+
+            grouped[record.employeeId] = {
+
+                employeeId:
+                    record.employeeId,
+
+                employeeCode:
+                    record.employeeCode,
+
+                employeeName:
+                    record.employeeName,
+
+                days:0,
+
+                worked:0,
+
+                required:0,
+
+                overtime:0,
+
+                shortage:0
+
+            };
+
+        }
+
+
+        const item =
+            grouped[record.employeeId];
+
+
+        item.days +=
+            Number(record.workDay || 0);
+
+        item.worked +=
+            Number(record.worked || 0);
+
+        item.required +=
+            Number(record.required || 0);
+
+        item.overtime +=
+            Number(record.overtime || 0);
+
+        item.shortage +=
+            Number(record.shortage || 0);
+
+    });
+
+
+    const table =
+        document.getElementById(
+            "reportsTable"
+        );
+
+
+    const rows =
+        Object.values(grouped);
+
+
+    if(!rows.length){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty">
+                    برای ماه انتخاب‌شده گزارشی وجود ندارد.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        rows.map(function(item){
+
+            return `
+                <tr>
+
+                    <td>
+                        ${escapeHtml(item.employeeCode)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHtml(item.employeeName)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${item.days}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${minutesToTime(item.worked)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${minutesToTime(item.required)}
+                    </td>
+
+                    <td>
+                        <span class="status overtime">
+                            ${minutesToTime(item.overtime)}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="status shortage">
+                            ${minutesToTime(item.shortage)}
+                        </span>
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function saveSettings(){
+
+    settings.dailyWork =
+        document.getElementById(
+            "settingDailyWork"
+        ).value || "08:00";
+
+
+    settings.startTime =
+        document.getElementById(
+            "settingStartTime"
+        ).value || "08:00";
+
+
+    settings.endTime =
+        document.getElementById(
+            "settingEndTime"
+        ).value || "16:00";
+
+
+    saveData();
+
+
+    showToast(
+        "تنظیمات با موفقیت ذخیره شد.",
+        "success"
+    );
+
+
+    renderAll();
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeModal(id){
+
+    const modal =
+        document.getElementById(id);
+
+    if(modal){
+
+        modal.classList.remove("show");
+
+    }
+
+}
+
+
+document.querySelectorAll(".modal")
+    .forEach(function(modal){
+
+        modal.addEventListener(
+            "click",
+            function(event){
+
+                if(event.target === modal){
+
+                    modal.classList.remove("show");
+
+                }
+
+            }
+        );
+
+    });
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            document.querySelectorAll(".modal.show")
+                .forEach(function(modal){
+
+                    modal.classList.remove("show");
+
+                });
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+function exportData(){
+
+    const data = {
+
+        version:"1.0",
+
+        exportedAt:
+            new Date().toISOString(),
+
+        employees,
+
+        attendance,
+
+        settings
+
+    };
+
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href = url;
+
+    a.download =
+        `backup-personnel-${today()}.json`;
+
+    a.click();
+
+
+    URL.revokeObjectURL(url);
+
+
+    showToast(
+        "فایل پشتیبان ایجاد شد.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   DELETE ALL
+========================================================= */
+
+function clearAllData(){
+
+    const confirmed =
+        confirm(
+            "هشدار: تمام پرسنل و سوابق کارکرد حذف خواهند شد. ادامه می‌دهید؟"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    const confirmed2 =
+        confirm(
+            "این عملیات قابل بازگشت نیست. آیا مطمئن هستید؟"
+        );
+
+
+    if(!confirmed2){
+        return;
+    }
+
+
+    employees = [];
+
+    attendance = [];
+
+
+    saveData();
+
+    renderAll();
+
+
+    showToast(
+        "تمام اطلاعات حذف شد.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+
+function showToast(message,type="success"){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        `toast show ${type}`;
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },3000);
+
+}
+
+
+/* =========================================================
+   DEFAULT VALUES
+========================================================= */
+
+function setDefaultDates(){
+
+    const attendanceDate =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    if(attendanceDate){
+
+        attendanceDate.value =
+            today();
+
+    }
+
+
+    const reportMonth =
+        document.getElementById(
+            "reportMonth"
+        );
+
+
+    if(reportMonth){
+
+        reportMonth.value =
+            currentMonth();
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
+
+function renderAll(){
+
+    renderDashboard();
+
+    renderEmployees();
+
+    renderAttendance();
+
+    populateReportEmployees();
+
+    renderReports();
+
+}
+
+
+/* =========================================================
+   INITIAL SAMPLE DATA
+=========================================================
+
+   عمداً اطلاعات نمونه ایجاد نمی‌کنیم.
+   سامانه با اطلاعات واقعی کاربر شروع می‌شود.
+========================================================= */
+
+</script>
+
+</body>
+</html>
