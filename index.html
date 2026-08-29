@@ -606,20 +606,6 @@ function showPage(page, button) {
         SUPABASE_KEY
     );
 
-    async function testEmployees() {
-        const { data, error } = await supabaseClient
-            .from("employees")
-            .select("*");
-
-        if (error) {
-            console.error("خطا در خواندن پرسنل:", error);
-            return;
-        }
-
-        console.log("پرسنل دریافت شد:", data);
-    }
-
-    testEmployees();
     async function loadEmployees() {
 
     const { data, error } = await supabaseClient
