@@ -630,6 +630,20 @@ function showPage(page, button) {
         SUPABASE_URL,
         SUPABASE_KEY
     );
+    async function testEmployees() {  
+    const { data, error } = await supabaseClient
+        .from('employees')
+        .select('*');
+
+    if (error) {
+        console.error('خطا در خواندن پرسنل:', error);
+        return;
+    }
+
+    console.log('پرسنل دریافت شد:', data);
+}
+
+testEmployees();
 </script>const SUPABASE_KEY = "sb_publishable_6MOAMK0hThThIRy1DGxjOg_SGmFP_qj";
 </body>
 </html>
