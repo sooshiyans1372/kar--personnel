@@ -9,605 +9,845 @@
 
 <style>
 
-@font-face{
-    font-family:"B Nazanin";
-    src:local("B Nazanin");
+/* =========================================================
+   فونت
+========================================================= */
+
+@font-face {
+    font-family: "B Nazanin";
+    src: local("B Nazanin");
 }
 
-@font-face{
-    font-family:"B Titr";
-    src:local("B Titr");
+@font-face {
+    font-family: "B Titr";
+    src: local("B Titr");
 }
 
-:root{
-    --primary:#17365d;
-    --primary-light:#eaf1f8;
-    --bg:#f4f6f9;
-    --white:#fff;
-    --text:#263238;
-    --muted:#777;
-    --border:#e2e5e9;
-    --success:#2e7d32;
-    --success-bg:#e8f5e9;
-    --danger:#c62828;
-    --danger-bg:#ffebee;
-    --warning:#ef6c00;
-    --warning-bg:#fff3e0;
-    --info:#1565c0;
-    --info-bg:#e3f2fd;
-    --shadow:0 2px 12px rgba(0,0,0,.06);
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+html,
+body {
+    min-height: 100%;
 }
 
-html,body{
-    min-height:100%;
+body {
+    background: #f4f6f9;
+    color: #263238;
+    font-family: "B Nazanin", Tahoma, Arial, sans-serif;
+    font-size: 18px;
+    direction: rtl;
 }
 
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"B Nazanin",Tahoma,Arial,sans-serif;
-    font-size:18px;
-    direction:rtl;
+button,
+input,
+select,
+textarea {
+    font-family: "B Nazanin", Tahoma, Arial, sans-serif;
 }
 
-button,input,select,textarea{
-    font-family:"B Nazanin",Tahoma,Arial,sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "B Titr", Tahoma, Arial, sans-serif;
+    font-weight: normal;
 }
 
-button{
-    cursor:pointer;
+button {
+    cursor: pointer;
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-family:"B Titr",Tahoma,Arial,sans-serif;
-    font-weight:normal;
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #17365d 0%,
+            #24598f 50%,
+            #eaf1f8 50%,
+            #f4f6f9 100%
+        );
 }
 
-/* ================= HEADER ================= */
-
-.header{
-    background:var(--primary);
-    color:#fff;
-    min-height:70px;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.15);
 }
 
-.header h1{
-    font-size:27px;
+.login-logo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #17365d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
 }
 
-.header span{
-    font-size:17px;
+.login-box h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #17365d;
+    margin-bottom: 5px;
 }
 
-/* ================= LAYOUT ================= */
-
-.layout{
-    display:flex;
-    min-height:calc(100vh - 70px);
+.login-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 28px;
 }
 
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-    width:245px;
-    flex-shrink:0;
-    background:#fff;
-    border-left:1px solid #ddd;
-    padding:20px 12px;
+.login-field {
+    margin-bottom: 17px;
 }
 
-.sidebar-title{
-    font-size:17px;
-    font-weight:bold;
-    color:#777;
-    padding:10px 15px;
-    margin-bottom:8px;
+.login-field label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #555;
 }
 
-.menu{
-    list-style:none;
+.login-field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    outline: none;
+    font-size: 18px;
 }
 
-.menu li{
-    margin-bottom:5px;
+.login-field input:focus {
+    border-color: #17365d;
+    box-shadow: 0 0 0 3px rgba(23,54,93,.08);
 }
 
-.menu button{
-    width:100%;
-    border:none;
-    background:transparent;
-    text-align:right;
-    padding:12px 15px;
-    border-radius:8px;
-    font-size:18px;
-    font-weight:bold;
-    color:#37474f;
-    transition:.2s;
+.login-error {
+    background: #ffebee;
+    color: #c62828;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: none;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    border: none;
+    background: #17365d;
+    color: #fff;
+    border-radius: 9px;
+    padding: 13px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background: #214c7d;
+}
+
+.login-info {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
+#app {
+    display: none;
+}
+
+.header {
+    background: #17365d;
+    color: white;
+    padding: 15px 25px;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header h1 {
+    font-size: 27px;
+}
+
+.header-subtitle {
+    font-size: 16px;
+    opacity: .9;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info {
+    text-align: left;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-role {
+    font-size: 14px;
+    opacity: .8;
+}
+
+.logout-btn {
+    border: 1px solid rgba(255,255,255,.4);
+    background: transparent;
+    color: white;
+    border-radius: 7px;
+    padding: 7px 13px;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background: rgba(255,255,255,.1);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.sidebar {
+    width: 245px;
+    flex-shrink: 0;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    padding: 20px 12px;
+}
+
+.sidebar-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #777;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 5px;
+}
+
+.menu button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: right;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #37474f;
+    transition: .2s;
 }
 
 .menu button:hover,
-.menu button.active{
-    background:var(--primary-light);
-    color:var(--primary);
+.menu button.active {
+    background: #eaf1f8;
+    color: #17365d;
 }
 
-/* ================= CONTENT ================= */
-
-.content{
-    flex:1;
-    min-width:0;
-    padding:30px;
+.menu button.hidden {
+    display: none;
 }
 
-.page{
-    display:none;
+.content {
+    flex: 1;
+    padding: 30px;
+    min-width: 0;
 }
 
-.page.active{
-    display:block;
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+    display: none;
 }
 
-.page-title{
-    margin-bottom:25px;
+.page.active {
+    display: block;
 }
 
-.page-title h2{
-    font-size:29px;
-    margin-bottom:6px;
+.page-title {
+    margin-bottom: 25px;
 }
 
-.page-title p{
-    color:#777;
-    font-size:17px;
+.page-title h2 {
+    font-size: 29px;
+    margin-bottom: 6px;
 }
 
-/* ================= CARDS ================= */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:25px;
+.page-title p {
+    color: #777;
+    font-size: 17px;
 }
 
-.card{
-    background:#fff;
-    border-radius:12px;
-    padding:22px;
-    box-shadow:var(--shadow);
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
-.card-title{
-    color:#777;
-    font-size:17px;
-    font-weight:bold;
-    margin-bottom:10px;
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
 }
 
-.card-value{
-    font-size:32px;
-    font-weight:bold;
-    color:var(--primary);
+.card-title {
+    color: #777;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.card-sub{
-    margin-top:8px;
-    color:#888;
-    font-size:15px;
+.card-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #17365d;
 }
 
-/* ================= PANEL ================= */
-
-.panel{
-    background:#fff;
-    border-radius:12px;
-    padding:22px;
-    box-shadow:var(--shadow);
-    margin-bottom:22px;
-    overflow-x:auto;
+.card-sub {
+    margin-top: 8px;
+    color: #888;
+    font-size: 15px;
 }
 
-.panel h3{
-    font-size:22px;
-    margin-bottom:18px;
+/* =========================================================
+   PANEL
+========================================================= */
+
+.panel {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    margin-bottom: 22px;
+    overflow-x: auto;
 }
 
-/* ================= TOOLBAR ================= */
-
-.toolbar{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    margin-bottom:18px;
-    flex-wrap:wrap;
+.panel h3 {
+    font-size: 22px;
+    margin-bottom: 18px;
 }
 
-.search,
-.form-control{
-    padding:10px 14px;
-    border:1px solid #d8d8d8;
-    border-radius:8px;
-    outline:none;
-    font-size:18px;
-    background:#fff;
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
 }
 
-.search{
-    flex:1;
-    min-width:250px;
+.search {
+    flex: 1;
+    min-width: 260px;
+    padding: 10px 14px;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    outline: none;
+    font-size: 18px;
+    background: white;
 }
 
-.search:focus,
-.form-control:focus{
-    border-color:var(--primary);
-    box-shadow:0 0 0 2px rgba(23,54,93,.08);
+.search:focus {
+    border-color: #17365d;
 }
 
-/* ================= BUTTONS ================= */
-
-.btn{
-    border:none;
-    border-radius:8px;
-    padding:9px 17px;
-    font-size:17px;
-    font-weight:bold;
-    transition:.2s;
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 17px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: .2s;
 }
 
-.btn:hover{
-    opacity:.88;
-    transform:translateY(-1px);
+.btn:hover {
+    opacity: .88;
+    transform: translateY(-1px);
 }
 
-.btn-primary{
-    background:var(--primary);
-    color:#fff;
+.btn-primary {
+    background: #17365d;
+    color: white;
 }
 
-.btn-secondary{
-    background:#eef2f6;
-    color:#37474f;
+.btn-secondary {
+    background: #eef2f6;
+    color: #37474f;
 }
 
-.btn-danger{
-    background:var(--danger);
-    color:#fff;
+.btn-danger {
+    background: #c62828;
+    color: white;
 }
 
-.btn-edit{
-    background:var(--primary-light);
-    color:var(--primary);
+.btn-success {
+    background: #2e7d32;
+    color: white;
 }
 
-.btn-success{
-    background:var(--success);
-    color:#fff;
+.btn-edit {
+    background: #eaf1f8;
+    color: #17365d;
 }
 
-.btn-warning{
-    background:var(--warning);
-    color:#fff;
+.btn-warning {
+    background: #fff3cd;
+    color: #856404;
 }
 
-.btn-small{
-    padding:6px 11px;
-    font-size:15px;
+/* =========================================================
+   TABLE
+========================================================= */
+
+.count {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 12px;
 }
 
-/* ================= TABLE ================= */
-
-.table-wrap{
-    overflow-x:auto;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
+th {
+    background: #f5f7fa;
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 13px 10px;
+    text-align: right;
+    white-space: nowrap;
 }
 
-th{
-    background:#f5f7fa;
-    color:#555;
-    font-size:18px;
-    font-weight:bold;
-    padding:13px 10px;
-    text-align:right;
-    white-space:nowrap;
+td {
+    border-top: 1px solid #eee;
+    padding: 12px 10px;
+    font-size: 17px;
+    white-space: nowrap;
 }
 
-td{
-    border-top:1px solid #eee;
-    padding:12px 10px;
-    font-size:17px;
-    white-space:nowrap;
+tbody tr:hover {
+    background: #fafbfd;
 }
 
-tbody tr:hover{
-    background:#fafbfd;
+.actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
 }
 
-/* ================= STATUS ================= */
+/* =========================================================
+   STATUS
+========================================================= */
 
-.status{
-    display:inline-block;
-    padding:4px 12px;
-    border-radius:20px;
-    font-size:15px;
-    font-weight:bold;
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-.present{
-    background:var(--success-bg);
-    color:var(--success);
+.present {
+    background: #e8f5e9;
+    color: #2e7d32;
 }
 
-.absent{
-    background:var(--danger-bg);
-    color:var(--danger);
+.absent {
+    background: #ffebee;
+    color: #c62828;
 }
 
-.inactive{
-    background:#eeeeee;
-    color:#666;
+.warning {
+    background: #fff8e1;
+    color: #f57f17;
 }
 
-.overtime{
-    background:var(--warning-bg);
-    color:var(--warning);
+.info {
+    background: #e3f2fd;
+    color: #1565c0;
 }
 
-.shortage{
-    background:var(--danger-bg);
-    color:var(--danger);
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
-/* ================= ACTIONS ================= */
-
-.actions{
-    display:flex;
-    gap:6px;
-    align-items:center;
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #555;
+    font-size: 17px;
+    font-weight: bold;
 }
 
-/* ================= FORM ================= */
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline: none;
+    font-size: 17px;
+    background: #fff;
 }
 
-.form-group{
-    min-width:0;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #17365d;
 }
 
-.form-group.full{
-    grid-column:1/-1;
+.form-actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
 }
 
-.form-group label{
-    display:block;
-    margin-bottom:7px;
-    color:#555;
-    font-size:17px;
-    font-weight:bold;
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 15px;
 }
 
-.form-control{
-    width:100%;
+.modal.show {
+    display: flex;
 }
 
-.form-actions{
-    margin-top:22px;
-    display:flex;
-    gap:10px;
+.modal-box {
+    background: white;
+    width: 95%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 25px;
 }
 
-/* ================= MODAL ================= */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-    padding:15px;
+.modal-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.modal.show{
-    display:flex;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.modal-box{
-    background:#fff;
-    width:95%;
-    max-width:700px;
-    max-height:90vh;
-    overflow-y:auto;
-    border-radius:14px;
-    padding:25px;
-    box-shadow:0 10px 40px rgba(0,0,0,.2);
+.close-modal {
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: #777;
 }
 
-.modal-box h3{
-    font-size:24px;
-    margin-bottom:20px;
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
-.modal-close{
-    float:left;
-    border:none;
-    background:#eee;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    font-size:20px;
+.filter-group label {
+    display: block;
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 5px;
 }
 
-/* ================= EMPTY ================= */
-
-.empty{
-    text-align:center;
-    padding:35px;
-    color:#888;
-    font-size:17px;
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 16px;
 }
 
-/* ================= FILTERS ================= */
+/* =========================================================
+   SUMMARY
+========================================================= */
 
-.filters{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:18px;
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-.filter-item label{
-    display:block;
-    font-size:16px;
-    font-weight:bold;
-    margin-bottom:5px;
+.summary-item {
+    background: #f7f9fb;
+    border-radius: 9px;
+    padding: 15px;
+    text-align: center;
 }
 
-/* ================= FOOTER ================= */
-
-.footer{
-    text-align:center;
-    color:#999;
-    font-size:15px;
-    padding:20px;
+.summary-item .label {
+    color: #777;
+    font-size: 15px;
 }
 
-/* ================= TOAST ================= */
-
-.toast{
-    position:fixed;
-    bottom:25px;
-    left:25px;
-    min-width:280px;
-    max-width:450px;
-    padding:14px 18px;
-    border-radius:10px;
-    color:#fff;
-    background:#333;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
-    transform:translateY(100px);
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:3000;
+.summary-item .value {
+    color: #17365d;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
 }
 
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+    text-align: center;
+    padding: 35px;
+    color: #888;
+    font-size: 17px;
 }
 
-.toast.success{
-    background:var(--success);
+/* =========================================================
+   CONNECTION
+========================================================= */
+
+.connection-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px;
+    background: #f7f9fb;
+    border-radius: 9px;
+    margin-bottom: 20px;
 }
 
-.toast.error{
-    background:var(--danger);
+.connection-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #2e7d32;
 }
 
-/* ================= CONNECTION ================= */
-
-.connection{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
+.connection-dot.offline {
+    background: #c62828;
 }
 
-.connection-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#4caf50;
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* ================= RESPONSIVE ================= */
+.toast {
+    min-width: 280px;
+    max-width: 400px;
+    background: #263238;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 9px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+    animation: toastIn .25s ease;
+}
 
-@media(max-width:1100px){
+.toast.success {
+    background: #2e7d32;
+}
 
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+.toast.error {
+    background: #c62828;
+}
+
+.toast.warning {
+    background: #ef6c00;
+}
+
+@keyframes toastIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    text-align: center;
+    color: #999;
+    font-size: 15px;
+    padding: 20px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px) {
+
+    .cards {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .filters{
-        grid-template-columns:repeat(2,1fr);
+    .summary-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .filters {
+        grid-template-columns: repeat(2,1fr);
     }
 }
 
-@media(max-width:900px){
+@media (max-width:900px) {
 
-    .sidebar{
-        width:210px;
+    .sidebar {
+        width: 210px;
     }
 
-    .content{
-        padding:20px;
+    .content {
+        padding: 20px;
     }
 }
 
-@media(max-width:650px){
+@media (max-width:650px) {
 
-    .layout{
-        display:block;
+    .layout {
+        display: block;
     }
 
-    .sidebar{
-        width:100%;
-        border-left:none;
-        border-bottom:1px solid #ddd;
+    .sidebar {
+        width: 100%;
     }
 
-    .content{
-        padding:15px;
+    .content {
+        padding: 15px;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    .cards {
+        grid-template-columns: 1fr;
     }
 
-    .form-grid,
-    .filters{
-        grid-template-columns:1fr;
+    .summary-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .header{
-        padding:15px;
+    .filters,
+    .form-grid {
+        grid-template-columns: 1fr;
     }
 
-    .header h1{
-        font-size:22px;
+    .header {
+        padding: 12px 15px;
     }
 
-    .header span{
-        display:none;
+    .header h1 {
+        font-size: 21px;
     }
 
-    .toolbar{
-        align-items:stretch;
+    .header-subtitle {
+        display: none;
     }
 
-    .search{
-        min-width:100%;
+    .user-info {
+        display: none;
     }
+
 }
 
 </style>
@@ -615,23 +855,132 @@ tbody tr:hover{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<section id="loginPage">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            🕐
+        </div>
+
+        <h1>سامانه کارکرد پرسنل</h1>
+
+        <div class="login-subtitle">
+            مدیریت حضور و غیاب و کارکرد
+        </div>
+
+        <div id="loginError" class="login-error"></div>
+
+        <div class="login-field">
+
+            <label>
+                نام کاربری
+            </label>
+
+            <input
+                type="text"
+                id="loginUsername"
+                autocomplete="username"
+                placeholder="نام کاربری را وارد کنید"
+            >
+
+        </div>
+
+        <div class="login-field">
+
+            <label>
+                رمز عبور
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                autocomplete="current-password"
+                placeholder="رمز عبور را وارد کنید"
+            >
+
+        </div>
+
+        <button
+            class="login-button"
+            onclick="login()"
+        >
+            ورود به سامانه
+        </button>
+
+        <div class="login-info">
+            ورود اولیه مدیر:
+            <strong>admin</strong>
+            /
+            <strong>123456</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
+
+<div id="app">
 
 <header class="header">
 
-    <h1>سامانه کارکرد پرسنل</h1>
+    <div class="header-right">
 
-    <span class="connection">
-        <span class="connection-dot"></span>
-        مدیریت حضور و غیاب و کارکرد
-    </span>
+        <h1>
+            سامانه کارکرد پرسنل
+        </h1>
+
+        <span class="header-subtitle">
+            مدیریت حضور و غیاب و کارکرد
+        </span>
+
+    </div>
+
+    <div class="header-left">
+
+        <div class="user-info">
+
+            <div
+                id="currentUserName"
+                class="user-name"
+            >
+                مدیر سامانه
+            </div>
+
+            <div
+                id="currentUserRole"
+                class="user-role"
+            >
+                مدیر سیستم
+            </div>
+
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            خروج
+        </button>
+
+    </div>
 
 </header>
 
 
 <div class="layout">
 
-<!-- ================= SIDEBAR ================= -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar">
 
@@ -642,32 +991,56 @@ tbody tr:hover{
     <ul class="menu">
 
         <li>
-            <button class="active"
-                    onclick="showPage('dashboard',this)">
+            <button
+                class="active"
+                data-page="dashboard"
+                onclick="showPage('dashboard', this)"
+            >
                 🏠 داشبورد
             </button>
         </li>
 
         <li>
-            <button onclick="showPage('employees',this)">
+            <button
+                data-page="employees"
+                onclick="showPage('employees', this)"
+            >
                 👥 پرسنل
             </button>
         </li>
 
         <li>
-            <button onclick="showPage('attendance',this)">
+            <button
+                data-page="attendance"
+                onclick="showPage('attendance', this)"
+            >
                 🕐 کارکرد روزانه
             </button>
         </li>
 
         <li>
-            <button onclick="showPage('reports',this)">
+            <button
+                data-page="reports"
+                onclick="showPage('reports', this)"
+            >
                 📊 گزارش کارکرد
             </button>
         </li>
 
         <li>
-            <button onclick="showPage('settings',this)">
+            <button
+                data-page="users"
+                onclick="showPage('users', this)"
+            >
+                👤 کاربران سامانه
+            </button>
+        </li>
+
+        <li>
+            <button
+                data-page="settings"
+                onclick="showPage('settings', this)"
+            >
                 ⚙️ تنظیمات
             </button>
         </li>
@@ -677,18 +1050,27 @@ tbody tr:hover{
 </aside>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- =========================================================
+     CONTENT
+========================================================= -->
 
 <main class="content">
 
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
 
-<section id="dashboard" class="page active">
+<section
+    id="page-dashboard"
+    class="page active"
+>
 
     <div class="page-title">
 
-        <h2>داشبورد</h2>
+        <h2>
+            داشبورد
+        </h2>
 
         <p>
             نمای کلی وضعیت پرسنل و کارکرد
@@ -702,16 +1084,18 @@ tbody tr:hover{
         <div class="card">
 
             <div class="card-title">
-                کل پرسنل
+                تعداد پرسنل
             </div>
 
-            <div class="card-value"
-                 id="dashboardEmployees">
+            <div
+                id="dashboardEmployees"
+                class="card-value"
+            >
                 0
             </div>
 
             <div class="card-sub">
-                پرسنل ثبت‌شده در سامانه
+                پرسنل فعال سامانه
             </div>
 
         </div>
@@ -720,16 +1104,18 @@ tbody tr:hover{
         <div class="card">
 
             <div class="card-title">
-                حاضر
+                حاضر امروز
             </div>
 
-            <div class="card-value"
-                 id="dashboardPresent">
+            <div
+                id="dashboardPresent"
+                class="card-value"
+            >
                 0
             </div>
 
             <div class="card-sub">
-                بر اساس کارکرد ثبت‌شده
+                بر اساس ثبت ورود
             </div>
 
         </div>
@@ -738,11 +1124,33 @@ tbody tr:hover{
         <div class="card">
 
             <div class="card-title">
-                اضافه‌کار
+                غایب امروز
             </div>
 
-            <div class="card-value"
-                 id="dashboardOvertime">
+            <div
+                id="dashboardAbsent"
+                class="card-value"
+            >
+                0
+            </div>
+
+            <div class="card-sub">
+                بدون ثبت کارکرد
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                اضافه‌کار امروز
+            </div>
+
+            <div
+                id="dashboardOvertime"
+                class="card-value"
+            >
                 00:00
             </div>
 
@@ -752,75 +1160,87 @@ tbody tr:hover{
 
         </div>
 
-
-        <div class="card">
-
-            <div class="card-title">
-                کسری‌کار
-            </div>
-
-            <div class="card-value"
-                 id="dashboardShortage">
-                00:00
-            </div>
-
-            <div class="card-sub">
-                مجموع کسری‌کار
-            </div>
-
-        </div>
-
     </div>
 
 
     <div class="panel">
 
         <h3>
-            آخرین کارکردها
+            وضعیت امروز
         </h3>
 
-        <div class="table-wrap">
+        <div class="connection-box">
 
-            <table>
+            <span class="connection-dot"></span>
 
-                <thead>
+            <span id="dashboardDate">
+                تاریخ
+            </span>
+
+        </div>
+
+        <table>
+
+            <thead>
 
                 <tr>
 
-                    <th>تاریخ</th>
-                    <th>کد پرسنلی</th>
-                    <th>نام پرسنل</th>
-                    <th>ورود</th>
-                    <th>خروج</th>
-                    <th>کارکرد</th>
-                    <th>اضافه‌کار</th>
-                    <th>کسری</th>
+                    <th>
+                        کد پرسنلی
+                    </th>
+
+                    <th>
+                        نام و نام خانوادگی
+                    </th>
+
+                    <th>
+                        ورود
+                    </th>
+
+                    <th>
+                        خروج
+                    </th>
+
+                    <th>
+                        کارکرد
+                    </th>
+
+                    <th>
+                        وضعیت
+                    </th>
 
                 </tr>
 
-                </thead>
+            </thead>
 
-                <tbody id="dashboardAttendanceTable"></tbody>
+            <tbody id="dashboardTable">
 
-            </table>
+            </tbody>
 
-        </div>
+        </table>
 
     </div>
 
 </section>
 
 
-<!-- ================= EMPLOYEES ================= -->
+<!-- =========================================================
+     EMPLOYEES
+========================================================= -->
 
-<section id="employees" class="page">
+<section
+    id="page-employees"
+    class="page"
+>
 
     <div class="page-title">
 
-        <h2>مدیریت پرسنل</h2>
+        <h2>
+            مدیریت پرسنل
+        </h2>
 
         <p>
-            ثبت، ویرایش، جست‌وجو و مدیریت اطلاعات پرسنل
+            ثبت، ویرایش و مدیریت اطلاعات پرسنل
         </p>
 
     </div>
@@ -831,141 +1251,75 @@ tbody tr:hover{
         <div class="toolbar">
 
             <input
-                type="text"
                 id="employeeSearch"
                 class="search"
-                placeholder="جست‌وجو بر اساس نام، کد پرسنلی یا کد ملی..."
+                type="text"
+                placeholder="جستجو بر اساس کد، نام، کد ملی یا واحد..."
                 oninput="renderEmployees()"
             >
 
             <button
                 class="btn btn-primary"
-                onclick="openEmployeeModal()">
-                ➕ افزودن پرسنل
+                onclick="openEmployeeModal()"
+            >
+                + افزودن پرسنل
             </button>
 
         </div>
 
-
-        <div class="count" id="employeeCount">
-            تعداد پرسنل: 0
+        <div
+            id="employeeCount"
+            class="count"
+        >
+            تعداد: 0
         </div>
 
+        <table>
 
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
+            <thead>
 
                 <tr>
 
-                    <th>ردیف</th>
                     <th>کد پرسنلی</th>
                     <th>نام و نام خانوادگی</th>
                     <th>کد ملی</th>
                     <th>واحد</th>
                     <th>سمت</th>
-                    <th>موظفی روزانه</th>
                     <th>وضعیت</th>
                     <th>عملیات</th>
 
                 </tr>
 
-                </thead>
+            </thead>
 
-                <tbody id="employeesTable"></tbody>
+            <tbody id="employeesTable">
 
-            </table>
+            </tbody>
 
-        </div>
+        </table>
 
     </div>
 
 </section>
 
 
-<!-- ================= ATTENDANCE ================= -->
+<!-- =========================================================
+     ATTENDANCE
+========================================================= -->
 
-<section id="attendance" class="page">
-
-    <div class="page-title">
-
-        <h2>کارکرد روزانه</h2>
-
-        <p>
-            ثبت ورود و خروج و محاسبه خودکار کارکرد
-        </p>
-
-    </div>
-
-
-    <div class="panel">
-
-        <div class="toolbar">
-
-            <input
-                type="date"
-                id="attendanceDate"
-                class="form-control"
-                style="max-width:220px"
-            >
-
-            <button
-                class="btn btn-primary"
-                onclick="openAttendanceModal()">
-                ➕ ثبت کارکرد
-            </button>
-
-        </div>
-
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-
-                <tr>
-
-                    <th>تاریخ</th>
-                    <th>کد پرسنلی</th>
-                    <th>نام پرسنل</th>
-                    <th>ورود</th>
-                    <th>خروج</th>
-                    <th>روز کارکرد</th>
-                    <th>کارکرد</th>
-                    <th>موظفی</th>
-                    <th>اضافه‌کار</th>
-                    <th>کسری‌کار</th>
-                    <th>وضعیت</th>
-                    <th>عملیات</th>
-
-                </tr>
-
-                </thead>
-
-                <tbody id="attendanceTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= REPORTS ================= -->
-
-<section id="reports" class="page">
+<section
+    id="page-attendance"
+    class="page"
+>
 
     <div class="page-title">
 
-        <h2>گزارش کارکرد</h2>
+        <h2>
+            کارکرد روزانه
+        </h2>
 
         <p>
-            گزارش تجمیعی کارکرد پرسنل
+            بررسی ورود، خروج و محاسبه کارکرد روزانه
         </p>
 
     </div>
@@ -975,72 +1329,313 @@ tbody tr:hover{
 
         <div class="filters">
 
-            <div class="filter-item">
+            <div class="filter-group">
 
                 <label>
-                    ماه
+                    تاریخ
                 </label>
 
                 <input
-                    type="month"
-                    id="reportMonth"
-                    class="form-control"
+                    type="date"
+                    id="attendanceDate"
+                    onchange="renderAttendance()"
                 >
 
             </div>
 
-
-            <div class="filter-item">
+            <div class="filter-group">
 
                 <label>
                     پرسنل
                 </label>
 
                 <select
-                    id="reportEmployee"
-                    class="form-control">
+                    id="attendanceEmployee"
+                    onchange="renderAttendance()"
+                >
+
+                    <option value="">
+                        همه پرسنل
+                    </option>
+
                 </select>
 
             </div>
 
+            <div class="filter-group">
 
-            <div class="filter-item"
-                 style="display:flex;align-items:end">
+                <label>
+                    وضعیت
+                </label>
 
-                <button
-                    class="btn btn-primary"
-                    onclick="renderReports()">
-                    🔍 نمایش گزارش
-                </button>
+                <select
+                    id="attendanceStatus"
+                    onchange="renderAttendance()"
+                >
+
+                    <option value="">
+                        همه
+                    </option>
+
+                    <option value="present">
+                        حاضر
+                    </option>
+
+                    <option value="absent">
+                        غایب
+                    </option>
+
+                    <option value="incomplete">
+                        ناقص
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="filter-group">
+
+                <label>
+                    جستجو
+                </label>
+
+                <input
+                    type="text"
+                    id="attendanceSearch"
+                    placeholder="جستجو..."
+                    oninput="renderAttendance()"
+                >
 
             </div>
 
         </div>
 
 
-        <div class="table-wrap">
+        <div class="summary-grid">
 
-            <table>
+            <div class="summary-item">
 
-                <thead>
+                <div class="label">
+                    موظفی
+                </div>
+
+                <div
+                    id="attendanceDuty"
+                    class="value"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    کارکرد
+                </div>
+
+                <div
+                    id="attendanceWorked"
+                    class="value"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    روز کارکرد
+                </div>
+
+                <div
+                    id="attendanceWorkDays"
+                    class="value"
+                >
+                    0
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    اضافه‌کار
+                </div>
+
+                <div
+                    id="attendanceOvertime"
+                    class="value"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    کسری‌کار
+                </div>
+
+                <div
+                    id="attendanceShortage"
+                    class="value"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <table>
+
+            <thead>
 
                 <tr>
 
+                    <th>تاریخ</th>
                     <th>کد پرسنلی</th>
-                    <th>نام پرسنل</th>
+                    <th>پرسنل</th>
+                    <th>اولین ورود</th>
+                    <th>آخرین خروج</th>
+                    <th>کارکرد</th>
                     <th>روز کارکرد</th>
-                    <th>جمع کارکرد</th>
-                    <th>جمع موظفی</th>
-                    <th>جمع اضافه‌کار</th>
-                    <th>جمع کسری</th>
+                    <th>اضافه‌کار</th>
+                    <th>کسری‌کار</th>
+                    <th>وضعیت</th>
 
                 </tr>
 
-                </thead>
+            </thead>
 
-                <tbody id="reportsTable"></tbody>
+            <tbody id="attendanceTable">
 
-            </table>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REPORTS
+========================================================= -->
+
+<section
+    id="page-reports"
+    class="page"
+>
+
+    <div class="page-title">
+
+        <h2>
+            گزارش کارکرد
+        </h2>
+
+        <p>
+            گزارش ماهانه و تجمیعی کارکرد پرسنل
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="filters">
+
+            <div class="filter-group">
+
+                <label>
+                    از تاریخ
+                </label>
+
+                <input
+                    type="date"
+                    id="reportFrom"
+                >
+
+            </div>
+
+            <div class="filter-group">
+
+                <label>
+                    تا تاریخ
+                </label>
+
+                <input
+                    type="date"
+                    id="reportTo"
+                >
+
+            </div>
+
+            <div class="filter-group">
+
+                <label>
+                    پرسنل
+                </label>
+
+                <select id="reportEmployee">
+
+                    <option value="">
+                        همه پرسنل
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="filter-group">
+
+                <label>
+                    واحد
+                </label>
+
+                <select id="reportDepartment">
+
+                    <option value="">
+                        همه واحدها
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+            <button
+                class="btn btn-primary"
+                onclick="generateReport()"
+            >
+                📊 تولید گزارش
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="printReport()"
+            >
+                🖨️ چاپ
+            </button>
+
+        </div>
+
+
+        <div
+            id="reportResult"
+        >
+
+            <div class="empty">
+                برای مشاهده گزارش، فیلترها را انتخاب و «تولید گزارش» را بزنید.
+            </div>
 
         </div>
 
@@ -1049,16 +1644,86 @@ tbody tr:hover{
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- =========================================================
+     USERS
+========================================================= -->
 
-<section id="settings" class="page">
+<section
+    id="page-users"
+    class="page"
+>
 
     <div class="page-title">
 
-        <h2>تنظیمات</h2>
+        <h2>
+            کاربران سامانه
+        </h2>
 
         <p>
-            تنظیمات پایه سامانه
+            مدیریت حساب‌های کاربری و سطح دسترسی
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="toolbar">
+
+            <button
+                class="btn btn-primary"
+                onclick="openUserModal()"
+            >
+                + افزودن کاربر
+            </button>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>نام کاربری</th>
+                    <th>نام کاربر</th>
+                    <th>نقش</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="usersTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SETTINGS
+========================================================= -->
+
+<section
+    id="page-settings"
+    class="page"
+>
+
+    <div class="page-title">
+
+        <h2>
+            تنظیمات سامانه
+        </h2>
+
+        <p>
+            تنظیمات عمومی محاسبه کارکرد
         </p>
 
     </div>
@@ -1067,55 +1732,74 @@ tbody tr:hover{
     <div class="panel">
 
         <h3>
-            تنظیمات ساعت کاری
+            تنظیمات شیفت
         </h3>
-
 
         <div class="form-grid">
 
             <div class="form-group">
 
                 <label>
-                    ساعت موظفی روزانه
+                    ساعت شروع موظفی
                 </label>
 
                 <input
                     type="time"
-                    id="settingDailyWork"
-                    class="form-control"
-                    value="08:00"
+                    id="settingStart"
+                    value="07:30"
                 >
 
             </div>
 
-
             <div class="form-group">
 
                 <label>
-                    ساعت شروع کار
+                    ساعت پایان موظفی
                 </label>
 
                 <input
                     type="time"
-                    id="settingStartTime"
-                    class="form-control"
-                    value="08:00"
+                    id="settingEnd"
+                    value="15:00"
                 >
 
             </div>
 
+            <div class="form-group">
+
+                <label>
+                    کسر زمان استراحت
+                </label>
+
+                <select id="settingBreak">
+
+                    <option value="0">
+                        بدون کسر
+                    </option>
+
+                    <option value="30">
+                        30 دقیقه
+                    </option>
+
+                    <option value="60">
+                        60 دقیقه
+                    </option>
+
+                </select>
+
+            </div>
 
             <div class="form-group">
 
                 <label>
-                    ساعت پایان کار
+                    سقف مرخصی ساعتی
                 </label>
 
                 <input
-                    type="time"
-                    id="settingEndTime"
-                    class="form-control"
-                    value="16:00"
+                    type="number"
+                    id="settingHourlyLeave"
+                    value="3"
+                    min="0"
                 >
 
             </div>
@@ -1127,8 +1811,9 @@ tbody tr:hover{
 
             <button
                 class="btn btn-primary"
-                onclick="saveSettings()">
-                💾 ذخیره تنظیمات
+                onclick="saveSettings()"
+            >
+                ذخیره تنظیمات
             </button>
 
         </div>
@@ -1139,25 +1824,50 @@ tbody tr:hover{
     <div class="panel">
 
         <h3>
-            مدیریت اطلاعات
+            وضعیت ذخیره‌سازی
         </h3>
 
-        <p style="margin-bottom:15px;color:#777">
-            اطلاعات این نسخه در حافظه مرورگر ذخیره می‌شود.
+        <div class="connection-box">
+
+            <span
+                id="storageDot"
+                class="connection-dot"
+            ></span>
+
+            <span id="storageStatus">
+                ذخیره‌سازی محلی فعال است
+            </span>
+
+        </div>
+
+        <p style="color:#777;font-size:15px;">
+            در مرحله بعد این لایه به Supabase متصل می‌شود و اطلاعات از
+            localStorage به پایگاه داده منتقل خواهد شد.
         </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>
+            مدیریت اطلاعات آزمایشی
+        </h3>
 
         <div class="toolbar">
 
             <button
                 class="btn btn-secondary"
-                onclick="exportData()">
-                📤 خروجی پشتیبان
+                onclick="loadDemoData()"
+            >
+                بارگذاری اطلاعات نمونه
             </button>
 
             <button
                 class="btn btn-danger"
-                onclick="clearAllData()">
-                🗑️ حذف تمام اطلاعات
+                onclick="resetLocalData()"
+            >
+                پاک‌سازی اطلاعات محلی
             </button>
 
         </div>
@@ -1168,9 +1878,7 @@ tbody tr:hover{
 
 
 <div class="footer">
-
     سامانه کارکرد پرسنل — نسخه اولیه عملیاتی
-
 </div>
 
 
@@ -1178,641 +1886,855 @@ tbody tr:hover{
 
 </div>
 
+</div>
 
-<!-- ================= EMPLOYEE MODAL ================= -->
 
-<div class="modal" id="employeeModal">
+<!-- =========================================================
+     EMPLOYEE MODAL
+========================================================= -->
+
+<div
+    id="employeeModal"
+    class="modal"
+>
 
     <div class="modal-box">
 
-        <button
-            class="modal-close"
-            onclick="closeModal('employeeModal')">
-            ×
-        </button>
+        <div class="modal-header">
 
-        <h3 id="employeeModalTitle">
-            افزودن پرسنل
-        </h3>
+            <h3 id="employeeModalTitle">
+                افزودن پرسنل
+            </h3>
 
-
-        <form id="employeeForm"
-              onsubmit="saveEmployee(event)">
-
-            <input
-                type="hidden"
-                id="employeeId"
+            <button
+                class="close-modal"
+                onclick="closeModal('employeeModal')"
             >
+                ×
+            </button>
+
+        </div>
 
 
-            <div class="form-grid">
+        <input
+            type="hidden"
+            id="employeeId"
+        >
 
-                <div class="form-group">
+        <div class="form-grid">
 
-                    <label>
-                        کد پرسنلی *
-                    </label>
+            <div class="form-group">
 
-                    <input
-                        id="employeeCode"
-                        class="form-control"
-                        required
-                    >
+                <label>
+                    کد پرسنلی *
+                </label>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        نام و نام خانوادگی *
-                    </label>
-
-                    <input
-                        id="employeeName"
-                        class="form-control"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        کد ملی
-                    </label>
-
-                    <input
-                        id="employeeNationalCode"
-                        class="form-control"
-                        maxlength="10"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        شماره تماس
-                    </label>
-
-                    <input
-                        id="employeePhone"
-                        class="form-control"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        واحد
-                    </label>
-
-                    <input
-                        id="employeeDepartment"
-                        class="form-control"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        سمت
-                    </label>
-
-                    <input
-                        id="employeePosition"
-                        class="form-control"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        موظفی روزانه
-                    </label>
-
-                    <input
-                        type="time"
-                        id="employeeDailyWork"
-                        class="form-control"
-                        value="08:00"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        وضعیت
-                    </label>
-
-                    <select
-                        id="employeeStatus"
-                        class="form-control">
-
-                        <option value="active">
-                            فعال
-                        </option>
-
-                        <option value="inactive">
-                            غیرفعال
-                        </option>
-
-                    </select>
-
-                </div>
+                <input
+                    id="employeeCode"
+                    type="text"
+                    placeholder="مثلاً 1001"
+                >
 
             </div>
 
 
-            <div class="form-actions">
+            <div class="form-group">
 
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    💾 ذخیره
-                </button>
+                <label>
+                    نام *
+                </label>
 
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    onclick="closeModal('employeeModal')">
-                    انصراف
-                </button>
+                <input
+                    id="employeeFirstName"
+                    type="text"
+                >
 
             </div>
 
-        </form>
+
+            <div class="form-group">
+
+                <label>
+                    نام خانوادگی *
+                </label>
+
+                <input
+                    id="employeeLastName"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    کد ملی
+                </label>
+
+                <input
+                    id="employeeNationalCode"
+                    type="text"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    واحد
+                </label>
+
+                <input
+                    id="employeeDepartment"
+                    type="text"
+                    placeholder="مثلاً اداری"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    سمت
+                </label>
+
+                <input
+                    id="employeePosition"
+                    type="text"
+                    placeholder="مثلاً کارشناس"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    وضعیت
+                </label>
+
+                <select id="employeeActive">
+
+                    <option value="true">
+                        فعال
+                    </option>
+
+                    <option value="false">
+                        غیرفعال
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveEmployee()"
+            >
+                ذخیره
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal('employeeModal')"
+            >
+                انصراف
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- ================= ATTENDANCE MODAL ================= -->
+<!-- =========================================================
+     USER MODAL
+========================================================= -->
 
-<div class="modal" id="attendanceModal">
+<div
+    id="userModal"
+    class="modal"
+>
 
     <div class="modal-box">
 
-        <button
-            class="modal-close"
-            onclick="closeModal('attendanceModal')">
-            ×
-        </button>
+        <div class="modal-header">
 
-        <h3 id="attendanceModalTitle">
-            ثبت کارکرد
-        </h3>
+            <h3>
+                افزودن کاربر
+            </h3>
 
-
-        <form id="attendanceForm"
-              onsubmit="saveAttendance(event)">
-
-            <input
-                type="hidden"
-                id="attendanceId"
+            <button
+                class="close-modal"
+                onclick="closeModal('userModal')"
             >
+                ×
+            </button>
+
+        </div>
 
 
-            <div class="form-grid">
+        <div class="form-grid">
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <label>
-                        تاریخ *
-                    </label>
+                <label>
+                    نام کاربری *
+                </label>
 
-                    <input
-                        type="date"
-                        id="attendanceFormDate"
-                        class="form-control"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        پرسنل *
-                    </label>
-
-                    <select
-                        id="attendanceEmployee"
-                        class="form-control"
-                        required>
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        ساعت ورود *
-                    </label>
-
-                    <input
-                        type="time"
-                        id="attendanceIn"
-                        class="form-control"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        ساعت خروج *
-                    </label>
-
-                    <input
-                        type="time"
-                        id="attendanceOut"
-                        class="form-control"
-                        required
-                    >
-
-                </div>
+                <input
+                    id="newUsername"
+                    type="text"
+                >
 
             </div>
 
 
-            <div
-                id="attendancePreview"
-                style="
-                    margin-top:18px;
-                    background:#f5f7fa;
-                    padding:15px;
-                    border-radius:8px;
-                    display:none;
-                ">
+            <div class="form-group">
 
-                <strong>
-                    محاسبه:
-                </strong>
+                <label>
+                    نام کاربر *
+                </label>
 
-                <div style="margin-top:8px">
-
-                    کارکرد:
-                    <b id="previewWorked">00:00</b>
-
-                    &nbsp; | &nbsp;
-
-                    موظفی:
-                    <b id="previewRequired">00:00</b>
-
-                    &nbsp; | &nbsp;
-
-                    اضافه‌کار:
-                    <b id="previewOvertime">00:00</b>
-
-                    &nbsp; | &nbsp;
-
-                    کسری:
-                    <b id="previewShortage">00:00</b>
-
-                </div>
+                <input
+                    id="newUserName"
+                    type="text"
+                >
 
             </div>
 
 
-            <div class="form-actions">
+            <div class="form-group">
 
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    💾 ذخیره کارکرد
-                </button>
+                <label>
+                    رمز عبور *
+                </label>
 
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    onclick="closeModal('attendanceModal')">
-                    انصراف
-                </button>
+                <input
+                    id="newUserPassword"
+                    type="password"
+                >
 
             </div>
 
-        </form>
+
+            <div class="form-group">
+
+                <label>
+                    نقش
+                </label>
+
+                <select id="newUserRole">
+
+                    <option value="admin">
+                        مدیر سیستم
+                    </option>
+
+                    <option value="hr">
+                        منابع انسانی
+                    </option>
+
+                    <option value="viewer">
+                        مشاهده‌گر
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveUser()"
+            >
+                ذخیره
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal('userModal')"
+            >
+                انصراف
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<div id="toast" class="toast"></div>
+<div id="toastContainer"></div>
 
 
 <script>
 
 /* =========================================================
-   DATABASE
+   DATABASE / STORAGE LAYER
 ========================================================= */
 
-const DB_KEYS = {
-    employees: "personnel_employees_v1",
-    attendance: "personnel_attendance_v1",
-    settings: "personnel_settings_v1"
+const STORAGE_KEYS = {
+    employees: "personnel_employees",
+    users: "personnel_users",
+    attendance: "personnel_attendance",
+    settings: "personnel_settings",
+    session: "personnel_session"
 };
 
-
-let employees = [];
-let attendance = [];
-
-let settings = {
-    dailyWork: "08:00",
-    startTime: "08:00",
-    endTime: "16:00"
+const DEFAULT_SETTINGS = {
+    startTime: "07:30",
+    endTime: "15:00",
+    breakMinutes: 0,
+    hourlyLeaveLimit: 3
 };
 
+function storageGet(key, fallback = []) {
 
-/* =========================================================
-   INIT
-========================================================= */
+    try {
 
-document.addEventListener("DOMContentLoaded", function(){
+        const data = localStorage.getItem(key);
 
-    loadData();
+        return data
+            ? JSON.parse(data)
+            : fallback;
 
-    setDefaultDates();
-
-    renderAll();
-
-    setupAttendancePreview();
-
-});
-
-
-/* =========================================================
-   STORAGE
-========================================================= */
-
-function loadData(){
-
-    try{
-
-        employees =
-            JSON.parse(
-                localStorage.getItem(DB_KEYS.employees)
-            ) || [];
-
-        attendance =
-            JSON.parse(
-                localStorage.getItem(DB_KEYS.attendance)
-            ) || [];
-
-        settings =
-            JSON.parse(
-                localStorage.getItem(DB_KEYS.settings)
-            ) || settings;
-
-    }catch(error){
+    } catch (error) {
 
         console.error(error);
 
-        employees = [];
-        attendance = [];
-
+        return fallback;
     }
-
-    document.getElementById("settingDailyWork").value =
-        settings.dailyWork || "08:00";
-
-    document.getElementById("settingStartTime").value =
-        settings.startTime || "08:00";
-
-    document.getElementById("settingEndTime").value =
-        settings.endTime || "16:00";
 }
 
-
-function saveData(){
-
-    localStorage.setItem(
-        DB_KEYS.employees,
-        JSON.stringify(employees)
-    );
+function storageSet(key, value) {
 
     localStorage.setItem(
-        DB_KEYS.attendance,
-        JSON.stringify(attendance)
+        key,
+        JSON.stringify(value)
+    );
+}
+
+function getEmployees() {
+    return storageGet(
+        STORAGE_KEYS.employees,
+        []
+    );
+}
+
+function getUsers() {
+
+    return storageGet(
+        STORAGE_KEYS.users,
+        [
+            {
+                id: "USR-001",
+                username: "admin",
+                name: "مدیر سامانه",
+                password: "123456",
+                role: "admin",
+                active: true
+            }
+        ]
     );
 
-    localStorage.setItem(
-        DB_KEYS.settings,
-        JSON.stringify(settings)
+}
+
+function saveUsers(users) {
+    storageSet(STORAGE_KEYS.users, users);
+}
+
+function getAttendance() {
+    return storageGet(
+        STORAGE_KEYS.attendance,
+        []
     );
+}
+
+function getSettings() {
+
+    return storageGet(
+        STORAGE_KEYS.settings,
+        DEFAULT_SETTINGS
+    );
+
 }
 
 
 /* =========================================================
-   PAGE NAVIGATION
+   SESSION
 ========================================================= */
 
-function showPage(pageId, button){
+let currentUser = null;
 
-    document.querySelectorAll(".page").forEach(function(page){
+function login() {
 
-        page.classList.remove("active");
+    const username =
+        document
+            .getElementById("loginUsername")
+            .value
+            .trim();
 
-    });
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+    const error =
+        document.getElementById("loginError");
+
+    error.style.display = "none";
+
+    if (!username || !password) {
+
+        error.textContent =
+            "نام کاربری و رمز عبور را وارد کنید.";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+    const users = getUsers();
+
+    const user = users.find(
+        item =>
+            item.username === username &&
+            item.password === password &&
+            item.active
+    );
+
+    if (!user) {
+
+        error.textContent =
+            "نام کاربری یا رمز عبور صحیح نیست.";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+    currentUser = user;
+
+    localStorage.setItem(
+        STORAGE_KEYS.session,
+        JSON.stringify({
+            userId: user.id,
+            username: user.username
+        })
+    );
+
+    showApplication();
+
+}
+
+function logout() {
+
+    localStorage.removeItem(
+        STORAGE_KEYS.session
+    );
+
+    currentUser = null;
+
+    document
+        .getElementById("app")
+        .style.display = "none";
+
+    document
+        .getElementById("loginPage")
+        .style.display = "flex";
+
+}
+
+function restoreSession() {
+
+    const session =
+        storageGet(
+            STORAGE_KEYS.session,
+            null
+        );
+
+    if (!session) {
+        return;
+    }
+
+    const users = getUsers();
+
+    const user = users.find(
+        item =>
+            item.id === session.userId &&
+            item.active
+    );
+
+    if (!user) {
+        return;
+    }
+
+    currentUser = user;
+
+    showApplication();
+
+}
+
+function showApplication() {
+
+    document
+        .getElementById("loginPage")
+        .style.display = "none";
+
+    document
+        .getElementById("app")
+        .style.display = "block";
+
+    document
+        .getElementById("currentUserName")
+        .textContent = currentUser.name;
+
+    document
+        .getElementById("currentUserRole")
+        .textContent =
+            getRoleName(currentUser.role);
+
+    applyPermissions();
+
+    initializeApplication();
+
+}
+
+function getRoleName(role) {
+
+    const roles = {
+
+        admin: "مدیر سیستم",
+
+        hr: "منابع انسانی",
+
+        viewer: "مشاهده‌گر"
+
+    };
+
+    return roles[role] || role;
+
+}
 
 
-    const page =
-        document.getElementById(pageId);
+/* =========================================================
+   PERMISSIONS
+========================================================= */
 
-    if(page){
+function applyPermissions() {
 
-        page.classList.add("active");
+    const isAdmin =
+        currentUser.role === "admin";
+
+    const isViewer =
+        currentUser.role === "viewer";
+
+    const usersButton =
+        document.querySelector(
+            '[data-page="users"]'
+        );
+
+    if (usersButton) {
+
+        usersButton.classList.toggle(
+            "hidden",
+            !isAdmin
+        );
 
     }
 
+    const settingsButton =
+        document.querySelector(
+            '[data-page="settings"]'
+        );
 
-    document.querySelectorAll(".menu button")
-        .forEach(function(btn){
+    if (settingsButton) {
+
+        settingsButton.classList.toggle(
+            "hidden",
+            !isAdmin
+        );
+
+    }
+
+    document
+        .querySelectorAll(
+            ".btn-primary"
+        )
+        .forEach(button => {
+
+            if (
+                isViewer &&
+                (
+                    button.textContent.includes("افزودن") ||
+                    button.textContent.includes("ذخیره")
+                )
+            ) {
+
+                button.style.display = "none";
+
+            }
+
+        });
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showPage(pageName, button) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+    const page =
+        document.getElementById(
+            "page-" + pageName
+        );
+
+    if (!page) {
+        return;
+    }
+
+    page.classList.add("active");
+
+    document
+        .querySelectorAll(".menu button")
+        .forEach(btn => {
 
             btn.classList.remove("active");
 
         });
 
-
-    if(button){
-
+    if (button) {
         button.classList.add("active");
-
     }
 
-
-    if(pageId === "dashboard"){
+    if (pageName === "dashboard") {
         renderDashboard();
     }
 
-    if(pageId === "employees"){
+    if (pageName === "employees") {
         renderEmployees();
     }
 
-    if(pageId === "attendance"){
+    if (pageName === "attendance") {
+
+        populateEmployeeSelect(
+            "attendanceEmployee"
+        );
+
         renderAttendance();
+
     }
 
-    if(pageId === "reports"){
-        populateReportEmployees();
-        renderReports();
+    if (pageName === "reports") {
+
+        populateEmployeeSelect(
+            "reportEmployee"
+        );
+
+        populateDepartments(
+            "reportDepartment"
+        );
+
+    }
+
+    if (pageName === "users") {
+        renderUsers();
+    }
+
+    if (pageName === "settings") {
+        loadSettings();
     }
 
 }
 
 
 /* =========================================================
-   GENERAL
+   INITIALIZATION
 ========================================================= */
 
-function generateId(){
+function initializeApplication() {
 
-    return Date.now().toString() +
-        Math.random().toString(16).slice(2);
+    initializeDates();
+
+    renderDashboard();
+
+    renderEmployees();
+
+    populateEmployeeSelect(
+        "attendanceEmployee"
+    );
+
+    populateEmployeeSelect(
+        "reportEmployee"
+    );
+
+    populateDepartments(
+        "reportDepartment"
+    );
+
+    renderUsers();
+
+    loadSettings();
+
+}
+
+function initializeDates() {
+
+    const today =
+        new Date();
+
+    const date =
+        today.toISOString()
+            .split("T")[0];
+
+    document
+        .getElementById("attendanceDate")
+        .value = date;
+
+    document
+        .getElementById("reportFrom")
+        .value = firstDayOfMonth();
+
+    document
+        .getElementById("reportTo")
+        .value = date;
+
+    document
+        .getElementById("dashboardDate")
+        .textContent =
+            "امروز: " +
+            toPersianDate(date);
+
+}
+
+function firstDayOfMonth() {
+
+    const date = new Date();
+
+    return [
+        date.getFullYear(),
+        String(date.getMonth()+1)
+            .padStart(2,"0"),
+        "01"
+    ].join("-");
 
 }
 
 
-function today(){
+/* =========================================================
+   PERSIAN DATE
+========================================================= */
 
-    const d = new Date();
+function toPersianDigits(value) {
 
-    const year =
-        d.getFullYear();
-
-    const month =
-        String(d.getMonth()+1).padStart(2,"0");
-
-    const day =
-        String(d.getDate()).padStart(2,"0");
-
-    return `${year}-${month}-${day}`;
-
-}
-
-
-function currentMonth(){
-
-    return today().slice(0,7);
+    return String(value)
+        .replace(/0/g,"۰")
+        .replace(/1/g,"۱")
+        .replace(/2/g,"۲")
+        .replace(/3/g,"۳")
+        .replace(/4/g,"۴")
+        .replace(/5/g,"۵")
+        .replace(/6/g,"۶")
+        .replace(/7/g,"۷")
+        .replace(/8/g,"۸")
+        .replace(/9/g,"۹");
 
 }
 
+function toPersianDate(dateString) {
 
-function escapeHtml(value){
-
-    if(value === null || value === undefined){
+    if (!dateString) {
         return "";
     }
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    const date =
+        new Date(
+            dateString + "T00:00:00"
+        );
+
+    try {
+
+        return new Intl.DateTimeFormat(
+            "fa-IR-u-ca-persian",
+            {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            }
+        ).format(date);
+
+    } catch {
+
+        return dateString;
+
+    }
 
 }
 
 
 /* =========================================================
-   TIME FUNCTIONS
+   TIME
 ========================================================= */
 
-function timeToMinutes(time){
+function timeToMinutes(time) {
 
-    if(!time){
+    if (!time) {
         return 0;
     }
 
     const parts =
         time.split(":");
 
-    const h =
-        parseInt(parts[0],10) || 0;
-
-    const m =
-        parseInt(parts[1],10) || 0;
-
-    return h * 60 + m;
+    return (
+        Number(parts[0]) * 60 +
+        Number(parts[1])
+    );
 
 }
 
+function minutesToTime(minutes) {
 
-function minutesToTime(total){
-
-    total = Math.max(0,Math.round(total));
+    minutes =
+        Math.max(
+            0,
+            Math.round(minutes)
+        );
 
     const hours =
-        Math.floor(total / 60);
+        Math.floor(minutes / 60);
 
-    const minutes =
-        total % 60;
+    const mins =
+        minutes % 60;
 
-    return String(hours).padStart(2,"0")
-        + ":" +
-        String(minutes).padStart(2,"0");
-
-}
-
-
-function calculateWork(inTime,outTime){
-
-    let start =
-        timeToMinutes(inTime);
-
-    let end =
-        timeToMinutes(outTime);
-
-    /*
-       پشتیبانی از شیفت عبوری از نیمه‌شب
-    */
-
-    if(end < start){
-        end += 24 * 60;
-    }
-
-    return end - start;
-
-}
-
-
-function calculateAttendance(inTime,outTime,required){
-
-    const worked =
-        calculateWork(inTime,outTime);
-
-    const requiredMinutes =
-        timeToMinutes(required);
-
-    const overtime =
-        Math.max(0,worked-requiredMinutes);
-
-    const shortage =
-        Math.max(0,requiredMinutes-worked);
-
-    return {
-        worked,
-        required:requiredMinutes,
-        overtime,
-        shortage
-    };
+    return (
+        String(hours).padStart(2,"0") +
+        ":" +
+        String(mins).padStart(2,"0")
+    );
 
 }
 
@@ -1821,319 +2743,355 @@ function calculateAttendance(inTime,outTime,required){
    EMPLOYEES
 ========================================================= */
 
-function openEmployeeModal(id=null){
+function openEmployeeModal(id = null) {
 
-    document.getElementById("employeeForm").reset();
+    document
+        .getElementById("employeeModal")
+        .classList.add("show");
 
-    document.getElementById("employeeId").value = "";
-
-    document.getElementById("employeeDailyWork").value =
-        settings.dailyWork || "08:00";
-
-    document.getElementById("employeeStatus").value =
-        "active";
-
-
-    if(id){
+    if (id) {
 
         const employee =
-            employees.find(
-                item => item.id === id
-            );
+            getEmployees()
+                .find(item =>
+                    item.id === id
+                );
 
-        if(!employee){
+        if (!employee) {
             return;
         }
 
-
-        document.getElementById("employeeModalTitle")
+        document
+            .getElementById("employeeModalTitle")
             .textContent =
-            "ویرایش پرسنل";
+                "ویرایش پرسنل";
 
+        document
+            .getElementById("employeeId")
+            .value = employee.id;
 
-        document.getElementById("employeeId").value =
-            employee.id;
+        document
+            .getElementById("employeeCode")
+            .value = employee.personnelCode;
 
-        document.getElementById("employeeCode").value =
-            employee.code || "";
+        document
+            .getElementById("employeeFirstName")
+            .value = employee.firstName;
 
-        document.getElementById("employeeName").value =
-            employee.name || "";
+        document
+            .getElementById("employeeLastName")
+            .value = employee.lastName;
 
-        document.getElementById("employeeNationalCode").value =
-            employee.nationalCode || "";
+        document
+            .getElementById("employeeNationalCode")
+            .value =
+                employee.nationalCode || "";
 
-        document.getElementById("employeePhone").value =
-            employee.phone || "";
+        document
+            .getElementById("employeeDepartment")
+            .value =
+                employee.department || "";
 
-        document.getElementById("employeeDepartment").value =
-            employee.department || "";
+        document
+            .getElementById("employeePosition")
+            .value =
+                employee.position || "";
 
-        document.getElementById("employeePosition").value =
-            employee.position || "";
+        document
+            .getElementById("employeeActive")
+            .value =
+                String(employee.active);
 
-        document.getElementById("employeeDailyWork").value =
-            employee.dailyWork || "08:00";
+    } else {
 
-        document.getElementById("employeeStatus").value =
-            employee.status || "active";
-
-    }else{
-
-        document.getElementById("employeeModalTitle")
+        document
+            .getElementById("employeeModalTitle")
             .textContent =
-            "افزودن پرسنل";
+                "افزودن پرسنل";
+
+        clearEmployeeForm();
 
     }
 
+}
 
-    document.getElementById("employeeModal")
-        .classList.add("show");
+function clearEmployeeForm() {
+
+    [
+        "employeeId",
+        "employeeCode",
+        "employeeFirstName",
+        "employeeLastName",
+        "employeeNationalCode",
+        "employeeDepartment",
+        "employeePosition"
+    ].forEach(id => {
+
+        document
+            .getElementById(id)
+            .value = "";
+
+    });
+
+    document
+        .getElementById("employeeActive")
+        .value = "true";
 
 }
 
-
-function saveEmployee(event){
-
-    event.preventDefault();
-
+function saveEmployee() {
 
     const id =
-        document.getElementById("employeeId").value;
+        document
+            .getElementById("employeeId")
+            .value;
 
+    const personnelCode =
+        document
+            .getElementById("employeeCode")
+            .value
+            .trim();
 
-    const code =
-        document.getElementById("employeeCode").value.trim();
+    const firstName =
+        document
+            .getElementById("employeeFirstName")
+            .value
+            .trim();
 
+    const lastName =
+        document
+            .getElementById("employeeLastName")
+            .value
+            .trim();
 
-    const name =
-        document.getElementById("employeeName").value.trim();
+    const nationalCode =
+        document
+            .getElementById("employeeNationalCode")
+            .value
+            .trim();
 
+    const department =
+        document
+            .getElementById("employeeDepartment")
+            .value
+            .trim();
 
-    if(!code || !name){
+    const position =
+        document
+            .getElementById("employeePosition")
+            .value
+            .trim();
 
-        showToast(
-            "کد پرسنلی و نام الزامی است.",
+    const active =
+        document
+            .getElementById("employeeActive")
+            .value === "true";
+
+    if (
+        !personnelCode ||
+        !firstName ||
+        !lastName
+    ) {
+
+        toast(
+            "کد پرسنلی، نام و نام خانوادگی الزامی است.",
             "error"
         );
 
         return;
-
     }
 
+    let employees =
+        getEmployees();
 
     const duplicate =
-        employees.find(function(employee){
+        employees.find(
+            employee =>
+                employee.personnelCode === personnelCode &&
+                employee.id !== id
+        );
 
-            return employee.code === code &&
-                employee.id !== id;
+    if (duplicate) {
 
-        });
-
-
-    if(duplicate){
-
-        showToast(
+        toast(
             "این کد پرسنلی قبلاً ثبت شده است.",
             "error"
         );
 
         return;
-
     }
 
-
-    const employeeData = {
-
-        id:id || generateId(),
-
-        code:code,
-
-        name:name,
-
-        nationalCode:
-            document.getElementById(
-                "employeeNationalCode"
-            ).value.trim(),
-
-        phone:
-            document.getElementById(
-                "employeePhone"
-            ).value.trim(),
-
-        department:
-            document.getElementById(
-                "employeeDepartment"
-            ).value.trim(),
-
-        position:
-            document.getElementById(
-                "employeePosition"
-            ).value.trim(),
-
-        dailyWork:
-            document.getElementById(
-                "employeeDailyWork"
-            ).value || settings.dailyWork,
-
-        status:
-            document.getElementById(
-                "employeeStatus"
-            ).value,
-
-        updatedAt:
-            new Date().toISOString()
-
-    };
-
-
-    if(id){
+    if (id) {
 
         const index =
             employees.findIndex(
-                employee => employee.id === id
+                item => item.id === id
             );
 
-        if(index !== -1){
+        if (index !== -1) {
 
-            employees[index] =
-                {
-                    ...employees[index],
-                    ...employeeData
-                };
+            /*
+             اطلاعات هویتی جاری تغییر می‌کند،
+             ولی شناسه داخلی ثابت می‌ماند.
+            */
+
+            employees[index] = {
+                ...employees[index],
+                personnelCode,
+                firstName,
+                lastName,
+                nationalCode,
+                department,
+                position,
+                active,
+                updatedAt:
+                    new Date().toISOString()
+            };
 
         }
 
-        showToast(
-            "اطلاعات پرسنل ویرایش شد.",
+        toast(
+            "اطلاعات پرسنل با موفقیت ویرایش شد.",
             "success"
         );
 
-    }else{
+    } else {
 
-        employees.push(employeeData);
+        const employee = {
 
-        showToast(
-            "پرسنل با موفقیت اضافه شد.",
+            id:
+                "EMP-" +
+                Date.now(),
+
+            personnelCode,
+
+            firstName,
+
+            lastName,
+
+            nationalCode,
+
+            department,
+
+            position,
+
+            active,
+
+            createdAt:
+                new Date().toISOString(),
+
+            updatedAt:
+                new Date().toISOString()
+
+        };
+
+        employees.push(employee);
+
+        toast(
+            "پرسنل جدید با موفقیت اضافه شد.",
             "success"
         );
 
     }
 
-
-    saveData();
+    storageSet(
+        STORAGE_KEYS.employees,
+        employees
+    );
 
     closeModal("employeeModal");
 
-    renderAll();
+    renderEmployees();
+
+    populateEmployeeSelect(
+        "attendanceEmployee"
+    );
+
+    populateEmployeeSelect(
+        "reportEmployee"
+    );
+
+    populateDepartments(
+        "reportDepartment"
+    );
+
+    renderDashboard();
 
 }
 
+function deleteEmployee(id) {
 
-function editEmployee(id){
-
-    openEmployeeModal(id);
-
-}
-
-
-function deleteEmployee(id){
-
-    const employee =
-        employees.find(
-            item => item.id === id
-        );
-
-    if(!employee){
+    if (
+        !confirm(
+            "آیا از غیرفعال کردن این پرسنل اطمینان دارید؟"
+        )
+    ) {
         return;
     }
 
-
-    const confirmed =
-        confirm(
-            `آیا از حذف پرسنل «${employee.name}» مطمئن هستید؟`
-        );
-
-
-    if(!confirmed){
-        return;
-    }
-
+    let employees =
+        getEmployees();
 
     employees =
-        employees.filter(
-            item => item.id !== id
-        );
+        employees.map(employee => {
 
+            if (employee.id === id) {
 
-    /*
-       کارکردهای شخص حذف‌شده نیز حذف نمی‌شوند.
-       این موضوع برای حفظ سوابق مهم است.
-    */
+                return {
+                    ...employee,
+                    active: false,
+                    updatedAt:
+                        new Date().toISOString()
+                };
 
+            }
 
-    saveData();
+            return employee;
 
-    renderAll();
+        });
 
-    showToast(
-        "پرسنل حذف شد.",
+    storageSet(
+        STORAGE_KEYS.employees,
+        employees
+    );
+
+    renderEmployees();
+
+    toast(
+        "پرسنل غیرفعال شد.",
         "success"
     );
 
 }
 
-
-function toggleEmployeeStatus(id){
-
-    const employee =
-        employees.find(
-            item => item.id === id
-        );
-
-    if(!employee){
-        return;
-    }
-
-
-    employee.status =
-        employee.status === "active"
-            ? "inactive"
-            : "active";
-
-
-    saveData();
-
-    renderAll();
-
-}
-
-
-/* =========================================================
-   RENDER EMPLOYEES
-========================================================= */
-
-function renderEmployees(){
+function renderEmployees() {
 
     const table =
-        document.getElementById("employeesTable");
-
+        document.getElementById(
+            "employeesTable"
+        );
 
     const search =
-        document.getElementById(
-            "employeeSearch"
-        ).value
+        (
+            document
+                .getElementById("employeeSearch")
+                ?.value || ""
+        )
         .trim()
         .toLowerCase();
 
+    let employees =
+        getEmployees();
 
-    let filtered =
-        employees.filter(function(employee){
+    if (search) {
 
-            const text =
-                [
-                    employee.code,
-                    employee.name,
+        employees =
+            employees.filter(employee => {
+
+                const text = [
+                    employee.personnelCode,
+                    employee.firstName,
+                    employee.lastName,
                     employee.nationalCode,
                     employee.department,
                     employee.position
@@ -2141,467 +3099,330 @@ function renderEmployees(){
                 .join(" ")
                 .toLowerCase();
 
+                return text.includes(search);
 
-            return text.includes(search);
+            });
 
-        });
+    }
 
-
-    document.getElementById("employeeCount")
+    document
+        .getElementById("employeeCount")
         .textContent =
-        `تعداد پرسنل: ${filtered.length}`;
+            "تعداد: " +
+            toPersianDigits(
+                employees.length
+            );
 
-
-    if(!filtered.length){
+    if (!employees.length) {
 
         table.innerHTML = `
             <tr>
-                <td colspan="9" class="empty">
+                <td colspan="7" class="empty">
                     هنوز پرسنلی ثبت نشده است.
                 </td>
             </tr>
         `;
 
         return;
-
     }
 
-
     table.innerHTML =
-        filtered.map(function(employee,index){
+        employees.map(employee => `
 
-            const status =
-                employee.status === "active"
-                    ? `<span class="status present">فعال</span>`
-                    : `<span class="status inactive">غیرفعال</span>`;
+            <tr>
 
+                <td>
+                    ${escapeHtml(employee.personnelCode)}
+                </td>
 
-            return `
-                <tr>
+                <td>
+                    ${escapeHtml(
+                        employee.firstName +
+                        " " +
+                        employee.lastName
+                    )}
+                </td>
 
-                    <td>${index+1}</td>
+                <td>
+                    ${escapeHtml(
+                        employee.nationalCode || "-"
+                    )}
+                </td>
 
-                    <td>
-                        ${escapeHtml(employee.code)}
-                    </td>
+                <td>
+                    ${escapeHtml(
+                        employee.department || "-"
+                    )}
+                </td>
 
-                    <td>
-                        <strong>
-                            ${escapeHtml(employee.name)}
-                        </strong>
-                    </td>
+                <td>
+                    ${escapeHtml(
+                        employee.position || "-"
+                    )}
+                </td>
 
-                    <td>
-                        ${escapeHtml(employee.nationalCode || "-")}
-                    </td>
+                <td>
 
-                    <td>
-                        ${escapeHtml(employee.department || "-")}
-                    </td>
+                    <span class="status ${
+                        employee.active
+                            ? "present"
+                            : "absent"
+                    }">
 
-                    <td>
-                        ${escapeHtml(employee.position || "-")}
-                    </td>
+                        ${
+                            employee.active
+                                ? "فعال"
+                                : "غیرفعال"
+                        }
 
-                    <td>
-                        ${escapeHtml(employee.dailyWork || "08:00")}
-                    </td>
+                    </span>
 
-                    <td>
-                        ${status}
-                    </td>
+                </td>
 
-                    <td>
+                <td>
 
-                        <div class="actions">
+                    <div class="actions">
 
-                            <button
-                                class="btn btn-edit btn-small"
-                                onclick="editEmployee('${employee.id}')">
-                                ✏️ ویرایش
-                            </button>
+                        <button
+                            class="btn btn-edit"
+                            onclick="openEmployeeModal('${employee.id}')"
+                        >
+                            ویرایش
+                        </button>
 
-                            <button
-                                class="btn btn-secondary btn-small"
-                                onclick="toggleEmployeeStatus('${employee.id}')">
-                                ${employee.status === "active"
-                                    ? "غیرفعال"
-                                    : "فعال"}
-                            </button>
+                        ${
+                            employee.active
+                                ? `
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteEmployee('${employee.id}')"
+                                    >
+                                        غیرفعال
+                                    </button>
+                                `
+                                : ""
+                        }
 
-                            <button
-                                class="btn btn-danger btn-small"
-                                onclick="deleteEmployee('${employee.id}')">
-                                🗑️
-                            </button>
+                    </div>
 
-                        </div>
+                </td>
 
-                    </td>
+            </tr>
 
-                </tr>
-            `;
-
-        }).join("");
+        `).join("");
 
 }
 
 
 /* =========================================================
-   ATTENDANCE
+   EMPLOYEE SELECTS
 ========================================================= */
 
-function openAttendanceModal(id=null){
-
-    if(!employees.length){
-
-        showToast(
-            "ابتدا حداقل یک پرسنل ثبت کنید.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "attendanceForm"
-    ).reset();
-
-
-    document.getElementById(
-        "attendanceId"
-    ).value = "";
-
-
-    populateAttendanceEmployees();
-
-
-    document.getElementById(
-        "attendanceFormDate"
-    ).value =
-        document.getElementById(
-            "attendanceDate"
-        ).value || today();
-
-
-    if(id){
-
-        const record =
-            attendance.find(
-                item => item.id === id
-            );
-
-        if(!record){
-            return;
-        }
-
-
-        document.getElementById(
-            "attendanceModalTitle"
-        ).textContent =
-            "ویرایش کارکرد";
-
-
-        document.getElementById(
-            "attendanceId"
-        ).value =
-            record.id;
-
-
-        document.getElementById(
-            "attendanceFormDate"
-        ).value =
-            record.date;
-
-
-        document.getElementById(
-            "attendanceEmployee"
-        ).value =
-            record.employeeId;
-
-
-        document.getElementById(
-            "attendanceIn"
-        ).value =
-            record.inTime;
-
-
-        document.getElementById(
-            "attendanceOut"
-        ).value =
-            record.outTime;
-
-
-    }else{
-
-        document.getElementById(
-            "attendanceModalTitle"
-        ).textContent =
-            "ثبت کارکرد";
-
-    }
-
-
-    updateAttendancePreview();
-
-
-    document.getElementById(
-        "attendanceModal"
-    ).classList.add("show");
-
-}
-
-
-function populateAttendanceEmployees(){
+function populateEmployeeSelect(selectId) {
 
     const select =
-        document.getElementById(
-            "attendanceEmployee"
-        );
+        document.getElementById(selectId);
 
-
-    const activeEmployees =
-        employees.filter(
-            employee =>
-                employee.status !== "inactive"
-        );
-
-
-    select.innerHTML =
-        `<option value="">انتخاب پرسنل</option>` +
-        activeEmployees.map(function(employee){
-
-            return `
-                <option value="${employee.id}">
-                    ${escapeHtml(employee.code)}
-                    - 
-                    ${escapeHtml(employee.name)}
-                </option>
-            `;
-
-        }).join("");
-
-}
-
-
-function saveAttendance(event){
-
-    event.preventDefault();
-
-
-    const id =
-        document.getElementById(
-            "attendanceId"
-        ).value;
-
-
-    const employeeId =
-        document.getElementById(
-            "attendanceEmployee"
-        ).value;
-
-
-    const date =
-        document.getElementById(
-            "attendanceFormDate"
-        ).value;
-
-
-    const inTime =
-        document.getElementById(
-            "attendanceIn"
-        ).value;
-
-
-    const outTime =
-        document.getElementById(
-            "attendanceOut"
-        ).value;
-
-
-    if(!employeeId || !date || !inTime || !outTime){
-
-        showToast(
-            "تمام اطلاعات کارکرد را وارد کنید.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const employee =
-        employees.find(
-            item => item.id === employeeId
-        );
-
-
-    if(!employee){
+    if (!select) {
         return;
     }
 
+    const current =
+        select.value;
 
-    /*
-       جلوگیری از ثبت رکورد تکراری برای یک نفر
-       در یک تاریخ
-    */
-
-    const duplicate =
-        attendance.find(function(record){
-
-            return record.employeeId === employeeId &&
-                record.date === date &&
-                record.id !== id;
-
-        });
-
-
-    if(duplicate){
-
-        showToast(
-            "برای این پرسنل در این تاریخ قبلاً کارکرد ثبت شده است.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const calculation =
-        calculateAttendance(
-            inTime,
-            outTime,
-            employee.dailyWork || settings.dailyWork
-        );
-
-
-    const data = {
-
-        id:id || generateId(),
-
-        employeeId,
-
-        employeeCode:
-            employee.code,
-
-        employeeName:
-            employee.name,
-
-        date,
-
-        inTime,
-
-        outTime,
-
-        worked:
-            calculation.worked,
-
-        required:
-            calculation.required,
-
-        overtime:
-            calculation.overtime,
-
-        shortage:
-            calculation.shortage,
-
-        workDay:
-            calculation.worked > 0 ? 1 : 0,
-
-        updatedAt:
-            new Date().toISOString()
-
-    };
-
-
-    if(id){
-
-        const index =
-            attendance.findIndex(
-                item => item.id === id
+    const employees =
+        getEmployees()
+            .filter(
+                employee => employee.active
             );
 
+    const firstOption =
+        selectId === "reportEmployee"
+            ? "همه پرسنل"
+            : "همه پرسنل";
 
-        if(index !== -1){
+    select.innerHTML =
+        `<option value="">${firstOption}</option>` +
+        employees.map(employee => `
 
-            attendance[index] = data;
+            <option value="${employee.id}">
 
-        }
+                ${escapeHtml(
+                    employee.personnelCode +
+                    " - " +
+                    employee.firstName +
+                    " " +
+                    employee.lastName
+                )}
 
+            </option>
 
-        showToast(
-            "کارکرد ویرایش شد.",
-            "success"
-        );
+        `).join("");
 
-    }else{
-
-        attendance.push(data);
-
-        showToast(
-            "کارکرد با موفقیت ثبت شد.",
-            "success"
-        );
-
-    }
-
-
-    saveData();
-
-    closeModal("attendanceModal");
-
-    renderAll();
-
-}
-
-
-function editAttendance(id){
-
-    openAttendanceModal(id);
-
-}
-
-
-function deleteAttendance(id){
-
-    const record =
-        attendance.find(
-            item => item.id === id
-        );
-
-
-    if(!record){
-        return;
-    }
-
-
-    if(
-        !confirm(
-            "آیا از حذف این رکورد کارکرد مطمئن هستید؟"
+    if (
+        employees.some(
+            employee =>
+                employee.id === current
         )
-    ){
+    ) {
+
+        select.value = current;
+
+    }
+
+}
+
+function populateDepartments(selectId) {
+
+    const select =
+        document.getElementById(selectId);
+
+    if (!select) {
         return;
     }
 
+    const departments =
+        [
+            ...new Set(
+                getEmployees()
+                    .map(
+                        employee =>
+                            employee.department
+                    )
+                    .filter(Boolean)
+            )
+        ];
 
-    attendance =
-        attendance.filter(
-            item => item.id !== id
+    select.innerHTML =
+        `<option value="">همه واحدها</option>` +
+        departments
+            .map(
+                department =>
+                    `<option value="${escapeHtml(department)}">
+                        ${escapeHtml(department)}
+                    </option>`
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   ATTENDANCE CALCULATION
+========================================================= */
+
+function calculateAttendance(record) {
+
+    const settings =
+        getSettings();
+
+    if (
+        !record ||
+        !record.entry ||
+        !record.exit
+    ) {
+
+        return {
+
+            workedMinutes: 0,
+
+            dutyMinutes:
+                timeToMinutes(
+                    settings.endTime
+                ) -
+                timeToMinutes(
+                    settings.startTime
+                ),
+
+            overtimeMinutes: 0,
+
+            shortageMinutes: 0,
+
+            workDay: 0,
+
+            status: "incomplete"
+
+        };
+
+    }
+
+    let entry =
+        timeToMinutes(
+            record.entry
         );
 
+    let exit =
+        timeToMinutes(
+            record.exit
+        );
 
-    saveData();
+    /*
+      پشتیبانی از خروج بعد از نیمه‌شب.
+    */
 
-    renderAll();
+    if (exit < entry) {
+        exit += 24 * 60;
+    }
 
-    showToast(
-        "رکورد کارکرد حذف شد.",
-        "success"
-    );
+    let worked =
+        exit - entry;
+
+    worked =
+        Math.max(
+            0,
+            worked -
+            Number(settings.breakMinutes || 0)
+        );
+
+    const duty =
+        timeToMinutes(
+            settings.endTime
+        ) -
+        timeToMinutes(
+            settings.startTime
+        );
+
+    const overtime =
+        Math.max(
+            0,
+            worked - duty
+        );
+
+    const shortage =
+        Math.max(
+            0,
+            duty - worked
+        );
+
+    let workDay = 0;
+
+    if (worked >= duty) {
+        workDay = 1;
+    } else if (worked > 0) {
+        workDay =
+            Math.round(
+                (worked / duty) * 100
+            ) / 100;
+    }
+
+    return {
+
+        workedMinutes: worked,
+
+        dutyMinutes: duty,
+
+        overtimeMinutes: overtime,
+
+        shortageMinutes: shortage,
+
+        workDay,
+
+        status:
+            worked > 0
+                ? "present"
+                : "absent"
+
+    };
 
 }
 
@@ -2610,290 +3431,282 @@ function deleteAttendance(id){
    ATTENDANCE RENDER
 ========================================================= */
 
-function renderAttendance(){
+function renderAttendance() {
 
     const table =
         document.getElementById(
             "attendanceTable"
         );
 
+    const date =
+        document
+            .getElementById("attendanceDate")
+            .value;
 
-    const selectedDate =
-        document.getElementById(
-            "attendanceDate"
-        ).value;
+    const employeeId =
+        document
+            .getElementById("attendanceEmployee")
+            .value;
 
+    const statusFilter =
+        document
+            .getElementById("attendanceStatus")
+            .value;
 
-    let records =
-        attendance;
+    const search =
+        (
+            document
+                .getElementById("attendanceSearch")
+                .value || ""
+        )
+        .trim()
+        .toLowerCase();
 
-
-    if(selectedDate){
-
-        records =
-            records.filter(
-                record =>
-                    record.date === selectedDate
+    const employees =
+        getEmployees()
+            .filter(
+                employee => employee.active
             );
 
-    }
+    const records =
+        getAttendance()
+            .filter(
+                record =>
+                    record.date === date
+            );
 
+    let rows = [];
 
-    records =
-        [...records].sort(function(a,b){
+    employees.forEach(employee => {
 
-            return b.date.localeCompare(a.date);
+        if (
+            employeeId &&
+            employee.id !== employeeId
+        ) {
+            return;
+        }
+
+        const record =
+            records.find(
+                item =>
+                    item.employeeId === employee.id
+            );
+
+        const calculation =
+            calculateAttendance(
+                record
+            );
+
+        const fullName =
+            employee.firstName +
+            " " +
+            employee.lastName;
+
+        if (search) {
+
+            const text =
+                (
+                    employee.personnelCode +
+                    " " +
+                    fullName +
+                    " " +
+                    employee.department
+                )
+                .toLowerCase();
+
+            if (!text.includes(search)) {
+                return;
+            }
+
+        }
+
+        if (
+            statusFilter &&
+            calculation.status !== statusFilter
+        ) {
+            return;
+        }
+
+        rows.push({
+
+            employee,
+            record,
+            calculation
 
         });
 
+    });
 
-    if(!records.length){
+
+    let totalDuty = 0;
+    let totalWorked = 0;
+    let totalOvertime = 0;
+    let totalShortage = 0;
+    let totalDays = 0;
+
+    rows.forEach(row => {
+
+        totalDuty +=
+            row.calculation.dutyMinutes;
+
+        totalWorked +=
+            row.calculation.workedMinutes;
+
+        totalOvertime +=
+            row.calculation.overtimeMinutes;
+
+        totalShortage +=
+            row.calculation.shortageMinutes;
+
+        totalDays +=
+            row.calculation.workDay;
+
+    });
+
+
+    document
+        .getElementById("attendanceDuty")
+        .textContent =
+            minutesToTime(totalDuty);
+
+    document
+        .getElementById("attendanceWorked")
+        .textContent =
+            minutesToTime(totalWorked);
+
+    document
+        .getElementById("attendanceWorkDays")
+        .textContent =
+            totalDays
+                .toFixed(2)
+                .replace(".00","");
+
+    document
+        .getElementById("attendanceOvertime")
+        .textContent =
+            minutesToTime(totalOvertime);
+
+    document
+        .getElementById("attendanceShortage")
+        .textContent =
+            minutesToTime(totalShortage);
+
+
+    if (!rows.length) {
 
         table.innerHTML = `
             <tr>
-                <td colspan="12" class="empty">
-                    برای تاریخ انتخاب‌شده کارکردی ثبت نشده است.
+                <td colspan="10" class="empty">
+                    اطلاعاتی برای نمایش وجود ندارد.
                 </td>
             </tr>
         `;
 
         return;
-
     }
 
 
     table.innerHTML =
-        records.map(function(record){
+        rows.map(row => {
 
-            let status = "";
+            const employee =
+                row.employee;
 
-            if(record.overtime > 0){
+            const record =
+                row.record;
 
-                status =
-                    `<span class="status overtime">
-                        اضافه‌کار
-                     </span>`;
+            const calc =
+                row.calculation;
 
-            }else if(record.shortage > 0){
+            let statusText =
+                "غایب";
 
-                status =
-                    `<span class="status shortage">
-                        کسری
-                     </span>`;
+            let statusClass =
+                "absent";
 
-            }else{
+            if (calc.status === "present") {
 
-                status =
-                    `<span class="status present">
-                        کامل
-                     </span>`;
+                statusText =
+                    "حاضر";
+
+                statusClass =
+                    "present";
+
+            } else if (
+                calc.status === "incomplete"
+            ) {
+
+                statusText =
+                    "ناقص";
+
+                statusClass =
+                    "warning";
 
             }
 
-
             return `
+
                 <tr>
 
-                    <td>${escapeHtml(record.date)}</td>
-
                     <td>
-                        ${escapeHtml(record.employeeCode)}
+                        ${toPersianDate(date)}
                     </td>
 
                     <td>
-                        <strong>
-                            ${escapeHtml(record.employeeName)}
-                        </strong>
-                    </td>
-
-                    <td>${record.inTime}</td>
-
-                    <td>${record.outTime}</td>
-
-                    <td>
-                        ${record.workDay}
+                        ${escapeHtml(
+                            employee.personnelCode
+                        )}
                     </td>
 
                     <td>
-                        <strong>
-                            ${minutesToTime(record.worked)}
-                        </strong>
+                        ${escapeHtml(
+                            employee.firstName +
+                            " " +
+                            employee.lastName
+                        )}
                     </td>
 
                     <td>
-                        ${minutesToTime(record.required)}
+                        ${record?.entry || "-"}
                     </td>
 
                     <td>
-                        <span class="status overtime">
-                            ${minutesToTime(record.overtime)}
+                        ${record?.exit || "-"}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(
+                            calc.workedMinutes
+                        )}
+                    </td>
+
+                    <td>
+                        ${calc.workDay}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(
+                            calc.overtimeMinutes
+                        )}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(
+                            calc.shortageMinutes
+                        )}
+                    </td>
+
+                    <td>
+                        <span class="status ${statusClass}">
+                            ${statusText}
                         </span>
-                    </td>
-
-                    <td>
-                        <span class="status shortage">
-                            ${minutesToTime(record.shortage)}
-                        </span>
-                    </td>
-
-                    <td>
-                        ${status}
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                class="btn btn-edit btn-small"
-                                onclick="editAttendance('${record.id}')">
-                                ✏️
-                            </button>
-
-                            <button
-                                class="btn btn-danger btn-small"
-                                onclick="deleteAttendance('${record.id}')">
-                                🗑️
-                            </button>
-
-                        </div>
-
                     </td>
 
                 </tr>
+
             `;
 
         }).join("");
-
-}
-
-
-/* =========================================================
-   ATTENDANCE PREVIEW
-========================================================= */
-
-function setupAttendancePreview(){
-
-    [
-        "attendanceEmployee",
-        "attendanceIn",
-        "attendanceOut"
-    ].forEach(function(id){
-
-        const element =
-            document.getElementById(id);
-
-        if(element){
-
-            element.addEventListener(
-                "change",
-                updateAttendancePreview
-            );
-
-        }
-
-    });
-
-
-    const dateElement =
-        document.getElementById(
-            "attendanceDate"
-        );
-
-
-    if(dateElement){
-
-        dateElement.addEventListener(
-            "change",
-            renderAttendance
-        );
-
-    }
-
-}
-
-
-function updateAttendancePreview(){
-
-    const employeeId =
-        document.getElementById(
-            "attendanceEmployee"
-        ).value;
-
-
-    const inTime =
-        document.getElementById(
-            "attendanceIn"
-        ).value;
-
-
-    const outTime =
-        document.getElementById(
-            "attendanceOut"
-        ).value;
-
-
-    const preview =
-        document.getElementById(
-            "attendancePreview"
-        );
-
-
-    if(!employeeId || !inTime || !outTime){
-
-        preview.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    const employee =
-        employees.find(
-            item => item.id === employeeId
-        );
-
-
-    if(!employee){
-        return;
-    }
-
-
-    const result =
-        calculateAttendance(
-            inTime,
-            outTime,
-            employee.dailyWork || settings.dailyWork
-        );
-
-
-    preview.style.display =
-        "block";
-
-
-    document.getElementById(
-        "previewWorked"
-    ).textContent =
-        minutesToTime(result.worked);
-
-
-    document.getElementById(
-        "previewRequired"
-    ).textContent =
-        minutesToTime(result.required);
-
-
-    document.getElementById(
-        "previewOvertime"
-    ).textContent =
-        minutesToTime(result.overtime);
-
-
-    document.getElementById(
-        "previewShortage"
-    ).textContent =
-        minutesToTime(result.shortage);
 
 }
 
@@ -2902,129 +3715,167 @@ function updateAttendancePreview(){
    DASHBOARD
 ========================================================= */
 
-function renderDashboard(){
+function renderDashboard() {
 
-    const activeEmployees =
-        employees.filter(
-            employee =>
-                employee.status !== "inactive"
-        );
+    const employees =
+        getEmployees()
+            .filter(
+                employee => employee.active
+            );
 
+    const attendance =
+        getAttendance();
 
-    document.getElementById(
-        "dashboardEmployees"
-    ).textContent =
-        activeEmployees.length;
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
 
+    let present = 0;
+    let overtime = 0;
 
-    const selectedDate =
-        today();
+    const rows =
+        employees.map(employee => {
 
+            const record =
+                attendance.find(
+                    item =>
+                        item.date === today &&
+                        item.employeeId === employee.id
+                );
 
-    const todayRecords =
-        attendance.filter(
-            record =>
-                record.date === selectedDate
-        );
+            const calc =
+                calculateAttendance(record);
 
+            if (calc.workedMinutes > 0) {
+                present++;
+            }
 
-    document.getElementById(
-        "dashboardPresent"
-    ).textContent =
-        todayRecords.length;
+            overtime +=
+                calc.overtimeMinutes;
 
+            return {
+                employee,
+                record,
+                calc
+            };
 
-    const overtime =
-        attendance.reduce(
-            (sum,record) =>
-                sum + (record.overtime || 0),
-            0
-        );
-
-
-    const shortage =
-        attendance.reduce(
-            (sum,record) =>
-                sum + (record.shortage || 0),
-            0
-        );
-
-
-    document.getElementById(
-        "dashboardOvertime"
-    ).textContent =
-        minutesToTime(overtime);
+        });
 
 
-    document.getElementById(
-        "dashboardShortage"
-    ).textContent =
-        minutesToTime(shortage);
+    document
+        .getElementById("dashboardEmployees")
+        .textContent =
+            toPersianDigits(
+                employees.length
+            );
+
+    document
+        .getElementById("dashboardPresent")
+        .textContent =
+            toPersianDigits(present);
+
+    document
+        .getElementById("dashboardAbsent")
+        .textContent =
+            toPersianDigits(
+                Math.max(
+                    0,
+                    employees.length - present
+                )
+            );
+
+    document
+        .getElementById("dashboardOvertime")
+        .textContent =
+            minutesToTime(overtime);
+
+    document
+        .getElementById("dashboardDate")
+        .textContent =
+            "امروز: " +
+            toPersianDate(today);
 
 
     const table =
         document.getElementById(
-            "dashboardAttendanceTable"
+            "dashboardTable"
         );
 
-
-    const recent =
-        [...attendance]
-            .sort(
-                (a,b) =>
-                    b.date.localeCompare(a.date)
-            )
-            .slice(0,10);
-
-
-    if(!recent.length){
+    if (!rows.length) {
 
         table.innerHTML = `
             <tr>
-                <td colspan="8" class="empty">
-                    هنوز کارکردی ثبت نشده است.
+                <td colspan="6" class="empty">
+                    هنوز پرسنلی ثبت نشده است.
                 </td>
             </tr>
         `;
 
         return;
-
     }
 
 
     table.innerHTML =
-        recent.map(function(record){
+        rows.map(row => {
+
+            let status =
+                `<span class="status absent">غایب</span>`;
+
+            if (
+                row.calc.status === "present"
+            ) {
+
+                status =
+                    `<span class="status present">حاضر</span>`;
+
+            } else if (
+                row.calc.status === "incomplete"
+            ) {
+
+                status =
+                    `<span class="status warning">ناقص</span>`;
+
+            }
 
             return `
+
                 <tr>
 
-                    <td>${record.date}</td>
-
                     <td>
-                        ${escapeHtml(record.employeeCode)}
+                        ${escapeHtml(
+                            row.employee.personnelCode
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(record.employeeName)}
-                    </td>
-
-                    <td>${record.inTime}</td>
-
-                    <td>${record.outTime}</td>
-
-                    <td>
-                        ${minutesToTime(record.worked)}
+                        ${escapeHtml(
+                            row.employee.firstName +
+                            " " +
+                            row.employee.lastName
+                        )}
                     </td>
 
                     <td>
-                        ${minutesToTime(record.overtime)}
+                        ${row.record?.entry || "-"}
                     </td>
 
                     <td>
-                        ${minutesToTime(record.shortage)}
+                        ${row.record?.exit || "-"}
+                    </td>
+
+                    <td>
+                        ${minutesToTime(
+                            row.calc.workedMinutes
+                        )}
+                    </td>
+
+                    <td>
+                        ${status}
                     </td>
 
                 </tr>
+
             `;
 
         }).join("");
@@ -3033,194 +3884,705 @@ function renderDashboard(){
 
 
 /* =========================================================
-   REPORTS
+   REPORT
 ========================================================= */
 
-function populateReportEmployees(){
+function generateReport() {
 
-    const select =
-        document.getElementById(
-            "reportEmployee"
-        );
+    const from =
+        document
+            .getElementById("reportFrom")
+            .value;
 
-
-    select.innerHTML =
-        `<option value="">همه پرسنل</option>` +
-        employees.map(function(employee){
-
-            return `
-                <option value="${employee.id}">
-                    ${escapeHtml(employee.code)}
-                    -
-                    ${escapeHtml(employee.name)}
-                </option>
-            `;
-
-        }).join("");
-
-}
-
-
-function renderReports(){
-
-    const month =
-        document.getElementById(
-            "reportMonth"
-        ).value ||
-        currentMonth();
-
+    const to =
+        document
+            .getElementById("reportTo")
+            .value;
 
     const employeeId =
-        document.getElementById(
-            "reportEmployee"
-        ).value;
+        document
+            .getElementById("reportEmployee")
+            .value;
 
+    const department =
+        document
+            .getElementById("reportDepartment")
+            .value;
 
-    let records =
-        attendance.filter(function(record){
+    if (!from || !to) {
 
-            return record.date.startsWith(month);
+        toast(
+            "بازه گزارش را مشخص کنید.",
+            "error"
+        );
 
-        });
-
-
-    if(employeeId){
-
-        records =
-            records.filter(
-                record =>
-                    record.employeeId === employeeId
-            );
-
+        return;
     }
 
+    const employees =
+        getEmployees()
+            .filter(employee => {
 
-    const grouped = {};
+                if (
+                    employeeId &&
+                    employee.id !== employeeId
+                ) {
+                    return false;
+                }
+
+                if (
+                    department &&
+                    employee.department !== department
+                ) {
+                    return false;
+                }
+
+                return employee.active;
+
+            });
+
+    const attendance =
+        getAttendance();
+
+    const result = [];
 
 
-    records.forEach(function(record){
+    employees.forEach(employee => {
 
-        if(!grouped[record.employeeId]){
+        let duty = 0;
+        let worked = 0;
+        let overtime = 0;
+        let shortage = 0;
+        let workDays = 0;
 
-            grouped[record.employeeId] = {
+        let current =
+            new Date(
+                from + "T00:00:00"
+            );
 
-                employeeId:
-                    record.employeeId,
+        const end =
+            new Date(
+                to + "T00:00:00"
+            );
 
-                employeeCode:
-                    record.employeeCode,
+        while (current <= end) {
 
-                employeeName:
-                    record.employeeName,
+            const date =
+                current
+                    .toISOString()
+                    .split("T")[0];
 
-                days:0,
+            const record =
+                attendance.find(
+                    item =>
+                        item.date === date &&
+                        item.employeeId === employee.id
+                );
 
-                worked:0,
+            const calc =
+                calculateAttendance(record);
 
-                required:0,
+            duty +=
+                calc.dutyMinutes;
 
-                overtime:0,
+            worked +=
+                calc.workedMinutes;
 
-                shortage:0
+            overtime +=
+                calc.overtimeMinutes;
 
-            };
+            shortage +=
+                calc.shortageMinutes;
+
+            workDays +=
+                calc.workDay;
+
+            current.setDate(
+                current.getDate() + 1
+            );
 
         }
 
+        result.push({
 
-        const item =
-            grouped[record.employeeId];
+            employee,
 
+            duty,
 
-        item.days +=
-            Number(record.workDay || 0);
+            worked,
 
-        item.worked +=
-            Number(record.worked || 0);
+            overtime,
 
-        item.required +=
-            Number(record.required || 0);
+            shortage,
 
-        item.overtime +=
-            Number(record.overtime || 0);
+            workDays
 
-        item.shortage +=
-            Number(record.shortage || 0);
+        });
 
     });
 
 
-    const table =
+    const total = {
+
+        duty: 0,
+
+        worked: 0,
+
+        overtime: 0,
+
+        shortage: 0,
+
+        workDays: 0
+
+    };
+
+
+    result.forEach(row => {
+
+        total.duty += row.duty;
+
+        total.worked += row.worked;
+
+        total.overtime += row.overtime;
+
+        total.shortage += row.shortage;
+
+        total.workDays += row.workDays;
+
+    });
+
+
+    const container =
         document.getElementById(
-            "reportsTable"
+            "reportResult"
         );
 
 
-    const rows =
-        Object.values(grouped);
+    if (!result.length) {
 
-
-    if(!rows.length){
-
-        table.innerHTML = `
-            <tr>
-                <td colspan="7" class="empty">
-                    برای ماه انتخاب‌شده گزارشی وجود ندارد.
-                </td>
-            </tr>
+        container.innerHTML = `
+            <div class="empty">
+                اطلاعاتی برای گزارش پیدا نشد.
+            </div>
         `;
 
         return;
-
     }
 
 
-    table.innerHTML =
-        rows.map(function(item){
+    container.innerHTML = `
 
-            return `
+        <div class="summary-grid">
+
+            <div class="summary-item">
+
+                <div class="label">
+                    مجموع موظفی
+                </div>
+
+                <div class="value">
+                    ${minutesToTime(total.duty)}
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    مجموع کارکرد
+                </div>
+
+                <div class="value">
+                    ${minutesToTime(total.worked)}
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    روز کارکرد
+                </div>
+
+                <div class="value">
+                    ${total.workDays
+                        .toFixed(2)
+                        .replace(".00","")}
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    اضافه‌کار
+                </div>
+
+                <div class="value">
+                    ${minutesToTime(total.overtime)}
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="label">
+                    کسری‌کار
+                </div>
+
+                <div class="value">
+                    ${minutesToTime(total.shortage)}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <table id="reportTable">
+
+            <thead>
+
                 <tr>
 
-                    <td>
-                        ${escapeHtml(item.employeeCode)}
-                    </td>
-
-                    <td>
-                        <strong>
-                            ${escapeHtml(item.employeeName)}
-                        </strong>
-                    </td>
-
-                    <td>
-                        ${item.days}
-                    </td>
-
-                    <td>
-                        <strong>
-                            ${minutesToTime(item.worked)}
-                        </strong>
-                    </td>
-
-                    <td>
-                        ${minutesToTime(item.required)}
-                    </td>
-
-                    <td>
-                        <span class="status overtime">
-                            ${minutesToTime(item.overtime)}
-                        </span>
-                    </td>
-
-                    <td>
-                        <span class="status shortage">
-                            ${minutesToTime(item.shortage)}
-                        </span>
-                    </td>
+                    <th>کد پرسنلی</th>
+                    <th>نام و نام خانوادگی</th>
+                    <th>واحد</th>
+                    <th>موظفی</th>
+                    <th>کارکرد</th>
+                    <th>روز کارکرد</th>
+                    <th>اضافه‌کار</th>
+                    <th>کسری‌کار</th>
 
                 </tr>
-            `;
 
-        }).join("");
+            </thead>
+
+            <tbody>
+
+                ${
+                    result.map(row => `
+
+                        <tr>
+
+                            <td>
+                                ${escapeHtml(
+                                    row.employee.personnelCode
+                                )}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(
+                                    row.employee.firstName +
+                                    " " +
+                                    row.employee.lastName
+                                )}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(
+                                    row.employee.department ||
+                                    "-"
+                                )}
+                            </td>
+
+                            <td>
+                                ${minutesToTime(row.duty)}
+                            </td>
+
+                            <td>
+                                ${minutesToTime(row.worked)}
+                            </td>
+
+                            <td>
+                                ${row.workDays
+                                    .toFixed(2)
+                                    .replace(".00","")}
+                            </td>
+
+                            <td>
+                                ${minutesToTime(row.overtime)}
+                            </td>
+
+                            <td>
+                                ${minutesToTime(row.shortage)}
+                            </td>
+
+                        </tr>
+
+                    `).join("")
+                }
+
+            </tbody>
+
+        </table>
+
+        <div style="
+            margin-top:15px;
+            color:#777;
+            font-size:14px;
+        ">
+
+            بازه گزارش:
+            ${toPersianDate(from)}
+            تا
+            ${toPersianDate(to)}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PRINT REPORT
+========================================================= */
+
+function printReport() {
+
+    const report =
+        document.getElementById(
+            "reportResult"
+        );
+
+    if (
+        !report ||
+        report.innerText.trim() === ""
+    ) {
+
+        toast(
+            "ابتدا گزارش را تولید کنید.",
+            "warning"
+        );
+
+        return;
+    }
+
+    const printWindow =
+        window.open(
+            "",
+            "_blank"
+        );
+
+    printWindow.document.write(`
+
+        <!DOCTYPE html>
+
+        <html lang="fa" dir="rtl">
+
+        <head>
+
+            <meta charset="UTF-8">
+
+            <title>
+                گزارش کارکرد پرسنل
+            </title>
+
+            <style>
+
+                body {
+                    font-family: Tahoma, Arial;
+                    direction: rtl;
+                    padding: 30px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+
+                th,
+                td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: right;
+                }
+
+                th {
+                    background: #f3f3f3;
+                }
+
+                .summary-grid {
+                    display: grid;
+                    grid-template-columns:
+                        repeat(5,1fr);
+                    gap: 10px;
+                }
+
+                .summary-item {
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    text-align: center;
+                }
+
+                .label {
+                    font-size: 13px;
+                }
+
+                .value {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <h2>
+                گزارش کارکرد پرسنل
+            </h2>
+
+            ${report.innerHTML}
+
+        </body>
+
+        </html>
+
+    `);
+
+    printWindow.document.close();
+
+    printWindow.focus();
+
+    setTimeout(
+        () => printWindow.print(),
+        300
+    );
+
+}
+
+
+/* =========================================================
+   USERS
+========================================================= */
+
+function openUserModal() {
+
+    document
+        .getElementById("userModal")
+        .classList.add("show");
+
+    document
+        .getElementById("newUsername")
+        .value = "";
+
+    document
+        .getElementById("newUserName")
+        .value = "";
+
+    document
+        .getElementById("newUserPassword")
+        .value = "";
+
+}
+
+function saveUser() {
+
+    const username =
+        document
+            .getElementById("newUsername")
+            .value
+            .trim();
+
+    const name =
+        document
+            .getElementById("newUserName")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("newUserPassword")
+            .value;
+
+    const role =
+        document
+            .getElementById("newUserRole")
+            .value;
+
+    if (
+        !username ||
+        !name ||
+        !password
+    ) {
+
+        toast(
+            "تمام فیلدهای الزامی را تکمیل کنید.",
+            "error"
+        );
+
+        return;
+    }
+
+    const users =
+        getUsers();
+
+    if (
+        users.some(
+            user =>
+                user.username === username
+        )
+    ) {
+
+        toast(
+            "این نام کاربری قبلاً ثبت شده است.",
+            "error"
+        );
+
+        return;
+    }
+
+    users.push({
+
+        id:
+            "USR-" +
+            Date.now(),
+
+        username,
+
+        name,
+
+        password,
+
+        role,
+
+        active: true,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+    saveUsers(users);
+
+    closeModal("userModal");
+
+    renderUsers();
+
+    toast(
+        "کاربر با موفقیت ایجاد شد.",
+        "success"
+    );
+
+}
+
+function renderUsers() {
+
+    const table =
+        document.getElementById(
+            "usersTable"
+        );
+
+    const users =
+        getUsers();
+
+    table.innerHTML =
+        users.map(user => `
+
+            <tr>
+
+                <td>
+                    ${escapeHtml(user.username)}
+                </td>
+
+                <td>
+                    ${escapeHtml(user.name)}
+                </td>
+
+                <td>
+                    ${getRoleName(user.role)}
+                </td>
+
+                <td>
+
+                    <span class="status ${
+                        user.active
+                            ? "present"
+                            : "absent"
+                    }">
+
+                        ${
+                            user.active
+                                ? "فعال"
+                                : "غیرفعال"
+                        }
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <div class="actions">
+
+                        ${
+                            user.username !== "admin"
+                                ? `
+                                    <button
+                                        class="btn ${
+                                            user.active
+                                                ? "btn-danger"
+                                                : "btn-success"
+                                        }"
+                                        onclick="toggleUser('${user.id}')"
+                                    >
+                                        ${
+                                            user.active
+                                                ? "غیرفعال"
+                                                : "فعال"
+                                        }
+                                    </button>
+                                `
+                                : `
+                                    <span class="status info">
+                                        حساب اصلی
+                                    </span>
+                                `
+                        }
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `).join("");
+
+}
+
+function toggleUser(id) {
+
+    let users =
+        getUsers();
+
+    users =
+        users.map(user => {
+
+            if (user.id === id) {
+
+                return {
+                    ...user,
+                    active: !user.active
+                };
+
+            }
+
+            return user;
+
+        });
+
+    saveUsers(users);
+
+    renderUsers();
+
+    toast(
+        "وضعیت کاربر تغییر کرد.",
+        "success"
+    );
 
 }
 
@@ -3229,36 +4591,279 @@ function renderReports(){
    SETTINGS
 ========================================================= */
 
-function saveSettings(){
+function loadSettings() {
 
-    settings.dailyWork =
-        document.getElementById(
-            "settingDailyWork"
-        ).value || "08:00";
+    const settings =
+        getSettings();
 
+    document
+        .getElementById("settingStart")
+        .value =
+            settings.startTime;
 
-    settings.startTime =
-        document.getElementById(
-            "settingStartTime"
-        ).value || "08:00";
+    document
+        .getElementById("settingEnd")
+        .value =
+            settings.endTime;
 
+    document
+        .getElementById("settingBreak")
+        .value =
+            String(
+                settings.breakMinutes
+            );
 
-    settings.endTime =
-        document.getElementById(
-            "settingEndTime"
-        ).value || "16:00";
+    document
+        .getElementById("settingHourlyLeave")
+        .value =
+            settings.hourlyLeaveLimit;
 
+}
 
-    saveData();
+function saveSettings() {
 
+    const settings = {
 
-    showToast(
+        startTime:
+            document
+                .getElementById("settingStart")
+                .value,
+
+        endTime:
+            document
+                .getElementById("settingEnd")
+                .value,
+
+        breakMinutes:
+            Number(
+                document
+                    .getElementById("settingBreak")
+                    .value
+            ),
+
+        hourlyLeaveLimit:
+            Number(
+                document
+                    .getElementById("settingHourlyLeave")
+                    .value
+            )
+
+    };
+
+    storageSet(
+        STORAGE_KEYS.settings,
+        settings
+    );
+
+    toast(
         "تنظیمات با موفقیت ذخیره شد.",
         "success"
     );
 
+    renderDashboard();
 
-    renderAll();
+    renderAttendance();
+
+}
+
+
+/* =========================================================
+   DEMO DATA
+========================================================= */
+
+function loadDemoData() {
+
+    if (
+        !confirm(
+            "اطلاعات نمونه به اطلاعات فعلی اضافه می‌شود. ادامه می‌دهید؟"
+        )
+    ) {
+        return;
+    }
+
+    const employees = [
+
+        {
+            id: "EMP-1001",
+            personnelCode: "1001",
+            firstName: "علی",
+            lastName: "احمدی",
+            nationalCode: "0012345678",
+            department: "اداری",
+            position: "کارشناس",
+            active: true,
+            createdAt:
+                new Date().toISOString(),
+            updatedAt:
+                new Date().toISOString()
+        },
+
+        {
+            id: "EMP-1002",
+            personnelCode: "1002",
+            firstName: "رضا",
+            lastName: "محمدی",
+            nationalCode: "0023456789",
+            department: "فنی",
+            position: "کارشناس فنی",
+            active: true,
+            createdAt:
+                new Date().toISOString(),
+            updatedAt:
+                new Date().toISOString()
+        },
+
+        {
+            id: "EMP-1003",
+            personnelCode: "1003",
+            firstName: "حسین",
+            lastName: "کریمی",
+            nationalCode: "0034567890",
+            department: "مالی",
+            position: "حسابدار",
+            active: true,
+            createdAt:
+                new Date().toISOString(),
+            updatedAt:
+                new Date().toISOString()
+        }
+
+    ];
+
+    const existing =
+        getEmployees();
+
+    employees.forEach(employee => {
+
+        if (
+            !existing.some(
+                item =>
+                    item.personnelCode ===
+                    employee.personnelCode
+            )
+        ) {
+
+            existing.push(employee);
+
+        }
+
+    });
+
+    storageSet(
+        STORAGE_KEYS.employees,
+        existing
+    );
+
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    const attendance =
+        getAttendance();
+
+    const demoRecords = [
+
+        {
+            id: "ATT-1",
+            employeeId: "EMP-1001",
+            date: today,
+            entry: "07:25",
+            exit: "15:30",
+            source: "demo"
+        },
+
+        {
+            id: "ATT-2",
+            employeeId: "EMP-1002",
+            date: today,
+            entry: "07:40",
+            exit: "16:10",
+            source: "demo"
+        },
+
+        {
+            id: "ATT-3",
+            employeeId: "EMP-1003",
+            date: today,
+            entry: "07:35",
+            exit: "14:20",
+            source: "demo"
+        }
+
+    ];
+
+    demoRecords.forEach(record => {
+
+        if (
+            !attendance.some(
+                item =>
+                    item.employeeId ===
+                    record.employeeId &&
+                    item.date ===
+                    record.date
+            )
+        ) {
+
+            attendance.push(record);
+
+        }
+
+    });
+
+    storageSet(
+        STORAGE_KEYS.attendance,
+        attendance
+    );
+
+    initializeApplication();
+
+    toast(
+        "اطلاعات نمونه با موفقیت بارگذاری شد.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetLocalData() {
+
+    if (
+        !confirm(
+            "تمام اطلاعات پرسنل، کارکرد و تنظیمات محلی حذف می‌شود. آیا مطمئن هستید؟"
+        )
+    ) {
+        return;
+    }
+
+    localStorage.removeItem(
+        STORAGE_KEYS.employees
+    );
+
+    localStorage.removeItem(
+        STORAGE_KEYS.attendance
+    );
+
+    localStorage.removeItem(
+        STORAGE_KEYS.settings
+    );
+
+    /*
+      کاربران را عمداً حذف نمی‌کنیم
+      تا مدیر بتواند دوباره وارد شود.
+    */
+
+    initializeApplication();
+
+    toast(
+        "اطلاعات محلی پاک شد.",
+        "success"
+    );
 
 }
 
@@ -3267,30 +4872,32 @@ function saveSettings(){
    MODAL
 ========================================================= */
 
-function closeModal(id){
+function closeModal(id) {
 
     const modal =
         document.getElementById(id);
 
-    if(modal){
-
+    if (modal) {
         modal.classList.remove("show");
-
     }
 
 }
 
-
-document.querySelectorAll(".modal")
-    .forEach(function(modal){
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
 
         modal.addEventListener(
             "click",
-            function(event){
+            event => {
 
-                if(event.target === modal){
+                if (
+                    event.target === modal
+                ) {
 
-                    modal.classList.remove("show");
+                    modal.classList.remove(
+                        "show"
+                    );
 
                 }
 
@@ -3300,231 +4907,88 @@ document.querySelectorAll(".modal")
     });
 
 
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            document.querySelectorAll(".modal.show")
-                .forEach(function(modal){
-
-                    modal.classList.remove("show");
-
-                });
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   BACKUP
-========================================================= */
-
-function exportData(){
-
-    const data = {
-
-        version:"1.0",
-
-        exportedAt:
-            new Date().toISOString(),
-
-        employees,
-
-        attendance,
-
-        settings
-
-    };
-
-
-    const blob =
-        new Blob(
-            [
-                JSON.stringify(
-                    data,
-                    null,
-                    2
-                )
-            ],
-            {
-                type:"application/json"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href = url;
-
-    a.download =
-        `backup-personnel-${today()}.json`;
-
-    a.click();
-
-
-    URL.revokeObjectURL(url);
-
-
-    showToast(
-        "فایل پشتیبان ایجاد شد.",
-        "success"
-    );
-
-}
-
-
-/* =========================================================
-   DELETE ALL
-========================================================= */
-
-function clearAllData(){
-
-    const confirmed =
-        confirm(
-            "هشدار: تمام پرسنل و سوابق کارکرد حذف خواهند شد. ادامه می‌دهید؟"
-        );
-
-
-    if(!confirmed){
-        return;
-    }
-
-
-    const confirmed2 =
-        confirm(
-            "این عملیات قابل بازگشت نیست. آیا مطمئن هستید؟"
-        );
-
-
-    if(!confirmed2){
-        return;
-    }
-
-
-    employees = [];
-
-    attendance = [];
-
-
-    saveData();
-
-    renderAll();
-
-
-    showToast(
-        "تمام اطلاعات حذف شد.",
-        "success"
-    );
-
-}
-
-
 /* =========================================================
    TOAST
 ========================================================= */
 
-let toastTimer = null;
+function toast(
+    message,
+    type = ""
+) {
 
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
 
-function showToast(message,type="success"){
+    const element =
+        document.createElement("div");
 
-    const toast =
-        document.getElementById("toast");
+    element.className =
+        "toast " + type;
 
-
-    toast.textContent =
+    element.textContent =
         message;
 
+    container.appendChild(
+        element
+    );
 
-    toast.className =
-        `toast show ${type}`;
+    setTimeout(
+        () => {
 
+            element.remove();
 
-    clearTimeout(toastTimer);
-
-
-    toastTimer =
-        setTimeout(function(){
-
-            toast.classList.remove("show");
-
-        },3000);
+        },
+        3500
+    );
 
 }
 
 
 /* =========================================================
-   DEFAULT VALUES
+   SECURITY / HTML ESCAPE
 ========================================================= */
 
-function setDefaultDates(){
+function escapeHtml(value) {
 
-    const attendanceDate =
-        document.getElementById(
-            "attendanceDate"
-        );
-
-
-    if(attendanceDate){
-
-        attendanceDate.value =
-            today();
-
-    }
-
-
-    const reportMonth =
-        document.getElementById(
-            "reportMonth"
-        );
-
-
-    if(reportMonth){
-
-        reportMonth.value =
-            currentMonth();
-
-    }
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
 /* =========================================================
-   RENDER ALL
+   KEYBOARD LOGIN
 ========================================================= */
 
-function renderAll(){
+document
+    .getElementById("loginPassword")
+    .addEventListener(
+        "keydown",
+        event => {
 
-    renderDashboard();
+            if (
+                event.key === "Enter"
+            ) {
 
-    renderEmployees();
+                login();
 
-    renderAttendance();
+            }
 
-    populateReportEmployees();
-
-    renderReports();
-
-}
+        }
+    );
 
 
 /* =========================================================
-   INITIAL SAMPLE DATA
-=========================================================
-
-   عمداً اطلاعات نمونه ایجاد نمی‌کنیم.
-   سامانه با اطلاعات واقعی کاربر شروع می‌شود.
+   START
 ========================================================= */
+
+restoreSession();
 
 </script>
 
